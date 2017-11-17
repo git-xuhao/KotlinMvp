@@ -1,0 +1,61 @@
+ext{
+
+    android = [
+            compileSdkVersion: 26,
+            buildToolsVersion: "26.0.2",
+            minSdkVersion    : 15,
+            targetSdkVersion : 26,
+            versionCode      : 1,
+            versionName      : "1.0"
+    ]
+
+    dependVersion = [
+            androidSupportSdkVersion: "26.0.2",
+            retrofitSdkVersion      : "2.3.0",
+            glideSdkVersion         : "4.0.0",
+            rxJava                  : "2.1.5",
+            rxAndroid               : "2.0.1"
+    ]
+
+    supportDeps = [
+            //--------  support  -------
+            supportv4               : "com.android.support:support-v4:$dependVersion.androidSupportSdkVersion",
+            appcompatv7             : "com.android.support:appcompat-v7:$dependVersion.androidSupportSdkVersion",
+            recyclerview            : "com.android.support:recyclerview-v7:$dependVersion.androidSupportSdkVersion",
+            cardview                : "com.android.support:cardview-v7:$dependVersion.androidSupportSdkVersion",
+            design                  : "com.android.support:design:$dependVersion.androidSupportSdkVersion",
+            annotations             : "com.android.support:support-annotations:$dependVersion.androidSupportSdkVersion"
+    ]
+
+
+    retrofit = [
+            //------ retrofit和RxJava ---------
+            retrofit                : "com.squareup.retrofit2:retrofit:$dependVersion.retrofitSdkVersion",
+            retrofitConverterGson   : "com.squareup.retrofit2:converter-gson:$dependVersion.retrofitSdkVersion",
+            retrofitAdapterRxjava2  : "com.squareup.retrofit2:adapter-rxjava2:$dependVersion.retrofitSdkVersion",
+            okhttp3LoggerInterceptor: 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    ]
+
+    rxJava = [
+            rxJava                : "io.reactivex.rxjava2:rxjava:$dependVersion.rxJava",
+            rxAndroid             : "io.reactivex.rxjava2:rxandroid:$dependVersion.rxAndroid"
+    ]
+
+
+
+
+    glide = "com.github.bumptech.glide:glide:$dependVersion.glideSdkVersion"
+    glideCompiler = "com.github.bumptech.glide:compiler:$dependVersion.glideSdkVersion"
+    glideOkhttp = "com.github.bumptech.glide:okhttp3-integration:$dependVersion.glideSdkVersion"
+
+    supportLibs = supportDeps.values()
+    networkLibs = retrofit.values()
+    rxJavaLibs = rxJava.values()
+    otherLibs = [glide]
+
+    annotationProcessorLibs =[glideCompiler]
+
+
+
+
+}
