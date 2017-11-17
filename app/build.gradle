@@ -43,7 +43,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation ('com.android.support.test.espresso:espresso-core:3.0.1'){
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1') {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
 
@@ -52,11 +52,11 @@ dependencies {
     implementation rootProject.ext.networkLibs
     implementation rootProject.ext.rxJavaLibs
 
-    implementation ('com.flyco.tablayout:FlycoTabLayout_Lib:2.1.0@aar'){
+    implementation('com.flyco.tablayout:FlycoTabLayout_Lib:2.1.0@aar') {
         exclude group: 'com.android.support', module: 'support-v4'
     }
 
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
     implementation(glideOkhttp) {

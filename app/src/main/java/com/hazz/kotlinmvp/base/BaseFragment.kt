@@ -24,7 +24,6 @@ import android.view.ViewGroup
      */
     private var hasLoadData = false
 
-
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(getLayoutId(),null)
     }
@@ -41,6 +40,7 @@ import android.view.ViewGroup
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         isViewPrepare = true
+        initView()
         lazyLoadDataIfPrepared()
     }
 
@@ -54,6 +54,7 @@ import android.view.ViewGroup
     @LayoutRes
     abstract fun getLayoutId():Int
 
+    abstract fun initView()
 
     abstract fun lazyLoad()
 }

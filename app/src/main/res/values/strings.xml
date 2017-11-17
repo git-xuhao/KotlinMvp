@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Kotlin Mvp</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>

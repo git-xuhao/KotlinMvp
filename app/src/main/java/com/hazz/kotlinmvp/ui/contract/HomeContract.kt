@@ -1,20 +1,19 @@
-package com.hazz.kotlinmvp
+package com.hazz.kotlinmvp.ui.contract
 
 import com.hazz.kotlinmvp.base.IPresenter
 import com.hazz.kotlinmvp.base.BaseView
-import com.hazz.kotlinmvp.bean.FuckGoods
+import com.hazz.kotlinmvp.bean.HomeBean
 
 /**
  * Created by xuhao on 2017/11/8.
  * 契约类
  */
 
-interface MainContract {
+interface HomeContract {
 
     interface View : BaseView {
 
-
-        fun showAndroidData(fuckGoods: List<FuckGoods>)
+        fun setHomeData(homeBean: HomeBean)
 
         fun showError(msg: String)
 
@@ -23,7 +22,10 @@ interface MainContract {
 
     interface Presenter : IPresenter<View> {
 
-        fun getAndroidData(page: Int)
+        /**
+         * 获取首页精选数据
+         */
+        fun requestHomeData(num: Int)
 
 
     }

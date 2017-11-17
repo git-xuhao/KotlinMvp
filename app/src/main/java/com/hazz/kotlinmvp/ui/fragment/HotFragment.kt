@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.content_main.*
 class HotFragment: BaseFragment(){
 
 
+
     private var mTitle:String?=null
 
     companion object {
@@ -30,6 +31,11 @@ class HotFragment: BaseFragment(){
 
     override fun lazyLoad() {
         tv_title.text=mTitle
+    }
+
+    override fun initView() {
+
+
     }
 
 }

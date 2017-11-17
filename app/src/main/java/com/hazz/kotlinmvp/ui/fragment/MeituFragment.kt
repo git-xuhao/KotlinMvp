@@ -11,6 +11,10 @@ import kotlinx.android.synthetic.main.content_main.*
 class MeituFragment: BaseFragment() {
 
 
+    override fun initView() {
+    }
+
+
     private var mTitle:String? =null
 
 

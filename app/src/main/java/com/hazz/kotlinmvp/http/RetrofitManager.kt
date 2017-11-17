@@ -1,8 +1,9 @@
 package com.hazz.kotlinmvp.http
 
+import android.util.Log
 import com.hazz.kotlinmvp.MyApplication
-import com.hazz.kotlinmvp.http.api.ApiService
-import com.hazz.kotlinmvp.http.api.UriConstant
+import com.hazz.kotlinmvp.api.ApiService
+import com.hazz.kotlinmvp.api.UriConstant
 import com.hazz.kotlinmvp.utils.NetworkUtil
 import com.hazz.kotlinmvp.utils.SpUtils
 import okhttp3.*
@@ -17,7 +18,7 @@ import java.util.concurrent.TimeUnit
  * Created by xuhao on 2017/11/16.
  */
 
-class RetrofitManager{
+object RetrofitManager{
 
     private var client: OkHttpClient? = null
     private var httpService: ApiService? = null
@@ -26,19 +27,7 @@ class RetrofitManager{
 
 
 
-    val service: ApiService by lazy {
-
-        creteRetrofitService(ApiService::class.java)
-
-    }
-
-    /**
-     * @return retrofit的底层利用反射的方式, 获取所有的api接口的类
-     */
-
-    private fun <T> creteRetrofitService(clazz: Class<T>):T{
-        return getRetrofit()!!.create(clazz)
-    }
+    val service: ApiService by lazy { getRetrofit()!!.create(ApiService::class.java)}
 
     /**
      * 设置公共参数
@@ -78,6 +67,7 @@ class RetrofitManager{
     private fun addCacheInterceptor(): Interceptor {
         return Interceptor { chain ->
             var request = chain.request()
+            Log.d("okhttp", "okhttp--->" + request.url().toString())
             if (!NetworkUtil.isNetworkAvailable(MyApplication.context)) {
                 request = request.newBuilder()
                         .cacheControl(CacheControl.FORCE_CACHE)

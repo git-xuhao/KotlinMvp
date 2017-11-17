@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity
 /**
  * @author Jake.Ho
  * created: 2017/10/25
- * desc:
+ * desc:BaseActivity基类
  */
  abstract class BaseActivity: AppCompatActivity() {
 
@@ -14,11 +14,11 @@ import android.support.v7.app.AppCompatActivity
         super.onCreate(savedInstanceState)
         setContentView(layoutId())
 
-
     }
 
 
-    protected abstract fun layoutId(): Int
+    abstract fun layoutId(): Int
+
 
 
 

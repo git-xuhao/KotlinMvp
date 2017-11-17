@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.content_main.*
 class CategoryFragment : BaseFragment() {
 
 
-
     private var mTitle: String? = null
 
 
@@ -31,12 +30,20 @@ class CategoryFragment : BaseFragment() {
         }
     }
 
+
+
+    override fun getLayoutId(): Int = R.layout.content_main
+
+
+
+    override fun initView() {
+    }
+
     override fun lazyLoad() {
         showToast("分类title"+mTitle)
         tv_title.text=mTitle
     }
 
-    override fun getLayoutId(): Int = R.layout.content_main
 
 
 }
