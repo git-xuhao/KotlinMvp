@@ -3,7 +3,11 @@ package com.hazz.kotlinmvp
 import android.content.Context
 import android.support.v4.app.Fragment
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import java.net.URL
 
 /**
  * Created by xuhao on 2017/11/14.
@@ -49,6 +53,7 @@ fun durationFormat(duration: Long?): String {
         }
     }
 }
+
 
 
 

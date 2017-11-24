@@ -5,7 +5,7 @@ package com.hazz.kotlinmvp.base
  * created: 2017/10/25
  * desc:
  */
-interface BaseView{
+interface IBaseView {
 
     fun showLoading()
 

@@ -18,4 +18,6 @@
 
     <color name="color_lighter_gray">#ddd</color>
     <color name="color_darker_gray">#aaa</color>
+    
+    <color name="color_translucent">#00000000</color>
 </resources>

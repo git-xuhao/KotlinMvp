@@ -8,12 +8,15 @@ import com.hazz.kotlinmvp.mvp.model.HomeModel
 /**
  * Created by xuhao on 2017/11/8.
  * 首页精选的 Presenter
+ * (数据是 Banner 数据和一页数据组合而成的 HomeBean,查看接口然后在分析就明白了)
  */
 
 class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter {
 
 
     private var bannerHomeBean: HomeBean? = null
+
+    private var nextPageUrl:String?=null     //加载首页的Banner 数据+一页数据合并后，nextPageUrl没 add
 
     private val homeModel: HomeModel by lazy {
 
@@ -49,6 +52,7 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
                     mRootView?.apply {
                         dismissLoading()
 
+                        nextPageUrl = homeBean.nextPageUrl
                         //过滤掉 Banner2(包含广告,等无用的 Type), 具体查看接口分析
                         val newBannerItemList = homeBean.issueList[0].itemList
 
@@ -78,6 +82,46 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
         addSubscription(disposable)
 
     }
+
+    /**
+     * 加载更多
+     */
+
+    override fun loadMoreData() {
+         mRootView?.showLoading()
+         val disposable = nextPageUrl?.let {
+             homeModel.loadMoreData(it)
+                     .subscribe({ homeBean->
+                         mRootView?.apply {
+                             dismissLoading()
+                             //过滤掉 Banner2(包含广告,等无用的 Type), 具体查看接口分析
+                             val newItemList = homeBean.issueList[0].itemList
+
+                             newItemList.filter { item ->
+                                 item.type=="banner2"||item.type=="horizontalScrollCard"
+                             }.forEach{ item ->
+                                 //移除 item
+                                 newItemList.remove(item)
+                             }
+
+                             nextPageUrl = homeBean.nextPageUrl
+                             setMoreData(newItemList)
+                         }
+
+                     },{ t ->
+                         mRootView?.apply {
+                             dismissLoading()
+                             showError(t.toString())
+                         }
+                     })
+
+
+         }
+        if (disposable != null) {
+            addSubscription(disposable)
+        }
+    }
+
 
 
 }

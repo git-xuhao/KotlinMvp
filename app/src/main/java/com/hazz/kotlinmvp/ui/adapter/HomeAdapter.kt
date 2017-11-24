@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import cn.bingoogolapple.bgabanner.BGABanner
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.durationFormat
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
@@ -24,7 +25,7 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
 
     private var mContext: Context? = null
     // banner 作为 RecyclerView 的第一项
-    private var bannerItemSize = 0
+    var bannerItemSize = 0
 
     init {
         mContext = context
@@ -42,6 +43,14 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
      */
     fun setBannerSize(count: Int) {
         bannerItemSize = count
+    }
+
+    /**
+     * 添加更多数据
+     */
+    fun addItemData(itemList:ArrayList<HomeBean.Issue.Item>){
+        this.mData.addAll(itemList)
+        notifyDataSetChanged()
     }
 
 
@@ -71,6 +80,7 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
         }
     }
 
+
     /**
      * 绑定布局
      */
@@ -79,8 +89,8 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
         //Banner
             ITEM_TYPE_BANNER -> {
                 val bannerItemData: ArrayList<HomeBean.Issue.Item> = mData.take(bannerItemSize).toCollection(ArrayList())
-                val bannerFeedList: ArrayList<String> = ArrayList()
-                val bannerTitleList: ArrayList<String> = ArrayList()
+                val bannerFeedList=ArrayList<String>()
+                val bannerTitleList = ArrayList<String>()
                 //取出banner 显示的 img 和 Title
                 Observable.fromIterable(bannerItemData)
                         .subscribe({ list ->
@@ -89,16 +99,21 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
                         })
 
                 //设置 banner
-                holder.getView<BGABanner>(R.id.banner).setAutoPlayAble(bannerFeedList.size > 1)
-                holder.getView<BGABanner>(R.id.banner).setData(bannerFeedList, bannerTitleList)
-                holder.getView<BGABanner>(R.id.banner).setAdapter(object : BGABanner.Adapter<ImageView, String> {
-                    override fun fillBannerItem(bgaBanner: BGABanner?, imageView: ImageView?, feedImageUrl: String?, position: Int) {
-                        Glide.with(mContext)
-                                .load(feedImageUrl)
-                                .into(imageView)
+                with(holder) {
+                    getView<BGABanner>(R.id.banner).run {
+                        setAutoPlayAble(bannerFeedList.size > 1)
+                        setData(bannerFeedList, bannerTitleList)
+                        setAdapter(object : BGABanner.Adapter<ImageView, String> {
+                                        override fun fillBannerItem(bgaBanner: BGABanner?, imageView: ImageView?, feedImageUrl: String?, position: Int) {
+                                            Glide.with(mContext)
+                                                    .load(feedImageUrl)
+                                                    .apply(RequestOptions().placeholder(R.drawable.placeholder_banner))
+                                                    .into(imageView)
 
+                                        }
+                                    })
                     }
-                })
+                }
                 holder.getView<BGABanner>(R.id.banner).setDelegate { bgaBanner, view, any, i ->
 
                 }
@@ -149,23 +164,33 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
      private fun videoItem(holder: ViewHolder,item:HomeBean.Issue.Item){
         val itemData = item.data
 
+        val defAvatar = R.mipmap.default_avatar
         val cover = itemData?.cover?.feed
         var avatar = itemData?.author?.icon
-        val defAvatar = R.mipmap.default_avatar
-        var tagText:String?="# "
+        var tagText:String?="#"
 
         // 作者出处为空，就显获取提供者的信息
         if(avatar.isNullOrEmpty()){
              avatar= itemData?.provider?.icon
         }
         // 加载封页图
-        Glide.with(mContext).load(cover).into(holder.getView(R.id.iv_cover_feed))
+        Glide.with(mContext)
+                .load(cover)
+                .apply(RequestOptions().placeholder(R.drawable.placeholder_banner))
+                .into(holder.getView(R.id.iv_cover_feed))
 
         // 如果提供者信息为空，就显示默认
         if(avatar.isNullOrEmpty()){
-            Glide.with(mContext).load(defAvatar).into(holder.getView(R.id.iv_avatar))
+            Glide.with(mContext)
+                    .load(defAvatar)
+                    .apply(RequestOptions().placeholder(R.mipmap.default_avatar).circleCrop())
+                    .into(holder.getView(R.id.iv_avatar))
+
         }else{
-            Glide.with(mContext).load(avatar).into(holder.getView(R.id.iv_avatar))
+            Glide.with(mContext)
+                    .load(avatar)
+                    .apply(RequestOptions().placeholder(R.mipmap.default_avatar).circleCrop())
+                    .into(holder.getView(R.id.iv_avatar))
         }
         holder.setText(R.id.tv_title,itemData?.title!!)
 

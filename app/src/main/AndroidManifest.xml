@@ -27,6 +27,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.activity.VideoDetailActivity"/>
+
     </application>
 
 </manifest>

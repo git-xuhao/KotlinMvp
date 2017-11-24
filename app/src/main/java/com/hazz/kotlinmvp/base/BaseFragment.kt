@@ -58,7 +58,7 @@ import android.view.ViewGroup
     abstract fun getLayoutId():Int
 
     /**
-     * 初始化 View
+     * 初始化 ViewI
      */
     abstract fun initView()
 

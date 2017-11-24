@@ -21,9 +21,9 @@
             android:id="@+id/iv_avatar"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:layout_centerVertical="true"
             tools:src="@mipmap/ic_launcher_round" />
 
         <LinearLayout
@@ -31,20 +31,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginRight="30dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_toEndOf="@id/iv_avatar"
+            android:layout_toLeftOf="@+id/tv_category"
             android:layout_toRightOf="@id/iv_avatar"
-            android:orientation="vertical"
-            android:layout_marginEnd="30dp"
-            android:layout_toEndOf="@id/iv_avatar">
+            android:layout_toStartOf="@+id/tv_category"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                tools:text="我正在用 Kotlin 写 Android"
                 android:textColor="@color/color_item_title"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                tools:text="我正在用 Kotlin 写 Android" />
 
             <TextView
                 android:id="@+id/tv_tag"
@@ -58,20 +60,19 @@
             android:id="@+id/tv_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginLeft="15dp"
-            tools:text="#搞笑"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="15dp" />
+            tools:text="#搞笑" />
 
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_alignParentBottom="true"
-            android:background="@color/color_darker_gray"/>
+            android:background="@color/color_darker_gray" />
 
     </RelativeLayout>
 

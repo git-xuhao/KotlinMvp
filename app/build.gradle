@@ -55,6 +55,8 @@ dependencies {
     // RxJava2
     implementation rootProject.ext.rxJavaLibs
 
+    implementation rootProject.ext.otherLibs
+
     // APT dependencies
     kapt rootProject.ext.annotationProcessorLibs
 

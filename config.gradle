@@ -51,7 +51,7 @@ ext{
     supportLibs = supportDeps.values()
     networkLibs = retrofit.values()
     rxJavaLibs = rxJava.values()
-    otherLibs = [glide, Logger]
+    otherLibs = [glide]
 
     // APT
     annotationProcessorLibs =[glideCompiler]
