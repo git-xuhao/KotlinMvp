@@ -7,6 +7,7 @@ import android.widget.ImageView
 import cn.bingoogolapple.bgabanner.BGABanner
 import com.bumptech.glide.Glide
 import com.hazz.kotlinmvp.R
+import com.hazz.kotlinmvp.durationFormat
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.view.recyclerview.ViewHolder
 import com.hazz.kotlinmvp.view.recyclerview.adapter.CommonAdapter
@@ -32,8 +33,8 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
     companion object {
 
         private val ITEM_TYPE_BANNER = 1    //Banner 类型
-
-        private val ITEM_TYPE_CONTENT = 2    //item
+        private val ITEM_TYPE_TEXT_HEADER=2   //textHeader
+        private val ITEM_TYPE_CONTENT = 3    //item
     }
 
     /**
@@ -48,10 +49,14 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
      * 得到 Item 的类型
      */
     override fun getItemViewType(position: Int): Int {
-        if (position == 0) {
-            return ITEM_TYPE_BANNER
+        return when {
+            position == 0 ->
+                ITEM_TYPE_BANNER
+            mData[position+bannerItemSize-1].type == "textHeader" ->
+                ITEM_TYPE_TEXT_HEADER
+            else ->
+                ITEM_TYPE_CONTENT
         }
-        return ITEM_TYPE_CONTENT
     }
 
 
@@ -73,11 +78,9 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
         when (getItemViewType(position)) {
         //Banner
             ITEM_TYPE_BANNER -> {
-                var bannerItemData: ArrayList<HomeBean.Issue.Item> = mData.take(bannerItemSize).toCollection(ArrayList())
-
-                var bannerFeedList: ArrayList<String> = ArrayList()
-
-                var bannerTitleList: ArrayList<String> = ArrayList()
+                val bannerItemData: ArrayList<HomeBean.Issue.Item> = mData.take(bannerItemSize).toCollection(ArrayList())
+                val bannerFeedList: ArrayList<String> = ArrayList()
+                val bannerTitleList: ArrayList<String> = ArrayList()
                 //取出banner 显示的 img 和 Title
                 Observable.fromIterable(bannerItemData)
                         .subscribe({ list ->
@@ -100,6 +103,16 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
 
                 }
             }
+            //TextHeader
+            ITEM_TYPE_TEXT_HEADER ->{
+                holder.setText(R.id.tvHeader, mData[position+bannerItemSize-1].data?.text!!)
+            }
+
+            //content
+            ITEM_TYPE_CONTENT ->{
+                videoItem(holder,mData[position+bannerItemSize-1])
+            }
+
 
         }
 
@@ -112,8 +125,8 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
         return when (viewType) {
             ITEM_TYPE_BANNER ->
                 ViewHolder(inflaterView(R.layout.item_home_banner, parent))
-            ITEM_TYPE_CONTENT ->
-                ViewHolder(inflaterView(R.layout.item_home_content, parent))
+            ITEM_TYPE_TEXT_HEADER ->
+                ViewHolder(inflaterView(R.layout.item_home_header, parent))
             else ->
                 ViewHolder(inflaterView(R.layout.item_home_content, parent))
         }
@@ -127,6 +140,49 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
         //创建view
         val view = mInflater?.inflate(mLayoutId, parent, false)
         return view!!
+    }
+
+
+    /**
+     * 加载 content item
+     */
+     private fun videoItem(holder: ViewHolder,item:HomeBean.Issue.Item){
+        val itemData = item.data
+
+        val cover = itemData?.cover?.feed
+        var avatar = itemData?.author?.icon
+        val defAvatar = R.mipmap.default_avatar
+        var tagText:String?="# "
+
+        // 作者出处为空，就显获取提供者的信息
+        if(avatar.isNullOrEmpty()){
+             avatar= itemData?.provider?.icon
+        }
+        // 加载封页图
+        Glide.with(mContext).load(cover).into(holder.getView(R.id.iv_cover_feed))
+
+        // 如果提供者信息为空，就显示默认
+        if(avatar.isNullOrEmpty()){
+            Glide.with(mContext).load(defAvatar).into(holder.getView(R.id.iv_avatar))
+        }else{
+            Glide.with(mContext).load(avatar).into(holder.getView(R.id.iv_avatar))
+        }
+        holder.setText(R.id.tv_title,itemData?.title!!)
+
+        //遍历标签
+        itemData.tags.take(4).forEach{
+            tagText +=(it.name+"/")
+        }
+        // 格式化时间
+        val timeFormat = durationFormat(itemData.duration)
+
+        tagText+=timeFormat
+
+        holder.setText(R.id.tv_tag, tagText!!)
+
+        holder.setText(R.id.tv_category,"#"+itemData.category)
+
+
     }
 
 

@@ -9,7 +9,8 @@ import com.hazz.kotlinmvp.mvp.contract.HomeContract
 import com.hazz.kotlinmvp.mvp.presenter.HomePresenter
 import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.ui.adapter.HomeAdapter
-import kotlinx.android.synthetic.main.content_main.*
+import com.orhanobut.logger.Logger
+import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
  * Created by xuhao on 2017/11/8.
@@ -38,7 +39,7 @@ class HomeFragment : BaseFragment(), HomeContract.View{
     }
 
 
-    override fun getLayoutId(): Int = R.layout.content_main
+    override fun getLayoutId(): Int = R.layout.fragment_home
 
 
     /**
@@ -61,7 +62,7 @@ class HomeFragment : BaseFragment(), HomeContract.View{
      * 显示 Loading
      */
     override fun showLoading() {
-        mRefreshLayout.autoRefresh()
+
     }
 
     /**
@@ -75,6 +76,7 @@ class HomeFragment : BaseFragment(), HomeContract.View{
      * 设置首页数据
      */
     override fun setHomeData(homeBean: HomeBean) {
+        Logger.d(homeBean)
         // Adapter
         mHomeAdapter = HomeAdapter(activity,homeBean.issueList[0].itemList)
         //设置 banner 大小

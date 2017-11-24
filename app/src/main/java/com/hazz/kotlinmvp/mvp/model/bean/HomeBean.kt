@@ -11,7 +11,12 @@ data class HomeBean(var issueList: ArrayList<Issue>, val nextPageUrl: String, va
 
         data class Item(val type: String, val data: Data?, val tag: String) : Serializable {
 
-            data class Data(val dataType: String, val text: String, val videoTitle: String, val id: Long, val title: String, val slogan: String?,
+            data class Data(val dataType: String,
+                            val text: String,
+                            val videoTitle: String,
+                            val id: Long,
+                            val title: String,
+                            val slogan: String?,
                             val description: String,
                             val actionUrl: String,
                             val provider: Provider,

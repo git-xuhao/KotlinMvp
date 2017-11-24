@@ -4,7 +4,6 @@ import android.os.Bundle
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.base.BaseFragment
 import com.hazz.kotlinmvp.showToast
-import kotlinx.android.synthetic.main.content_main.*
 
 /**
  * Created by xuhao on 2017/11/8.
@@ -32,7 +31,7 @@ class CategoryFragment : BaseFragment() {
 
 
 
-    override fun getLayoutId(): Int = R.layout.content_main
+    override fun getLayoutId(): Int = R.layout.fragment_home
 
 
 

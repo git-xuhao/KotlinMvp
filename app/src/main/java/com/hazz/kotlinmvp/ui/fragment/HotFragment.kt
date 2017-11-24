@@ -3,7 +3,6 @@ package com.hazz.kotlinmvp.ui.fragment
 import android.os.Bundle
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.base.BaseFragment
-import kotlinx.android.synthetic.main.content_main.*
 
 /**
  * Created by xuhao on 2017/11/9.
@@ -26,7 +25,7 @@ class HotFragment: BaseFragment(){
     }
 
 
-    override fun getLayoutId(): Int = R.layout.content_main
+    override fun getLayoutId(): Int = R.layout.fragment_home
 
 
     override fun lazyLoad() {

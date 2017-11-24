@@ -47,10 +47,12 @@ ext{
     glideCompiler = "com.github.bumptech.glide:compiler:$dependVersion.glideSdkVersion"
     glideOkhttp = "com.github.bumptech.glide:okhttp3-integration:$dependVersion.glideSdkVersion"
 
+
     supportLibs = supportDeps.values()
     networkLibs = retrofit.values()
     rxJavaLibs = rxJava.values()
-    otherLibs = [glide]
+    otherLibs = [glide, Logger]
+
     // APT
     annotationProcessorLibs =[glideCompiler]
 
