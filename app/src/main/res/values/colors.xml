@@ -3,4 +3,19 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+
+    <!-- title 背景颜色 -->
+    <color name="color_title_bg">#DDFFFFFF</color>
+    <!-- 默认背景色 -->
+    <color name="backgroundColor">#EEEEEE</color>
+
+    <!-- white -->
+    <color name="color_white">#FFFFFF</color>
+
+    <!-- item 标题颜色 -->
+    <color name="color_item_title">#000000</color>
+
+    <color name="color_lighter_gray">#ddd</color>
+    <color name="color_darker_gray">#aaa</color>
 </resources>

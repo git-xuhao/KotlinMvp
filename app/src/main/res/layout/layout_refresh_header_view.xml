@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/refresh_iv"
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:src="@mipmap/list_load_more"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

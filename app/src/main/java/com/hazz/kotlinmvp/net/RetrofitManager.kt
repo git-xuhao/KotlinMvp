@@ -1,4 +1,4 @@
-package com.hazz.kotlinmvp.http
+package com.hazz.kotlinmvp.net
 
 import android.util.Log
 import com.hazz.kotlinmvp.MyApplication

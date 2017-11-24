@@ -30,7 +30,7 @@ class HotFragment: BaseFragment(){
 
 
     override fun lazyLoad() {
-        tv_title.text=mTitle
+//        tv_title.text=mTitle
     }
 
     override fun initView() {

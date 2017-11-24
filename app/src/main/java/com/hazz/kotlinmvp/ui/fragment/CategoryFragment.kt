@@ -41,7 +41,7 @@ class CategoryFragment : BaseFragment() {
 
     override fun lazyLoad() {
         showToast("分类title"+mTitle)
-        tv_title.text=mTitle
+//        tv_title.text=mTitle
     }
 
 

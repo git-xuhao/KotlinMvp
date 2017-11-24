@@ -1,4 +1,4 @@
-package com.hazz.kotlinmvp.bean
+package com.hazz.kotlinmvp.mvp.model.bean
 
 import java.util.*
 

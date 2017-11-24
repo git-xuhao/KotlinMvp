@@ -1,8 +1,8 @@
-package com.hazz.kotlinmvp.ui.contract
+package com.hazz.kotlinmvp.mvp.contract
 
-import com.hazz.kotlinmvp.base.IPresenter
 import com.hazz.kotlinmvp.base.BaseView
-import com.hazz.kotlinmvp.bean.HomeBean
+import com.hazz.kotlinmvp.base.IPresenter
+import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 
 /**
  * Created by xuhao on 2017/11/8.

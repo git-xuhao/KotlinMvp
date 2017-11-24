@@ -32,7 +32,7 @@ class MeituFragment: BaseFragment() {
     override fun getLayoutId(): Int= R.layout.content_main
 
     override fun lazyLoad() {
-       tv_title.text=mTitle
+//       tv_title.text=mTitle
     }
 
 }

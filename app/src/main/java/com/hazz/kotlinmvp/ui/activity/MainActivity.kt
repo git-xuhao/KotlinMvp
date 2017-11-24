@@ -6,7 +6,7 @@ import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.base.BaseActivity
-import com.hazz.kotlinmvp.bean.TabEntity
+import com.hazz.kotlinmvp.mvp.model.bean.TabEntity
 import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.ui.fragment.CategoryFragment
 import com.hazz.kotlinmvp.ui.fragment.HomeFragment

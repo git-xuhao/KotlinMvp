@@ -48,23 +48,37 @@ dependencies {
     }
 
 
+    // Support库
     implementation rootProject.ext.supportLibs
+    // 网络请求库
     implementation rootProject.ext.networkLibs
+    // RxJava2
     implementation rootProject.ext.rxJavaLibs
-
-    implementation('com.flyco.tablayout:FlycoTabLayout_Lib:2.1.0@aar') {
-        exclude group: 'com.android.support', module: 'support-v4'
-    }
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-
-    implementation(glideOkhttp) {
-        exclude group: 'glide-parent'
-    }
 
     // APT dependencies
     kapt rootProject.ext.annotationProcessorLibs
+
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    // 底部菜单
+    implementation('com.flyco.tablayout:FlycoTabLayout_Lib:2.1.0@aar') {
+        exclude group: 'com.android.support', module: 'support-v4'
+    }
+    //kotlin 支持库
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    //GlideOkHttp
+    implementation(rootProject.ext.glideOkhttp) {
+        exclude group: 'glide-parent'
+    }
+    //smartRefreshLayout 下拉刷新
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
+    //RecyclerView Adapter
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    //Banner
+    implementation 'cn.bingoogolapple:bga-banner:2.1.8@aar'
+    // 视屏播放器
+    implementation 'com.shuyu:GSYVideoPlayer:2.1.1'
+
 
 
 }

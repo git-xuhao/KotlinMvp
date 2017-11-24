@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 /**
- * @author Jake.Ho
+ * @author Xuhao
  * created: 2017/10/25
  * desc:
  */
@@ -51,10 +51,19 @@ import android.view.ViewGroup
         }
     }
 
+    /**
+     * 加载布局
+     */
     @LayoutRes
     abstract fun getLayoutId():Int
 
+    /**
+     * 初始化 View
+     */
     abstract fun initView()
 
+    /**
+     * 懒加载
+     */
     abstract fun lazyLoad()
 }
