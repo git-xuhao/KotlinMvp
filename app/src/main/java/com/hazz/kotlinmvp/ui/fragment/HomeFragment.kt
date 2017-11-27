@@ -24,13 +24,11 @@ import java.util.*
 class HomeFragment : BaseFragment(), HomeContract.View{
 
 
-    private var mPresenter = HomePresenter()
+    private val mPresenter by lazy {  HomePresenter()}
 
     private var mTitle: String? = null
 
     private var num: Int = 1
-
-    private var nextPageUrl: String? = null
 
     private var mHomeAdapter: HomeAdapter? = null
 

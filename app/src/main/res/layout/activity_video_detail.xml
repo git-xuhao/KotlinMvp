@@ -12,10 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/mVideoView"
-        android:background="@color/colorAccent"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_gray"
+        android:layout_below="@id/mVideoView"
         />
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/mRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/mVideoView"

@@ -23,16 +23,17 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
         HomeModel()
     }
 
-
     /**
      * 获取首页精选数据 banner 加 一页数据
      */
     override fun requestHomeData(num: Int) {
+        // 检测是否绑定 View
+        checkViewAttached()
         mRootView?.showLoading()
         val disposable = homeModel.requestHomeData(num)
                 .flatMap({ homeBean ->
 
-                    //过滤掉 Banner2(包含广告,等无用的 Type), 具体查看接口分析
+                    //过滤掉 Banner2(包含广告,等不需要的 Type), 具体查看接口分析
                     val bannerItemList = homeBean.issueList[0].itemList
 
                     bannerItemList.filter { item ->
@@ -53,7 +54,7 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
                         dismissLoading()
 
                         nextPageUrl = homeBean.nextPageUrl
-                        //过滤掉 Banner2(包含广告,等无用的 Type), 具体查看接口分析
+                        //过滤掉 Banner2(包含广告,等不需要的 Type), 具体查看接口分析
                         val newBannerItemList = homeBean.issueList[0].itemList
 
                         newBannerItemList.filter { item ->
@@ -94,7 +95,7 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
                      .subscribe({ homeBean->
                          mRootView?.apply {
                              dismissLoading()
-                             //过滤掉 Banner2(包含广告,等无用的 Type), 具体查看接口分析
+                             //过滤掉 Banner2(包含广告,等不需要的 Type), 具体查看接口分析
                              val newItemList = homeBean.issueList[0].itemList
 
                              newItemList.filter { item ->

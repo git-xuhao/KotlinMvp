@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="color_gray">#5000</color>
+
 
     <!-- title 背景颜色 -->
     <color name="color_title_bg">#DDFFFFFF</color>

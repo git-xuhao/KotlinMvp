@@ -70,7 +70,7 @@ class NetworkUtil{
          * @return
          */
         @JvmStatic
-        private fun connectionNetwork(): Boolean {
+        private fun pingNetWork(): Boolean {
             var result = false
             var httpUrl: HttpURLConnection? = null
             try {

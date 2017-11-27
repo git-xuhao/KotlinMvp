@@ -58,6 +58,8 @@ class MainActivity : BaseActivity() {
         return R.layout.activity_main
     }
 
+
+
     //初始化底部菜单
     private fun initTab() {
         (0 until mTitles.size)
@@ -153,6 +155,14 @@ class MainActivity : BaseActivity() {
             outState.putInt("currTabIndex", mIndex)
         }
     }
+
+    override fun initView() {
+
+    }
+
+    override fun initData() {
+    }
+
 
 
 }
