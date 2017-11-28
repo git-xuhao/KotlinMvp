@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp"
+    android:orientation="vertical">
+
+
+    <com.hazz.kotlinmvp.view.ExpandableTextView
+        android:id="@+id/expand_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        expandableTextView:maxCollapsedLines="0">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:singleLine="true"
+                    android:textColor="@color/backgroundColor"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="这家解忧杂货铺，用音乐治愈你！" />
+
+                <TextView
+                    android:id="@+id/tv_tag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:singleLine="true"
+                    android:textColor="@color/color_lighter_gray"
+                    android:textSize="14sp"
+                    tools:text="#广告/精选" />
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@id/expand_collapse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_action_down_white" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@id/expandable_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/color_lighter_gray"
+            android:textSize="12sp"
+            tools:text="亚当是个喜欢在学校惹是生非的青少年，但他的内心其实很混沌，因为家庭成员不能说的秘密，所以才导致他如此夸张，" />
+    </com.hazz.kotlinmvp.view.ExpandableTextView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic_action_favorites"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="324"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic_action_favorites"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="324"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic_action_favorites"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="324"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic_action_favorites"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="324"
+            />
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

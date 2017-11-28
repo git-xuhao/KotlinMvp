@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
         android:id="@+id/mVideoView"
         android:layout_width="match_parent"
-        android:layout_height="250dp"/>
+        android:layout_height="250dp" />
 
     <ImageView
         android:id="@+id/mVideoBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/mVideoView"
-        />
+        android:layout_below="@+id/mVideoView" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_gray"
         android:layout_below="@id/mVideoView"
-        />
+        android:background="@color/color_gray" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/mVideoView"
-        />
+        android:layout_below="@+id/mVideoView" />
 
 </RelativeLayout>

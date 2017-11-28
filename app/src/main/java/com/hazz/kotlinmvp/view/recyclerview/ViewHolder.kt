@@ -1,5 +1,6 @@
 package com.hazz.kotlinmvp.view.recyclerview
 
+import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
 import android.util.SparseArray
 import android.view.View
@@ -7,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 
-@Suppress("UNCHECKED_CAST")
 /**
  * Created by xuhao on 2017/11/22.
  * desc:
@@ -45,6 +45,7 @@ class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         return view as T
     }
 
+    @SuppressLint("SetTextI18n")
     //通用的功能进行封装  设置文本 设置条目点击事件  设置图片
     fun setText(viewId: Int, text: CharSequence): ViewHolder {
         val view = getView<TextView>(viewId)

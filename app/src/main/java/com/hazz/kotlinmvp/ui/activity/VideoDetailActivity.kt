@@ -1,14 +1,22 @@
 package com.hazz.kotlinmvp.ui.activity
 
-import android.content.pm.ActivityInfo
 import android.content.res.Configuration
+import android.support.v7.widget.LinearLayoutManager
+import android.view.View
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DecodeFormat
+import com.bumptech.glide.request.RequestOptions
 import com.hazz.kotlinmvp.Constants
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.base.BaseActivity
 import com.hazz.kotlinmvp.mvp.contract.VideoDetailContract
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.mvp.presenter.VideoDetailPresenter
-import com.shuyu.gsyvideoplayer.GSYVideoManager
+import com.hazz.kotlinmvp.ui.adapter.VideoDetailAdapter
+import com.hazz.kotlinmvp.utils.VideoListener
+import com.orhanobut.logger.Logger
+import com.shuyu.gsyvideoplayer.listener.LockClickListener
+import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
 import com.shuyu.gsyvideoplayer.video.base.GSYVideoPlayer
 import kotlinx.android.synthetic.main.activity_video_detail.*
@@ -24,10 +32,18 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
      */
     private val mPresenter by lazy { VideoDetailPresenter() }
 
+    private val mAdapter by lazy { VideoDetailAdapter(this,itemList) }
+
     /**
      * Item 详细数据
      */
     private var itemData: HomeBean.Issue.Item? = null
+    private var orientationUtils: OrientationUtils? = null
+
+    private val itemList = ArrayList<HomeBean.Issue.Item>()
+
+    private var isPlay: Boolean = false
+    private var isPause: Boolean = false
 
 
     override fun layoutId(): Int = R.layout.activity_video_detail
@@ -36,17 +52,63 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
      * 初始化 View
      */
     override fun initView() {
+        mPresenter.attachView(this)
+        //设置旋转
+        orientationUtils = OrientationUtils(this, mVideoView)
         //是否旋转
         mVideoView.isRotateViewAuto = false
-        mVideoView.fullscreenButton.setOnClickListener {
-            if (this.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        //是否可以滑动调整
+        mVideoView.setIsTouchWiget(true)
+        //设置返回按键功能
+        mVideoView.backButton.setOnClickListener({ onBackPressed() })
+
+        mVideoView.setStandardVideoAllCallBack(object : VideoListener {
+
+            override fun onPrepared(url: String, vararg objects: Any) {
+                super.onPrepared(url, *objects)
+                //开始播放了才能旋转和全屏
+                orientationUtils?.isEnable = true
+                isPlay = true
             }
-            //将 VideoView 设置到全屏
+
+            override fun onAutoComplete(url: String, vararg objects: Any) {
+                super.onAutoComplete(url, *objects)
+                Logger.d("***** onAutoPlayComplete **** ")
+            }
+
+            override fun onEnterFullscreen(url: String, vararg objects: Any) {
+                super.onEnterFullscreen(url, *objects)
+                Logger.d("***** onEnterFullscreen **** ")
+            }
+
+            override fun onQuitFullscreen(url: String, vararg objects: Any) {
+                super.onQuitFullscreen(url, *objects)
+                Logger.d("***** onQuitFullscreen **** ")
+                //列表返回的样式判断
+                orientationUtils?.backToProtVideo()
+            }
+        })
+        //设置全屏按键功能
+        mVideoView.fullscreenButton.setOnClickListener {
+            //直接横屏
+            orientationUtils?.resolveByClick()
+            //第一个true是否需要隐藏actionbar，第二个true是否需要隐藏statusbar
             mVideoView.startWindowFullscreen(this, true, true)
         }
+        //锁屏事件
+        mVideoView.setLockClickListener(object : LockClickListener {
+            override fun onClick(view: View?, lock: Boolean) {
+                //配合下方的onConfigurationChanged
+                orientationUtils?.isEnable = !lock
+            }
 
-        mPresenter.attachView(this)
+        })
+
+
+        mRecyclerView.layoutManager = LinearLayoutManager(this)
+        mRecyclerView.adapter = mAdapter
+
+
     }
 
     /**
@@ -71,14 +133,16 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
      * 设置播放视频 URL
      */
     override fun setVideo(url: String) {
-         mVideoView.setUp(url,false,"")
-         mVideoView.startPlayLogic()
+        mVideoView.setUp(url, false, "")
+        mVideoView.startPlayLogic()
     }
 
     /**
      * 设置视频信息
      */
     override fun setVideoInfo(itemInfo: HomeBean.Issue.Item) {
+        itemData = itemInfo
+        mAdapter.addData(itemInfo)
 
     }
 
@@ -86,7 +150,12 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
      * 设置背景颜色
      */
     override fun setBackground(url: String) {
-
+        Glide.with(this)
+                .load(url)
+                .apply(RequestOptions()
+                        .format(DecodeFormat.PREFER_ARGB_8888)
+                        .centerCrop())
+                .into(mVideoBackground)
     }
 
     /**
@@ -99,11 +168,8 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
 
     override fun onConfigurationChanged(newConfig: Configuration?) {
         super.onConfigurationChanged(newConfig)
-        mVideoView.fullWindowPlayer.fullscreenButton.setOnClickListener {
-            GSYVideoPlayer.backFromWindowFull(this)
-            if(this.resources.configuration.orientation!=Configuration.ORIENTATION_PORTRAIT){
-                requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-            }
+        if (isPlay && !isPause) {
+            mVideoView.onConfigurationChanged(this, newConfig, orientationUtils)
         }
     }
 
@@ -112,28 +178,34 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
      * 监听返回键
      */
     override fun onBackPressed() {
-        super.onBackPressed()
-        if (StandardGSYVideoPlayer.backFromWindowFull(this)) {
-            if (this.resources.configuration.orientation != Configuration.ORIENTATION_PORTRAIT) {
-                requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-            }
+        orientationUtils?.backToProtVideo()
+        if (StandardGSYVideoPlayer.backFromWindowFull(this))
             return
-        }
+        super.onBackPressed()
     }
 
     override fun onResume() {
         super.onResume()
-        GSYVideoManager.onResume()
+        getCurPlay().onVideoResume()
+        isPause = false
     }
 
     override fun onPause() {
         super.onPause()
-        GSYVideoManager.onPause()
+        getCurPlay().onVideoPause()
+        isPause = true
     }
 
     override fun onDestroy() {
         super.onDestroy()
         GSYVideoPlayer.releaseAllVideos()
+        orientationUtils?.releaseListener()
+    }
+
+    private fun getCurPlay(): GSYVideoPlayer {
+        return if (mVideoView.fullWindowPlayer != null) {
+            mVideoView.fullWindowPlayer
+        } else mVideoView
     }
 
 

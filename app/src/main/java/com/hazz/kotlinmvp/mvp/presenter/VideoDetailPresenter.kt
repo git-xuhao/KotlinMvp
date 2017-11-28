@@ -8,6 +8,7 @@ import com.hazz.kotlinmvp.mvp.contract.VideoDetailContract
 import com.hazz.kotlinmvp.mvp.model.VideoDetailModel
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.showToast
+import com.hazz.kotlinmvp.utils.DisplayManager
 import com.hazz.kotlinmvp.utils.NetworkUtil
 
 /**
@@ -57,8 +58,8 @@ class VideoDetailPresenter : BasePresenter<VideoDetailContract.View>(), VideoDet
         }
 
         //设置背景
-        val backgroundUrl = itemInfo.data?.cover?.blurred
-        backgroundUrl?.let { mRootView?.setBackground(it) }
+        val backgroundUrl = itemInfo.data?.cover?.blurred+"/thumbnail/${DisplayManager.getScreenHeight()!! - DisplayManager.dip2px(250f)!!}x${DisplayManager.getScreenWidth()}"
+        backgroundUrl.let { mRootView?.setBackground(it) }
 
         mRootView?.setVideoInfo(itemInfo)
 
