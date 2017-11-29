@@ -31,16 +31,16 @@ class CategoryFragment : BaseFragment() {
 
 
 
-    override fun getLayoutId(): Int = R.layout.fragment_home
+    override fun getLayoutId(): Int = R.layout.fragment_category
 
 
 
     override fun initView() {
+
     }
 
     override fun lazyLoad() {
-        showToast("分类title"+mTitle)
-//        tv_title.text=mTitle
+
     }
 
 

@@ -35,7 +35,6 @@ class VideoDetailAdapter(mContext: Context, data: ArrayList<HomeBean.Issue.Item>
 
                     data[position].type == "videoSmallCard" ->
                         R.layout.item_video_small_card
-
                     else ->
                         throw IllegalAccessException("Api 解析出错了，出现其他类型")
                 }
@@ -69,7 +68,7 @@ class VideoDetailAdapter(mContext: Context, data: ArrayList<HomeBean.Issue.Item>
     private var mOnItemClickRelatedVideo: ((item: HomeBean.Issue.Item) -> Unit)? = null
 
 
-    fun setOnItemDetailClick(mItemRelatedVideo:(item:HomeBean.Issue.Item)->Unit){
+    fun setOnItemDetailClick(mItemRelatedVideo: (item: HomeBean.Issue.Item) -> Unit) {
         this.mOnItemClickRelatedVideo = mItemRelatedVideo
     }
 

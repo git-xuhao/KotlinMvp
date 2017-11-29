@@ -181,6 +181,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/color_white"
                 android:textSize="14sp"
+                android:singleLine="true"
                 tools:text="My name" />
 
             <TextView
@@ -190,6 +191,7 @@
                 android:layout_marginTop="2dp"
                 android:textColor="@color/color_darker_gray"
                 android:textSize="12sp"
+                android:singleLine="true"
                 tools:text="发现艺术背后的故事" />
 
         </LinearLayout>

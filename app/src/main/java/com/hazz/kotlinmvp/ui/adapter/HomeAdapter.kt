@@ -1,7 +1,11 @@
 package com.hazz.kotlinmvp.ui.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.support.v4.app.ActivityCompat
+import android.support.v4.app.ActivityOptionsCompat
+import android.support.v4.util.Pair
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -117,11 +121,11 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
                         })
                     }
                 }
-                holder.getView<BGABanner>(R.id.banner).setDelegate { bgaBanner, view, any, i ->
+                //没有使用到的参数在 kotlin 中用"_"代替
+                holder.getView<BGABanner>(R.id.banner).setDelegate { _, imageView, _, i ->
 
-                    val intent = Intent(mContext,VideoDetailActivity::class.java)
-                    intent.putExtra(Constants.BUNDLE_VIDEO_DATA,bannerItemData[i])
-                    mContext?.startActivity(intent)
+                    goToVideoPlayer(mContext as Activity, imageView, bannerItemData[i])
+
                 }
             }
         //TextHeader
@@ -214,12 +218,31 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
         holder.setText(R.id.tv_category, "#" + itemData.category)
 
         holder.setOnItemClickListener(listener = View.OnClickListener {
-            val intent = Intent(mContext,VideoDetailActivity::class.java)
-            intent.putExtra(Constants.BUNDLE_VIDEO_DATA,item)
-            mContext?.startActivity(intent)
+            goToVideoPlayer(mContext as Activity, holder.getView(R.id.iv_cover_feed), item)
         })
 
 
+    }
+
+    /**
+     * 跳转到视频详情页面播放
+     *
+     * @param activity
+     * @param view
+     */
+    private fun goToVideoPlayer(activity: Activity, view: View, itemData: HomeBean.Issue.Item) {
+        val intent = Intent(activity, VideoDetailActivity::class.java)
+        intent.putExtra(Constants.BUNDLE_VIDEO_DATA, itemData)
+        intent.putExtra(VideoDetailActivity.Companion.TRANSITION, true)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            val pair = Pair<View, String>(view, VideoDetailActivity.Companion.IMG_TRANSITION)
+            val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    activity, pair)
+            ActivityCompat.startActivity(activity, intent, activityOptions.toBundle())
+        } else {
+            activity.startActivity(intent)
+            activity.overridePendingTransition(R.anim.anim_in, R.anim.anim_out)
+        }
     }
 
 

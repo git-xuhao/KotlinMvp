@@ -3,8 +3,9 @@ package com.hazz.kotlinmvp.mvp.model.bean
 import java.io.Serializable
 
 /**
- * Created by xuekai on 2017/8/20.
- */
+* Created by xuhao on 2017/11/21.
+* desc: 首页 Bean（视频详情，相关等）
+*/
 data class HomeBean(var issueList: ArrayList<Issue>, val nextPageUrl: String, val nextPublishTime: Long, val newestIssueType: String, val dialog: Any){
 
     data class Issue(val releaseTime:Long, val type:String, val date:Long, val total:Int, val publishTime:Long, val itemList:ArrayList<Item>, var count:Int, val nextPageUrl:String){
@@ -33,7 +34,7 @@ data class HomeBean(var issueList: ArrayList<Issue>, val nextPageUrl: String, va
                             val webUrl: WebUrl,
                             val library: String,
                             val user: User,
-                            val playInfo: ArrayList<PlayInfo>,
+                            val playInfo: ArrayList<PlayInfo>?,
                             val consumption: Consumption,
                             val campaign: Any,
                             val waterMarks: Any,

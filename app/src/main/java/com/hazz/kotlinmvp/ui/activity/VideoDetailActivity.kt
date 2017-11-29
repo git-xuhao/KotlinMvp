@@ -1,8 +1,13 @@
 package com.hazz.kotlinmvp.ui.activity
 
+import android.annotation.TargetApi
 import android.content.res.Configuration
+import android.os.Build
+import android.support.v4.view.ViewCompat
 import android.support.v7.widget.LinearLayoutManager
+import android.transition.Transition
 import android.view.View
+import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.request.RequestOptions
@@ -12,6 +17,7 @@ import com.hazz.kotlinmvp.base.BaseActivity
 import com.hazz.kotlinmvp.mvp.contract.VideoDetailContract
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.mvp.presenter.VideoDetailPresenter
+import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.ui.adapter.VideoDetailAdapter
 import com.hazz.kotlinmvp.utils.VideoListener
 import com.orhanobut.logger.Logger
@@ -27,12 +33,18 @@ import kotlinx.android.synthetic.main.activity_video_detail.*
  */
 class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
 
+
+    companion object {
+        val IMG_TRANSITION = "IMG_TRANSITION"
+        val TRANSITION = "TRANSITION"
+    }
+
     /**
      * 第一次调用的时候初始化
      */
     private val mPresenter by lazy { VideoDetailPresenter() }
 
-    private val mAdapter by lazy { VideoDetailAdapter(this,itemList) }
+    private val mAdapter by lazy { VideoDetailAdapter(this, itemList) }
 
     /**
      * Item 详细数据
@@ -46,21 +58,27 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
     private var isPause: Boolean = false
 
 
+    private var isTransition: Boolean = false
+
+    private var transition: Transition? = null
+
+
     override fun layoutId(): Int = R.layout.activity_video_detail
 
     /**
      * 初始化 View
      */
     override fun initView() {
+
         mPresenter.attachView(this)
+        //过渡动画
+        initTransition()
         //设置旋转
         orientationUtils = OrientationUtils(this, mVideoView)
         //是否旋转
         mVideoView.isRotateViewAuto = false
         //是否可以滑动调整
         mVideoView.setIsTouchWiget(true)
-        //设置返回按键功能
-        mVideoView.backButton.setOnClickListener({ onBackPressed() })
 
         mVideoView.setStandardVideoAllCallBack(object : VideoListener {
 
@@ -76,6 +94,11 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
                 Logger.d("***** onAutoPlayComplete **** ")
             }
 
+            override fun onPlayError(url: String, vararg objects: Any) {
+                super.onPlayError(url, *objects)
+                showToast("播放失败")
+            }
+
             override fun onEnterFullscreen(url: String, vararg objects: Any) {
                 super.onEnterFullscreen(url, *objects)
                 Logger.d("***** onEnterFullscreen **** ")
@@ -88,6 +111,8 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
                 orientationUtils?.backToProtVideo()
             }
         })
+        //设置返回按键功能
+        mVideoView.backButton.setOnClickListener({ onBackPressed() })
         //设置全屏按键功能
         mVideoView.fullscreenButton.setOnClickListener {
             //直接横屏
@@ -110,7 +135,6 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
 
         //设置相关视频 Item 的点击事件
         mAdapter.setOnItemDetailClick { mPresenter.loadVideoInfo(it) }
-
     }
 
     /**
@@ -118,8 +142,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
      */
     override fun initData() {
         itemData = intent.getSerializableExtra(Constants.BUNDLE_VIDEO_DATA) as HomeBean.Issue.Item
-
-        mPresenter.loadVideoInfo(itemData!!)
+        isTransition = intent.getBooleanExtra(TRANSITION, false)
     }
 
 
@@ -194,7 +217,12 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         orientationUtils?.backToProtVideo()
         if (StandardGSYVideoPlayer.backFromWindowFull(this))
             return
-        super.onBackPressed()
+        if (isTransition && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) run {
+            super.onBackPressed()
+        }else{
+            finish()
+            overridePendingTransition(R.anim.anim_in, R.anim.anim_out)
+        }
     }
 
     override fun onResume() {
@@ -219,6 +247,50 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         return if (mVideoView.fullWindowPlayer != null) {
             mVideoView.fullWindowPlayer
         } else mVideoView
+    }
+
+    private fun initTransition() {
+        if (isTransition && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            postponeEnterTransition()
+            ViewCompat.setTransitionName(mVideoView, IMG_TRANSITION)
+            addTransitionListener()
+            startPostponedEnterTransition()
+        } else {
+            loadVideoInfo()
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private fun addTransitionListener() {
+        transition = window.sharedElementEnterTransition
+        transition?.addListener(object : Transition.TransitionListener {
+            override fun onTransitionResume(p0: Transition?) {
+            }
+
+            override fun onTransitionPause(p0: Transition?) {
+            }
+
+            override fun onTransitionCancel(p0: Transition?) {
+            }
+
+            override fun onTransitionStart(p0: Transition?) {
+            }
+
+            override fun onTransitionEnd(p0: Transition?) {
+                Logger.d("onTransitionEnd()------")
+
+                loadVideoInfo()
+                transition?.removeListener(this)
+            }
+
+        })
+    }
+
+    /**
+     * 加载视频信息
+     */
+    fun loadVideoInfo(){
+        mPresenter.loadVideoInfo(itemData!!)
     }
 
 

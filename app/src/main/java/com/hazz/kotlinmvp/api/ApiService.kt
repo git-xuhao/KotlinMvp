@@ -1,5 +1,6 @@
 package com.hazz.kotlinmvp.api
 
+import com.hazz.kotlinmvp.mvp.model.bean.CategoryBean
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -38,5 +39,11 @@ interface ApiService{
      */
     @GET("v4/video/related?")
     fun getRelatedData(@Query("id") id: Long): Observable<HomeBean.Issue>
+
+    /**
+     * 获取分类
+     */
+    @GET("v4/categories")
+    fun getCategory(): Observable<MutableList<CategoryBean>>
 
 }

@@ -32,7 +32,7 @@ class VideoDetailPresenter : BasePresenter<VideoDetailContract.View>(), VideoDet
         val netType = NetworkUtil.isWifi(MyApplication.context)
         // 检测是否绑定 View
         checkViewAttached()
-        playInfo?.let {
+        if (playInfo!!.size > 1) {
             // 当前网络是 Wifi环境下选择高清的视频
             if (netType) {
                 for (i in playInfo) {
@@ -55,10 +55,12 @@ class VideoDetailPresenter : BasePresenter<VideoDetailContract.View>(), VideoDet
                     }
                 }
             }
+        } else {
+            mRootView?.setVideo(itemInfo.data.playUrl)
         }
 
         //设置背景
-        val backgroundUrl = itemInfo.data?.cover?.blurred+"/thumbnail/${DisplayManager.getScreenHeight()!! - DisplayManager.dip2px(250f)!!}x${DisplayManager.getScreenWidth()}"
+        val backgroundUrl = itemInfo.data.cover.blurred + "/thumbnail/${DisplayManager.getScreenHeight()!! - DisplayManager.dip2px(250f)!!}x${DisplayManager.getScreenWidth()}"
         backgroundUrl.let { mRootView?.setBackground(it) }
 
         mRootView?.setVideoInfo(itemInfo)
@@ -73,14 +75,13 @@ class VideoDetailPresenter : BasePresenter<VideoDetailContract.View>(), VideoDet
     override fun requestRelatedVideo(id: Long) {
 
         val disposable = videoDetailModel.requestRelatedData(id)
-                .subscribe({
-                    issue ->
+                .subscribe({ issue ->
                     mRootView?.setRecentRelatedVideo(issue.itemList)
                 },
-                { t ->
-                    mRootView?.setErrorMsg(t.message.toString())
+                        { t ->
+                            mRootView?.setErrorMsg(t.message.toString())
 
-                })
+                        })
 
         addSubscription(disposable)
 

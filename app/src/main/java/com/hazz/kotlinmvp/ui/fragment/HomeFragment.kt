@@ -87,6 +87,7 @@ class HomeFragment : BaseFragment(), HomeContract.View{
                 } else {
                     if (mHomeAdapter?.mData!!.size > 1) {
                         toolbar.visibility = View.VISIBLE
+                        toolbar.setBackgroundColor(resources.getColor(R.color.color_title_bg))
                         val itemList = mHomeAdapter!!.mData
                         val item = itemList[currentVisibleItemPosition + mHomeAdapter!!.bannerItemSize - 1]
                         if (item.type == "textHeader") {
