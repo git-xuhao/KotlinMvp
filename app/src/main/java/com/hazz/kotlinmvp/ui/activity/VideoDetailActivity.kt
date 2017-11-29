@@ -108,6 +108,8 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         mRecyclerView.layoutManager = LinearLayoutManager(this)
         mRecyclerView.adapter = mAdapter
 
+        //设置相关视频 Item 的点击事件
+        mAdapter.setOnItemDetailClick { mPresenter.loadVideoInfo(it) }
 
     }
 
@@ -143,8 +145,19 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
     override fun setVideoInfo(itemInfo: HomeBean.Issue.Item) {
         itemData = itemInfo
         mAdapter.addData(itemInfo)
+        // 请求相关的最新等视频
+        mPresenter.requestRelatedVideo(itemInfo.data!!.id)
 
     }
+
+
+    /**
+     * 设置相关的数据视频
+     */
+    override fun setRecentRelatedVideo(itemList: ArrayList<HomeBean.Issue.Item>) {
+        mAdapter.addData(itemList)
+    }
+
 
     /**
      * 设置背景颜色

@@ -72,6 +72,17 @@ class VideoDetailPresenter : BasePresenter<VideoDetailContract.View>(), VideoDet
      */
     override fun requestRelatedVideo(id: Long) {
 
+        val disposable = videoDetailModel.requestRelatedData(id)
+                .subscribe({
+                    issue ->
+                    mRootView?.setRecentRelatedVideo(issue.itemList)
+                },
+                { t ->
+                    mRootView?.setErrorMsg(t.message.toString())
+
+                })
+
+        addSubscription(disposable)
 
     }
 

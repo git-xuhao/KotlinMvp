@@ -32,10 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
             android:layout_toEndOf="@id/iv_avatar"
-            android:layout_toLeftOf="@+id/tv_category"
-            android:layout_toRightOf="@id/iv_avatar"
             android:layout_toStartOf="@+id/tv_category"
             android:orientation="vertical">
 
@@ -61,10 +58,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
             tools:text="#搞笑" />
 
 
