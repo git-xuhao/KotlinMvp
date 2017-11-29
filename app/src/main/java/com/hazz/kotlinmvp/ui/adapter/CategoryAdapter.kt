@@ -1,0 +1,48 @@
+package com.hazz.kotlinmvp.ui.adapter
+
+import android.content.Context
+import android.graphics.Typeface
+import android.widget.ImageView
+import android.widget.TextView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.hazz.kotlinmvp.MyApplication
+import com.hazz.kotlinmvp.R
+import com.hazz.kotlinmvp.glide.GlideRoundTransform
+import com.hazz.kotlinmvp.mvp.model.bean.CategoryBean
+import com.hazz.kotlinmvp.view.recyclerview.ViewHolder
+import com.hazz.kotlinmvp.view.recyclerview.adapter.CommonAdapter
+
+/**
+ * Created by xuhao on 2017/11/29.
+ * desc: 分类的 Adapter
+ */
+
+class CategoryAdapter(mContext: Context, categoryList: ArrayList<CategoryBean>, layoutId: Int) :
+        CommonAdapter<CategoryBean>(mContext, categoryList, layoutId) {
+
+
+    fun setData(categoryList: ArrayList<CategoryBean>){
+        mData.clear()
+        mData = categoryList
+        notifyDataSetChanged()
+    }
+    /**
+     * 绑定数据
+     */
+    override fun bindData(holder: ViewHolder, data: CategoryBean, position: Int) {
+        holder.setText(R.id.tv_category_name, "#${data.name}")
+        //设置方正兰亭细黑简体
+        holder.getView<TextView>(R.id.tv_category_name).typeface = Typeface.createFromAsset(MyApplication.context.assets, "fonts/FZLanTingHeiS-DB1-GB-Regular.TTF")
+
+        holder.setImagePath(R.id.iv_category, object : ViewHolder.HolderImageLoader(data.bgPicture) {
+            override fun loadImage(iv: ImageView, path: String) {
+                Glide.with(MyApplication.context)
+                        .load(path)
+                        .apply(RequestOptions().placeholder(R.color.color_darker_gray)
+                                .optionalTransform(GlideRoundTransform()))
+                        .into(iv)
+            }
+        })
+    }
+}

@@ -44,6 +44,6 @@ interface ApiService{
      * 获取分类
      */
     @GET("v4/categories")
-    fun getCategory(): Observable<MutableList<CategoryBean>>
+    fun getCategory(): Observable<ArrayList<CategoryBean>>
 
 }

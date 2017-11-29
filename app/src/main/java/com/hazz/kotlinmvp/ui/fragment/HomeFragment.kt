@@ -61,6 +61,8 @@ class HomeFragment : BaseFragment(), HomeContract.View{
      * 初始化 ViewI
      */
     override fun initView() {
+        mPresenter.attachView(this)
+
         mRefreshLayout.setOnRefreshListener { mPresenter.requestHomeData(num) }
         mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
@@ -105,10 +107,7 @@ class HomeFragment : BaseFragment(), HomeContract.View{
     }
 
     override fun lazyLoad() {
-        mPresenter.attachView(this)
-
         mPresenter.requestHomeData(num)
-
     }
 
 

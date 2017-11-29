@@ -15,7 +15,7 @@ class CategoryModel {
     /**
      * 获取分类信息
      */
-    fun getCategoryData(): Observable<MutableList<CategoryBean>> {
+    fun getCategoryData(): Observable<ArrayList<CategoryBean>> {
         return RetrofitManager.service.getCategory()
                 .compose(SchedulerUtils.ioToMain())
     }

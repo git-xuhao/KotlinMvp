@@ -14,7 +14,7 @@ interface CategoryContract {
         /**
          * 显示分类的信息
          */
-        fun showCategory(category: MutableList<CategoryBean>)
+        fun showCategory(categoryList: ArrayList<CategoryBean>)
 
         /**
          * 显示错误信息

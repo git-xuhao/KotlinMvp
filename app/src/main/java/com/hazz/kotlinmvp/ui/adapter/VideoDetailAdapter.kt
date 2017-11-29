@@ -89,7 +89,7 @@ class VideoDetailAdapter(mContext: Context, data: ArrayList<HomeBean.Issue.Item>
             data.type == "videoSmallCard" -> {
                 holder.setText(R.id.tv_title, data.data?.title!!)
                 holder.setText(R.id.tv_tag, "#${data.data.category} / ${durationFormat(data.data.duration)}")
-                holder.setImagePath(R.id.iv_video_small_card, object : ViewHolder.HolderImageLoader(data.data.cover.detail!!) {
+                holder.setImagePath(R.id.iv_video_small_card, object : ViewHolder.HolderImageLoader(data.data.cover.detail) {
                     override fun loadImage(iv: ImageView, path: String) {
                         Glide.with(MyApplication.context)
                                 .load(path)
