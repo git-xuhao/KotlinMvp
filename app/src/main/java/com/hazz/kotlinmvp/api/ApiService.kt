@@ -2,6 +2,7 @@ package com.hazz.kotlinmvp.api
 
 import com.hazz.kotlinmvp.mvp.model.bean.CategoryBean
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
+import com.hazz.kotlinmvp.mvp.model.bean.TabInfoBean
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -9,12 +10,10 @@ import retrofit2.http.Url
 
 /**
  * Created by xuhao on 2017/11/16.
- *
+ * Api 接口
  */
 
 interface ApiService{
-
-
 
     /**
      * 首页精选
@@ -51,6 +50,12 @@ interface ApiService{
      */
     @GET
     fun getIssueData(@Url url: String): Observable<HomeBean.Issue>
+
+    /**
+     * 获取全部排行榜的Info（包括，title 和 Url）
+     */
+    @GET("v4/rankList")
+    fun getRankList():Observable<TabInfoBean>
 
 
 

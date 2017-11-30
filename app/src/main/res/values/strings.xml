@@ -5,5 +5,6 @@
     <string name="video_attention">+ 关注</string>
     <string name="video_end"> - The End-</string>
 
-    <string name="category_title">分类</string>
+    <string name="category_title">全部分类</string>
+    <string name="hot_title">人气榜</string>
 </resources>
