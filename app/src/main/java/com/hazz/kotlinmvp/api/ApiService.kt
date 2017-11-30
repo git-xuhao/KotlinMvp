@@ -29,12 +29,6 @@ interface ApiService{
     fun getMoreHomeData(@Url url: String): Observable<HomeBean>
 
     /**
-     * issue里面包了itemlist和nextpageurl
-     */
-    @GET
-    fun getIssue(@Url url: String): Observable<HomeBean.Issue>
-
-    /**
      * 根据item id获取相关视频
      */
     @GET("v4/video/related?")
@@ -45,5 +39,19 @@ interface ApiService{
      */
     @GET("v4/categories")
     fun getCategory(): Observable<ArrayList<CategoryBean>>
+
+    /**
+     * 获取分类详情List
+     */
+    @GET("v4/categories/videoList")
+    fun getCategoryDetailList(@Query("id") id: Long): Observable<HomeBean.Issue>
+
+    /**
+     * 获取更多的 Issue
+     */
+    @GET
+    fun getIssueData(@Url url: String): Observable<HomeBean.Issue>
+
+
 
 }

@@ -163,7 +163,7 @@
             android:paddingTop="3dp"
             android:text="@string/video_attention"
             android:textColor="@color/color_white"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
 
         <LinearLayout

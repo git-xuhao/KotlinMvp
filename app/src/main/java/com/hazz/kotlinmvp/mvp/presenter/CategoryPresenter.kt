@@ -29,7 +29,7 @@ class CategoryPresenter : BasePresenter<CategoryContract.View>(), CategoryContra
                 }, { t ->
                     mRootView?.apply {
                         dismissLoading()
-                        showError(t.message.toString())
+                        showError(t.toString())
                     }
 
                 })

@@ -77,11 +77,10 @@ class VideoDetailPresenter : BasePresenter<VideoDetailContract.View>(), VideoDet
         val disposable = videoDetailModel.requestRelatedData(id)
                 .subscribe({ issue ->
                     mRootView?.setRecentRelatedVideo(issue.itemList)
-                },
-                        { t ->
-                            mRootView?.setErrorMsg(t.message.toString())
+                }, { t ->
+                    mRootView?.setErrorMsg(t.toString())
 
-                        })
+                })
 
         addSubscription(disposable)
 

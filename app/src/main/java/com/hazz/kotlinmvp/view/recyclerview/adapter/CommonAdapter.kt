@@ -14,7 +14,7 @@ import com.hazz.kotlinmvp.view.recyclerview.ViewHolder
  * desc: 通用的 Adapter
  */
 
-abstract class CommonAdapter<T>(mContext: Context, open var mData: ArrayList<T>, //条目布局
+abstract class CommonAdapter<T>(var mContext: Context, var mData: ArrayList<T>, //条目布局
                                 private var mLayoutId: Int) : RecyclerView.Adapter<ViewHolder>() {
     protected var mInflater: LayoutInflater?=null
     private var mTypeSupport: MultipleType<T>? = null

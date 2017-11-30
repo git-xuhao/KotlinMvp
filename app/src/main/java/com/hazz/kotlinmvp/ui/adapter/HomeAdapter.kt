@@ -30,13 +30,8 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
     : CommonAdapter<HomeBean.Issue.Item>(context, data, -1) {
 
 
-    private var mContext: Context? = null
     // banner 作为 RecyclerView 的第一项
     var bannerItemSize = 0
-
-    init {
-        mContext = context
-    }
 
     companion object {
 

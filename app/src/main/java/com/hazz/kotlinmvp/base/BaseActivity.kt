@@ -22,10 +22,11 @@ import android.support.v7.app.AppCompatActivity
 
     abstract fun layoutId(): Int
 
+    abstract fun initData()
 
     abstract fun initView()
 
-    abstract fun initData()
+
 
 
 

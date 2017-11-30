@@ -41,6 +41,12 @@ class VideoDetailAdapter(mContext: Context, data: ArrayList<HomeBean.Issue.Item>
             }
         }) {
 
+    private var textTypeface:Typeface?=null
+
+    init {
+        textTypeface = Typeface.createFromAsset(MyApplication.context.assets, "fonts/FZLanTingHeiS-L-GB-Regular.TTF")
+    }
+
     /**
      * 添加视频的详细信息
      */
@@ -83,7 +89,7 @@ class VideoDetailAdapter(mContext: Context, data: ArrayList<HomeBean.Issue.Item>
             data.type == "textCard" -> {
                 holder.setText(R.id.tv_text_card, data.data?.text!!)
                 //设置方正兰亭细黑简体
-                holder.getView<TextView>(R.id.tv_text_card).typeface = Typeface.createFromAsset(MyApplication.context.assets, "fonts/FZLanTingHeiS-L-GB-Regular.TTF")
+                holder.getView<TextView>(R.id.tv_text_card).typeface =textTypeface
 
             }
             data.type == "videoSmallCard" -> {

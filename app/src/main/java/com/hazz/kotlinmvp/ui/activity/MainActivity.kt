@@ -68,7 +68,6 @@ class MainActivity : BaseActivity() {
         tab_layout.setTabData(mTabEntities)
         tab_layout.setOnTabSelectListener(object : OnTabSelectListener {
             override fun onTabSelect(position: Int) {
-                showToast("-----" + position)
                 //切换Fragment
                 switchFragment(position)
             }
