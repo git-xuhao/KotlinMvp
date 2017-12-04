@@ -2,9 +2,9 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android-extensions' //扩展插件
 
-apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-kapt'  //kapt3插件
 
 android {
     compileSdkVersion 26
@@ -24,9 +24,16 @@ android {
     }
 
     buildTypes {
-        release {
+
+        debug {
             minifyEnabled false
+            debuggable true
+        }
+
+        release {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
         }
     }
 
@@ -57,7 +64,7 @@ dependencies {
 
     implementation rootProject.ext.otherLibs
 
-    // APT dependencies
+    // APT dependencies(Kotlin内置的注解处理器)
     kapt rootProject.ext.annotationProcessorLibs
 
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -81,6 +88,8 @@ dependencies {
     implementation 'com.shuyu:GSYVideoPlayer:2.1.1'
     //Logger
     implementation 'com.orhanobut:logger:2.1.1'
+    //Google开源的一个布局控件
+    implementation 'com.google.android:flexbox:0.3.1'
 
 
 

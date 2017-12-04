@@ -1,15 +1,18 @@
 package com.hazz.kotlinmvp.ui.fragment
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.support.v4.app.ActivityOptionsCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.View
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.base.BaseFragment
-import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.mvp.contract.HomeContract
+import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.mvp.presenter.HomePresenter
 import com.hazz.kotlinmvp.showToast
+import com.hazz.kotlinmvp.ui.activity.SearchActivity
 import com.hazz.kotlinmvp.ui.adapter.HomeAdapter
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -85,11 +88,14 @@ class HomeFragment : BaseFragment(), HomeContract.View{
                 super.onScrolled(recyclerView, dx, dy)
                 val currentVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition()
                 if (currentVisibleItemPosition == 0) {
-                      toolbar.visibility=View.GONE
+                    //背景设置为透明
+                    toolbar.setBackgroundColor(getColor(R.color.color_translucent))
+                    iv_search.setImageResource(R.mipmap.ic_action_search_white)
+                    tv_header_title.text=""
                 } else {
                     if (mHomeAdapter?.mData!!.size > 1) {
-                        toolbar.visibility = View.VISIBLE
-                        toolbar.setBackgroundColor(resources.getColor(R.color.color_title_bg))
+                        toolbar.setBackgroundColor(getColor(R.color.color_title_bg))
+                        iv_search.setImageResource(R.mipmap.ic_action_search_black)
                         val itemList = mHomeAdapter!!.mData
                         val item = itemList[currentVisibleItemPosition + mHomeAdapter!!.bannerItemSize - 1]
                         if (item.type == "textHeader") {
@@ -104,6 +110,17 @@ class HomeFragment : BaseFragment(), HomeContract.View{
             }
         })
 
+        iv_search.setOnClickListener{ openSearchActivity()}
+
+    }
+
+    private fun openSearchActivity(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, iv_search, iv_search.transitionName)
+            startActivity(Intent(activity, SearchActivity::class.java), options.toBundle())
+        } else {
+            startActivity(Intent(activity, SearchActivity::class.java))
+        }
     }
 
     override fun lazyLoad() {
@@ -155,6 +172,10 @@ class HomeFragment : BaseFragment(), HomeContract.View{
     override fun onDestroy() {
         super.onDestroy()
         mPresenter.detachView()
+    }
+
+    fun getColor(colorId: Int):Int{
+        return resources.getColor(colorId)
     }
 
 

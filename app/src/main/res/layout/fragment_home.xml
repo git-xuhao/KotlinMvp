@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/backgroundColor">
 
 
@@ -38,9 +39,23 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     />
+
+                <ImageView
+                    android:id="@+id/iv_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:src="@mipmap/ic_action_search_black"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:transitionName="@string/search_transition_name"
+                    android:layout_marginEnd="15dp"
+                    tools:targetApi="lollipop" />
+
+
             </RelativeLayout>
 
         </FrameLayout>
+
 
   </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 

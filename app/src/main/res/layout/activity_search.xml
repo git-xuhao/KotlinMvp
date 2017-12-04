@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rel_frame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:transitionName="@string/search_transition_name"
+        android:visibility="gone"
+        app:backgroundTint="@color/color_gray"
+        app:elevation="0dp"
+        app:fabSize="normal"
+        tools:targetApi="lollipop" />
+
+
+    <LinearLayout
+        android:id="@+id/rel_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rel_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <com.hazz.kotlinmvp.view.ClearEditText
+                android:id="@+id/et_search_view"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_toStartOf="@+id/tv_cancel"
+                android:background="@drawable/et_round_bg"
+                android:drawableLeft="@mipmap/ic_action_search_small"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:hint="@string/search_hint_text"
+                android:imeOptions="actionSearch"
+                android:maxLines="1"
+                android:paddingStart="10dp"
+                android:singleLine="true"
+                android:textColor="@color/color_gray"
+                android:textColorHint="@color/color_darker_gray"
+                android:textCursorDrawable="@drawable/et_cursor"
+                android:textSize="12sp"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/tv_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:text="@string/cancel" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_hot_words"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_title_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="40dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/search_title_tip"
+                android:textColor="@color/color_gray"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_hot_search_words"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="15dp"
+                android:text="@string/search_hot_keywords_tip"
+                android:textColor="@color/color_black"
+                android:textSize="14sp" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/mRecyclerView_hot"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_content_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_search_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/search_result_count"
+                android:textColor="@color/color_black"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/mRecyclerView_result"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

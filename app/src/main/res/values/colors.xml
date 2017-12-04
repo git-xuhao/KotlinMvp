@@ -13,6 +13,7 @@
 
     <!-- white -->
     <color name="color_white">#FFFFFF</color>
+    <color name="color_black">#000000</color>
 
     <!-- item 标题颜色 -->
     <color name="color_item_title">#000000</color>

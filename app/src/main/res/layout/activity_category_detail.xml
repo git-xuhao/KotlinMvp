@@ -23,6 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="@color/color_title_bg"
+            app:expandedTitleGravity="right|bottom"
+            app:expandedTitleMarginEnd="50dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <!--“pin”：固定模式，在折叠的时候最后固定在顶端；
@@ -67,6 +69,17 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     </android.support.v7.widget.RecyclerView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_menu_share"
+        app:fabSize="auto"
+        app:elevation="3dp"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|end" />
 
 
 </android.support.design.widget.CoordinatorLayout>

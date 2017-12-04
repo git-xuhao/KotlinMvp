@@ -12,6 +12,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.hazz.kotlinmvp.Constants
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.durationFormat
+import com.hazz.kotlinmvp.glide.GlideApp
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.ui.activity.VideoDetailActivity
 import com.hazz.kotlinmvp.view.recyclerview.ViewHolder
@@ -42,7 +43,7 @@ class CategoryDetailAdapter(context: Context, dataList: ArrayList<HomeBean.Issue
         val itemData = item.data
         val cover = itemData?.cover?.feed
         // 加载封页图
-        Glide.with(mContext)
+        GlideApp.with(mContext)
                 .load(cover)
                 .apply(RequestOptions().placeholder(R.drawable.placeholder_banner))
                 .into(holder.getView(R.id.iv_image))

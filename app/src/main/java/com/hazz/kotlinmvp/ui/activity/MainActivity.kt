@@ -2,6 +2,7 @@ package com.hazz.kotlinmvp.ui.activity
 
 import android.os.Bundle
 import android.support.v4.app.FragmentTransaction
+import android.view.KeyEvent
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
 import com.hazz.kotlinmvp.R
@@ -25,7 +26,7 @@ import java.util.*
 
 class MainActivity : BaseActivity() {
 
-    private val mTitles = arrayOf("首页精选", "分类", "热门", "美图")
+    private val mTitles = arrayOf("每日精选", "分类", "热门", "我的")
 
     // 未被选中的图标
     private val mIconUnSelectIds = intArrayOf(R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher)
@@ -44,10 +45,10 @@ class MainActivity : BaseActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         if (savedInstanceState != null) {
             mIndex = savedInstanceState.getInt("mTabIndex")
         }
+        super.onCreate(savedInstanceState)
         initTab()
         tab_layout.currentTab = mIndex
         switchFragment(mIndex)
@@ -160,6 +161,21 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initData() {
+    }
+
+    var mExitTime: Long = 0
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (System.currentTimeMillis().minus(mExitTime) <= 2000) {
+                finish()
+            } else {
+                mExitTime = System.currentTimeMillis()
+                showToast("再按一次退出程序")
+            }
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
     }
 
 

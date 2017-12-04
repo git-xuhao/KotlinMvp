@@ -15,6 +15,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.hazz.kotlinmvp.Constants
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.durationFormat
+import com.hazz.kotlinmvp.glide.GlideApp
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.ui.activity.VideoDetailActivity
 import com.hazz.kotlinmvp.view.recyclerview.ViewHolder
@@ -107,9 +108,9 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
                         setData(bannerFeedList, bannerTitleList)
                         setAdapter(object : BGABanner.Adapter<ImageView, String> {
                             override fun fillBannerItem(bgaBanner: BGABanner?, imageView: ImageView?, feedImageUrl: String?, position: Int) {
-                                Glide.with(mContext)
+                                GlideApp.with(mContext)
                                         .load(feedImageUrl)
-                                        .apply(RequestOptions().placeholder(R.drawable.placeholder_banner))
+                                        .placeholder(R.drawable.placeholder_banner)
                                         .into(imageView)
 
                             }
@@ -179,22 +180,22 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
             avatar = itemData?.provider?.icon
         }
         // 加载封页图
-        Glide.with(mContext)
+        GlideApp.with(mContext)
                 .load(cover)
-                .apply(RequestOptions().placeholder(R.drawable.placeholder_banner))
+                .placeholder(R.drawable.placeholder_banner)
                 .into(holder.getView(R.id.iv_cover_feed))
 
         // 如果提供者信息为空，就显示默认
         if (avatar.isNullOrEmpty()) {
-            Glide.with(mContext)
+            GlideApp.with(mContext)
                     .load(defAvatar)
-                    .apply(RequestOptions().placeholder(R.mipmap.default_avatar).circleCrop())
+                    .placeholder(R.mipmap.default_avatar).circleCrop()
                     .into(holder.getView(R.id.iv_avatar))
 
         } else {
-            Glide.with(mContext)
+            GlideApp.with(mContext)
                     .load(avatar)
-                    .apply(RequestOptions().placeholder(R.mipmap.default_avatar).circleCrop())
+                    .placeholder(R.mipmap.default_avatar).circleCrop()
                     .into(holder.getView(R.id.iv_avatar))
         }
         holder.setText(R.id.tv_title, itemData?.title!!)

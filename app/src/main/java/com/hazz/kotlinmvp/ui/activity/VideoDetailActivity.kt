@@ -7,19 +7,17 @@ import android.support.v4.view.ViewCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.transition.Transition
 import android.view.View
-import android.widget.ImageView
-import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
-import com.bumptech.glide.request.RequestOptions
 import com.hazz.kotlinmvp.Constants
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.base.BaseActivity
+import com.hazz.kotlinmvp.glide.GlideApp
 import com.hazz.kotlinmvp.mvp.contract.VideoDetailContract
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.mvp.presenter.VideoDetailPresenter
 import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.ui.adapter.VideoDetailAdapter
-import com.hazz.kotlinmvp.utils.VideoListener
+import com.hazz.kotlinmvp.view.VideoListener
 import com.orhanobut.logger.Logger
 import com.shuyu.gsyvideoplayer.listener.LockClickListener
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
@@ -159,6 +157,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
      */
     override fun setVideo(url: String) {
         mVideoView.setUp(url, false, "")
+        //开始自动播放
         mVideoView.startPlayLogic()
     }
 
@@ -186,11 +185,10 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
      * 设置背景颜色
      */
     override fun setBackground(url: String) {
-        Glide.with(this)
+        GlideApp.with(this)
                 .load(url)
-                .apply(RequestOptions()
-                        .format(DecodeFormat.PREFER_ARGB_8888)
-                        .centerCrop())
+                .centerCrop()
+                .format(DecodeFormat.PREFER_ARGB_8888)
                 .into(mVideoBackground)
     }
 

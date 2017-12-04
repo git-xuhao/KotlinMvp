@@ -11,6 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.hazz.kotlinmvp.MyApplication
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.durationFormat
+import com.hazz.kotlinmvp.glide.GlideApp
 import com.hazz.kotlinmvp.glide.GlideRoundTransform
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.view.ExpandableTextView
@@ -97,10 +98,9 @@ class VideoDetailAdapter(mContext: Context, data: ArrayList<HomeBean.Issue.Item>
                 holder.setText(R.id.tv_tag, "#${data.data.category} / ${durationFormat(data.data.duration)}")
                 holder.setImagePath(R.id.iv_video_small_card, object : ViewHolder.HolderImageLoader(data.data.cover.detail) {
                     override fun loadImage(iv: ImageView, path: String) {
-                        Glide.with(MyApplication.context)
+                        GlideApp.with(MyApplication.context)
                                 .load(path)
-                                .apply(RequestOptions().placeholder(R.color.color_darker_gray)
-                                        .optionalTransform(GlideRoundTransform()))
+                                .optionalTransform(GlideRoundTransform())
                                 .into(iv)
                     }
                 })
@@ -134,9 +134,9 @@ class VideoDetailAdapter(mContext: Context, data: ArrayList<HomeBean.Issue.Item>
             holder.setImagePath(R.id.iv_avatar, object : ViewHolder.HolderImageLoader(data.data.author.icon) {
                 override fun loadImage(iv: ImageView, path: String) {
                     //加载头像
-                    Glide.with(MyApplication.context)
+                    GlideApp.with(MyApplication.context)
                             .load(path)
-                            .apply(RequestOptions().placeholder(R.mipmap.default_avatar).circleCrop())
+                            .placeholder(R.mipmap.default_avatar).circleCrop()
                             .into(iv)
                 }
             })

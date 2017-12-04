@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_alignParentBottom="true"
-        android:background="#ffffff"
+        android:background="@color/color_title_bg"
         app:tl_iconHeight="23dp"
         app:tl_iconWidth="23dp"
         app:tl_indicator_color="@color/colorPrimary"

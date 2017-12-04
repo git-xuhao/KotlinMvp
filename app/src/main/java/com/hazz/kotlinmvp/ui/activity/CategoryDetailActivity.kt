@@ -4,11 +4,10 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.hazz.kotlinmvp.Constants
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.base.BaseActivity
+import com.hazz.kotlinmvp.glide.GlideApp
 import com.hazz.kotlinmvp.mvp.contract.CategoryDetailContract
 import com.hazz.kotlinmvp.mvp.model.bean.CategoryBean
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
@@ -55,9 +54,9 @@ class CategoryDetailActivity : BaseActivity(), CategoryDetailContract.View {
         toolbar.setNavigationOnClickListener { finish() }
 
         // 加载headerImage
-        Glide.with(this)
+        GlideApp.with(this)
                 .load(categoryData?.headerImage)
-                .apply(RequestOptions().placeholder(R.color.color_darker_gray))
+                .placeholder(R.color.color_darker_gray)
                 .into(imageView)
 
         tv_category_desc.text ="#${categoryData?.description}#"

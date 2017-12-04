@@ -1,11 +1,11 @@
 package com.hazz.kotlinmvp.net
 
-import android.util.Log
 import com.hazz.kotlinmvp.MyApplication
 import com.hazz.kotlinmvp.api.ApiService
 import com.hazz.kotlinmvp.api.UriConstant
 import com.hazz.kotlinmvp.utils.NetworkUtil
 import com.hazz.kotlinmvp.utils.SpUtils
+import com.orhanobut.logger.Logger
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -21,7 +21,6 @@ import java.util.concurrent.TimeUnit
 object RetrofitManager{
 
     private var client: OkHttpClient? = null
-    private var httpService: ApiService? = null
     private var retrofit: Retrofit? = null
 
 
@@ -67,7 +66,6 @@ object RetrofitManager{
     private fun addCacheInterceptor(): Interceptor {
         return Interceptor { chain ->
             var request = chain.request()
-            Log.d("okhttp", "okhttp--->" + request.url().toString())
             if (!NetworkUtil.isNetworkAvailable(MyApplication.context)) {
                 request = request.newBuilder()
                         .cacheControl(CacheControl.FORCE_CACHE)
@@ -109,6 +107,7 @@ object RetrofitManager{
                     client = OkHttpClient.Builder()
                             .addInterceptor(addQueryParameterInterceptor())  //参数添加
                             .addInterceptor(addHeaderInterceptor()) // token过滤
+//                            .addInterceptor(addCacheInterceptor())
                             .addInterceptor(httpLoggingInterceptor) //日志,所有的请求响应度看到
                             .cache(cache)  //添加缓存
                             .connectTimeout(60L, TimeUnit.SECONDS)

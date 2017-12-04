@@ -14,7 +14,7 @@ class CategoryDetailPresenter:BasePresenter<CategoryDetailContract.View>(),Categ
        CategoryDetailModel()
    }
 
-    private var nextPageUrl = ""
+    private var nextPageUrl:String?=null
 
     /**
      * 获取分类详情的列表信息
@@ -45,23 +45,20 @@ class CategoryDetailPresenter:BasePresenter<CategoryDetailContract.View>(),Categ
      * 加载更多数据
      */
     override fun loadMoreData() {
-        mRootView?.showLoading()
-        val disposable = categoryDetailModel.loadMoreData(nextPageUrl)
-                .subscribe({
-                    issue ->
-                    mRootView?.apply {
-                        dismissLoading()
-                        nextPageUrl = issue.nextPageUrl
-                        setCateDetailList(issue.itemList)
-                    }
-                },{
-                    throwable->
-                    mRootView?.apply {
-                        dismissLoading()
-                        showError(throwable.toString())
-                    }
-                })
+        val disposable = nextPageUrl?.let {
+            categoryDetailModel.loadMoreData(it)
+                    .subscribe({ issue ->
+                        mRootView?.apply {
+                            nextPageUrl = issue.nextPageUrl
+                            setCateDetailList(issue.itemList)
+                        }
+                    }, { throwable ->
+                        mRootView?.apply {
+                            showError(throwable.toString())
+                        }
+                    })
+        }
 
-        addSubscription(disposable)
+        disposable?.let { addSubscription(it) }
     }
 }
