@@ -26,7 +26,6 @@ import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.ui.adapter.CategoryDetailAdapter
 import com.hazz.kotlinmvp.ui.adapter.HotKeywordsAdapter
 import com.hazz.kotlinmvp.view.ViewAnimUtils
-import kotlinx.android.synthetic.main.activity_category_detail.*
 import kotlinx.android.synthetic.main.activity_search.*
 
 /**
@@ -40,13 +39,13 @@ class SearchActivity : BaseActivity(), SearchContract.View {
 
     private val mResultAdapter by lazy { CategoryDetailAdapter(this, itemList, R.layout.item_category_detail) }
 
-    private var mHotKeywordsAdapter:HotKeywordsAdapter?=null
+    private var mHotKeywordsAdapter: HotKeywordsAdapter? = null
 
     private var itemList = ArrayList<HomeBean.Issue.Item>()
 
-    private var mTextTypeface:Typeface?=null
+    private var mTextTypeface: Typeface? = null
 
-    private var keyWords:String?=null
+    private var keyWords: String? = null
 
     /**
      * 是否加载更多
@@ -71,12 +70,12 @@ class SearchActivity : BaseActivity(), SearchContract.View {
     }
 
     private fun setUpView() {
-        Handler(Looper.getMainLooper()).post {
-            val animation = AnimationUtils.loadAnimation(this, android.R.anim.fade_in)
-            animation.duration = 300
-            rel_container.startAnimation(animation)
-            rel_container.visibility = View.VISIBLE
-        }
+        val animation = AnimationUtils.loadAnimation(this, android.R.anim.fade_in)
+        animation.duration = 300
+        rel_container.startAnimation(animation)
+        rel_container.visibility = View.VISIBLE
+        //打开软键盘
+        openKeybord(et_search_view, applicationContext)
     }
 
     override fun initView() {
@@ -102,13 +101,14 @@ class SearchActivity : BaseActivity(), SearchContract.View {
 
         tv_cancel.setOnClickListener { onBackPressed() }
 
-        et_search_view.setOnEditorActionListener(object :TextView.OnEditorActionListener{
+        et_search_view.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
-                if(actionId==EditorInfo.IME_ACTION_SEARCH){
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     keyWords = et_search_view.text.toString().trim()
-                    if(keyWords.isNullOrEmpty()){
-                       showToast("请输入你感兴趣的关键词")
-                    }else {
+                    if (keyWords.isNullOrEmpty()) {
+                        showToast("请输入你感兴趣的关键词")
+                    } else {
+                        closeKeybord(et_search_view, applicationContext)
                         mPresenter.querySearchData(keyWords!!)
                     }
                 }
@@ -133,9 +133,9 @@ class SearchActivity : BaseActivity(), SearchContract.View {
      * 设置热门关键词
      */
     override fun setHotWordData(string: ArrayList<String>) {
-        mHotKeywordsAdapter = HotKeywordsAdapter(this,string,R.layout.item_flow_text)
+        mHotKeywordsAdapter = HotKeywordsAdapter(this, string, R.layout.item_flow_text)
 
-        val flexBoxLayoutManager =FlexboxLayoutManager(this)
+        val flexBoxLayoutManager = FlexboxLayoutManager(this)
         flexBoxLayoutManager.flexWrap = FlexWrap.WRAP      //按正常方向换行
         flexBoxLayoutManager.flexDirection = FlexDirection.ROW   //主轴为水平方向，起点在左端
         flexBoxLayoutManager.alignItems = AlignItems.CENTER    //定义项目在副轴轴上如何对齐
@@ -154,12 +154,12 @@ class SearchActivity : BaseActivity(), SearchContract.View {
      * 设置搜索结果
      */
     override fun setSearchResult(issue: HomeBean.Issue) {
-        loadingMore =false
+        loadingMore = false
 
         layout_hot_words.visibility = View.GONE
         layout_content_result.visibility = View.VISIBLE
 
-        tv_search_count.text = String.format(resources.getString(R.string.search_result_count),keyWords,issue.total)
+        tv_search_count.text = String.format(resources.getString(R.string.search_result_count), keyWords, issue.total)
 
         itemList = issue.itemList
         mResultAdapter.addData(issue.itemList)
@@ -174,9 +174,8 @@ class SearchActivity : BaseActivity(), SearchContract.View {
      * 没有找到相匹配的内容
      */
     override fun setEmptyView() {
-
+            showToast("抱歉，没有找到相匹配的内容")
     }
-
 
 
     /**
@@ -228,7 +227,7 @@ class SearchActivity : BaseActivity(), SearchContract.View {
     private fun animateRevealShow() {
         ViewAnimUtils.animateRevealShow(
                 this, rel_frame,
-                fab_circle.width / 2, R.color.color_gray,
+                fab_circle.width / 2, R.color.backgroundColor,
                 object : ViewAnimUtils.OnRevealAnimationListener {
                     override fun onRevealHide() {
 
@@ -246,7 +245,7 @@ class SearchActivity : BaseActivity(), SearchContract.View {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ViewAnimUtils.animateRevealHide(
                     this, rel_frame,
-                    fab_circle.width / 2, R.color.color_gray,
+                    fab_circle.width / 2, R.color.backgroundColor,
                     object : ViewAnimUtils.OnRevealAnimationListener {
                         override fun onRevealHide() {
                             defaultBackPressed()
@@ -263,10 +262,9 @@ class SearchActivity : BaseActivity(), SearchContract.View {
 
     // 默认回退
     private fun defaultBackPressed() {
+        closeKeybord(et_search_view, applicationContext)
         super.onBackPressed()
     }
-
-
 
 
 }

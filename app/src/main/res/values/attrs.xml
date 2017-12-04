@@ -3,11 +3,28 @@
 
     //自定义折叠 TextView
     <declare-styleable name="ExpandableTextView">
-        <attr name="maxCollapsedLines" format="integer"/>
-        <attr name="animDuration" format="integer"/>
-        <attr name="animAlphaStart" format="float"/>
-        <attr name="expandDrawable" format="reference"/>
-        <attr name="collapseDrawable" format="reference"/>
+        <attr name="maxCollapsedLines" format="integer" />
+        <attr name="animDuration" format="integer" />
+        <attr name="animAlphaStart" format="float" />
+        <attr name="expandDrawable" format="reference" />
+        <attr name="collapseDrawable" format="reference" />
+    </declare-styleable>
+
+
+    <attr name="type">
+        <enum name="none" value="0" />
+        <enum name="circle" value="1" />
+        <enum name="rounded_rect" value="2" />
+    </attr>
+    <attr name="borderColor" format="color" />
+    <attr name="borderWidth" format="dimension" />
+    <attr name="rectRoundRadius" format="dimension" />
+
+    <declare-styleable name="CircleImageView">
+        <attr name="type" />
+        <attr name="borderColor" />
+        <attr name="borderWidth" />
+        <attr name="rectRoundRadius" />
     </declare-styleable>
 
 </resources>

@@ -6,8 +6,9 @@ import com.hazz.kotlinmvp.base.BaseFragment
 
 /**
  * Created by xuhao on 2017/11/9.
+ * 我的
  */
-class MeituFragment: BaseFragment() {
+class MineFragment : BaseFragment() {
 
 
     override fun initView() {
@@ -18,8 +19,8 @@ class MeituFragment: BaseFragment() {
 
 
     companion object {
-        fun getInstance(title:String): MeituFragment {
-            val fragment = MeituFragment()
+        fun getInstance(title:String): MineFragment {
+            val fragment = MineFragment()
             val bundle = Bundle()
             fragment.arguments = bundle
             fragment.mTitle = title
@@ -28,10 +29,10 @@ class MeituFragment: BaseFragment() {
     }
 
 
-    override fun getLayoutId(): Int= R.layout.fragment_home
+    override fun getLayoutId(): Int= R.layout.fragment_mine
 
     override fun lazyLoad() {
-//       tv_title.text=mTitle
+
     }
 
 }

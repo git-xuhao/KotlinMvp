@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rel_frame"
+    android:background="@color/color_translucent"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,8 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:transitionName="@string/search_transition_name"
-        android:visibility="gone"
-        app:backgroundTint="@color/color_gray"
+        app:backgroundTint="@color/backgroundColor"
         app:elevation="0dp"
         app:fabSize="normal"
         tools:targetApi="lollipop" />
@@ -25,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/backgroundColor"
+        android:visibility="gone"
         android:orientation="vertical">
 
         <RelativeLayout

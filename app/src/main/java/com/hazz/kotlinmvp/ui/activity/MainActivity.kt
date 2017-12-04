@@ -12,7 +12,7 @@ import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.ui.fragment.CategoryFragment
 import com.hazz.kotlinmvp.ui.fragment.HomeFragment
 import com.hazz.kotlinmvp.ui.fragment.HotFragment
-import com.hazz.kotlinmvp.ui.fragment.MeituFragment
+import com.hazz.kotlinmvp.ui.fragment.MineFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -38,7 +38,7 @@ class MainActivity : BaseActivity() {
     private var mHomeFragment: HomeFragment? = null
     private var mCategoryFragment: CategoryFragment? = null
     private var mHotFragment: HotFragment? = null
-    private var mMeiTuFragment: MeituFragment?=null
+    private var mMeiTuFragment: MineFragment?=null
 
     //默认为0
     private var mIndex = 0
@@ -102,7 +102,7 @@ class MainActivity : BaseActivity() {
                 transaction.show(mCategoryFragment)
             }
             2 //热门
-            -> if ( mHotFragment== null) {
+            -> if ( mHotFragment == null) {
                 mHotFragment = HotFragment.getInstance(mTitles[position])
                 transaction.add(R.id.fl_container, mHotFragment, "hot")
             }
@@ -112,7 +112,7 @@ class MainActivity : BaseActivity() {
 
             3 //更多
             -> if (mMeiTuFragment == null) {
-                mMeiTuFragment = MeituFragment.getInstance(mTitles[position])
+                mMeiTuFragment = MineFragment.getInstance(mTitles[position])
                 transaction.add(R.id.fl_container, mMeiTuFragment, "mei")
             } else {
                 transaction.show(mMeiTuFragment)
