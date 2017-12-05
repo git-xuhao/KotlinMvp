@@ -10,6 +10,8 @@ import com.hazz.kotlinmvp.base.BaseFragment
 import com.hazz.kotlinmvp.mvp.contract.CategoryContract
 import com.hazz.kotlinmvp.mvp.model.bean.CategoryBean
 import com.hazz.kotlinmvp.mvp.presenter.CategoryPresenter
+import com.hazz.kotlinmvp.net.exception.ErrorStatus
+import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.ui.adapter.CategoryAdapter
 import com.hazz.kotlinmvp.utils.DisplayManager
 import kotlinx.android.synthetic.main.fragment_category.*
@@ -51,6 +53,8 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
     override fun initView() {
         mPresenter.attachView(this)
 
+        mLayoutStatusView = multipleStatusView
+
         mRecyclerView.adapter = mAdapter
         mRecyclerView.layoutManager =GridLayoutManager(activity,2)
         mRecyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
@@ -73,10 +77,11 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
     }
 
     override fun showLoading() {
-
+        mLayoutStatusView?.showLoading()
     }
 
     override fun dismissLoading() {
+        mLayoutStatusView?.showContent()
     }
 
     /**
@@ -88,8 +93,13 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
 
     }
 
-    override fun showError(errorMsg: String) {
-        showError(errorMsg)
+    override fun showError(errorMsg: String,errorCode:Int) {
+        showToast(errorMsg)
+        if (errorCode == ErrorStatus.NETWORK_ERROR) {
+            mLayoutStatusView?.showNoNetwork()
+        } else {
+            mLayoutStatusView?.showError()
+        }
     }
 
     override fun onDestroy() {

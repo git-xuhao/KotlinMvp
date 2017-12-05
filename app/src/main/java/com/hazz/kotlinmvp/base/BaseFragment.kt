@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.classic.common.MultipleStatusView
+import com.hazz.kotlinmvp.showToast
 
 /**
  * @author Xuhao
@@ -23,6 +25,10 @@ import android.view.ViewGroup
      * 数据是否加载过了
      */
     private var hasLoadData = false
+    /**
+     * 多种状态的 View 的切换
+     */
+    protected var mLayoutStatusView: MultipleStatusView? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(getLayoutId(),null)
@@ -41,7 +47,9 @@ import android.view.ViewGroup
         super.onViewCreated(view, savedInstanceState)
         isViewPrepare = true
         initView()
+        //多种状态切换的view 重试点击事件
         lazyLoadDataIfPrepared()
+        mLayoutStatusView?.setOnClickListener(mRetryClickListener)
     }
 
     private fun lazyLoadDataIfPrepared() {
@@ -50,6 +58,12 @@ import android.view.ViewGroup
             hasLoadData = true
         }
     }
+
+    open val mRetryClickListener: View.OnClickListener = View.OnClickListener {
+        showToast("您点击了重试视图----base")
+        lazyLoad()
+    }
+
 
     /**
      * 加载布局

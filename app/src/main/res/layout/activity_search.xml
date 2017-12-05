@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rel_frame"
-    android:background="@color/color_translucent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/color_translucent">
 
 
     <android.support.design.widget.FloatingActionButton
@@ -25,8 +25,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/backgroundColor"
-        android:visibility="gone"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <RelativeLayout
             android:id="@+id/rel_search_view"
@@ -44,6 +44,8 @@
                 android:background="@drawable/et_round_bg"
                 android:drawableLeft="@mipmap/ic_action_search_small"
                 android:drawablePadding="5dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:gravity="center_vertical"
                 android:hint="@string/search_hint_text"
                 android:imeOptions="actionSearch"
@@ -108,27 +110,35 @@
             android:id="@+id/layout_content_result"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/tv_search_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
                 android:layout_marginBottom="20dp"
+                android:layout_marginTop="30dp"
                 android:text="@string/search_result_count"
                 android:textColor="@color/color_black"
-                android:textStyle="bold"
                 android:textSize="12sp"
-                />
+                android:textStyle="bold" />
 
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/mRecyclerView_result"
+            <com.classic.common.MultipleStatusView
+                android:id="@+id/multipleStatusView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                app:emptyView="@layout/layout_empty_view"
+                app:errorView="@layout/layout_error_view"
+                app:loadingView="@layout/layout_loading_view"
+                app:noNetworkView="@layout/layout_network_view">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/mRecyclerView_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </com.classic.common.MultipleStatusView>
         </LinearLayout>
 
     </LinearLayout>

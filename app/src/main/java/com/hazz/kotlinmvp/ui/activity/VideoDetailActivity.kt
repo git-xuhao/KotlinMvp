@@ -135,6 +135,10 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         mAdapter.setOnItemDetailClick { mPresenter.loadVideoInfo(it) }
     }
 
+    override fun start() {
+        loadVideoInfo()
+    }
+
     /**
      * 初始化数据
      */
@@ -239,6 +243,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         super.onDestroy()
         GSYVideoPlayer.releaseAllVideos()
         orientationUtils?.releaseListener()
+        mPresenter.detachView()
     }
 
     private fun getCurPlay(): GSYVideoPlayer {

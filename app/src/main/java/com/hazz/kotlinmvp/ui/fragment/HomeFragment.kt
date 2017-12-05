@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.base.BaseFragment
 import com.hazz.kotlinmvp.mvp.contract.HomeContract
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.mvp.presenter.HomePresenter
+import com.hazz.kotlinmvp.net.exception.ErrorStatus
 import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.ui.activity.SearchActivity
 import com.hazz.kotlinmvp.ui.adapter.HomeAdapter
@@ -19,15 +21,16 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import java.text.SimpleDateFormat
 import java.util.*
 
+@Suppress("DEPRECATION")
 /**
  * Created by xuhao on 2017/11/8.
  * 首页精选
  */
 
-class HomeFragment : BaseFragment(), HomeContract.View{
+class HomeFragment : BaseFragment(), HomeContract.View {
 
 
-    private val mPresenter by lazy {  HomePresenter()}
+    private val mPresenter by lazy { HomePresenter() }
 
     private var mTitle: String? = null
 
@@ -36,6 +39,8 @@ class HomeFragment : BaseFragment(), HomeContract.View{
     private var mHomeAdapter: HomeAdapter? = null
 
     private var loadingMore = false
+
+    private var isRefresh = false
 
     companion object {
         fun getInstance(title: String): HomeFragment {
@@ -66,7 +71,10 @@ class HomeFragment : BaseFragment(), HomeContract.View{
     override fun initView() {
         mPresenter.attachView(this)
 
-        mRefreshLayout.setOnRefreshListener { mPresenter.requestHomeData(num) }
+        mRefreshLayout.setOnRefreshListener {
+            isRefresh = true
+            mPresenter.requestHomeData(num)
+        }
         mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
@@ -91,7 +99,7 @@ class HomeFragment : BaseFragment(), HomeContract.View{
                     //背景设置为透明
                     toolbar.setBackgroundColor(getColor(R.color.color_translucent))
                     iv_search.setImageResource(R.mipmap.ic_action_search_white)
-                    tv_header_title.text=""
+                    tv_header_title.text = ""
                 } else {
                     if (mHomeAdapter?.mData!!.size > 1) {
                         toolbar.setBackgroundColor(getColor(R.color.color_title_bg))
@@ -110,11 +118,13 @@ class HomeFragment : BaseFragment(), HomeContract.View{
             }
         })
 
-        iv_search.setOnClickListener{ openSearchActivity()}
+        iv_search.setOnClickListener { openSearchActivity() }
+
+        mLayoutStatusView = multipleStatusView
 
     }
 
-    private fun openSearchActivity(){
+    private fun openSearchActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, iv_search, iv_search.transitionName)
             startActivity(Intent(activity, SearchActivity::class.java), options.toBundle())
@@ -132,7 +142,10 @@ class HomeFragment : BaseFragment(), HomeContract.View{
      * 显示 Loading
      */
     override fun showLoading() {
-
+        if (!isRefresh) {
+            isRefresh = false
+            mLayoutStatusView?.showLoading()
+        }
     }
 
     /**
@@ -140,6 +153,7 @@ class HomeFragment : BaseFragment(), HomeContract.View{
      */
     override fun dismissLoading() {
         mRefreshLayout.finishRefresh()
+        mLayoutStatusView?.showContent()
     }
 
     /**
@@ -164,8 +178,16 @@ class HomeFragment : BaseFragment(), HomeContract.View{
     }
 
 
-    override fun showError(msg: String) {
+    /**
+     * 显示错误信息
+     */
+    override fun showError(msg: String, errorCode: Int) {
         showToast(msg)
+        if (errorCode == ErrorStatus.NETWORK_ERROR) {
+            mLayoutStatusView?.showNoNetwork()
+        } else {
+            mLayoutStatusView?.showError()
+        }
     }
 
 
@@ -174,7 +196,7 @@ class HomeFragment : BaseFragment(), HomeContract.View{
         mPresenter.detachView()
     }
 
-    fun getColor(colorId: Int):Int{
+    fun getColor(colorId: Int): Int {
         return resources.getColor(colorId)
     }
 

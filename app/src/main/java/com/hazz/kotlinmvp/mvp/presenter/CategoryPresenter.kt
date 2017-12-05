@@ -3,6 +3,7 @@ package com.hazz.kotlinmvp.mvp.presenter
 import com.hazz.kotlinmvp.base.BasePresenter
 import com.hazz.kotlinmvp.mvp.contract.CategoryContract
 import com.hazz.kotlinmvp.mvp.model.CategoryModel
+import com.hazz.kotlinmvp.net.exception.ExceptionHandle
 
 /**
  * Created by xuhao on 2017/11/29.
@@ -29,7 +30,8 @@ class CategoryPresenter : BasePresenter<CategoryContract.View>(), CategoryContra
                 }, { t ->
                     mRootView?.apply {
                         dismissLoading()
-                        showError(t.toString())
+                        //处理异常
+                        showError(ExceptionHandle.handleException(t),ExceptionHandle.errorCode)
                     }
 
                 })

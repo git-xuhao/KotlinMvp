@@ -3,6 +3,7 @@ package com.hazz.kotlinmvp.mvp.presenter
 import com.hazz.kotlinmvp.base.BasePresenter
 import com.hazz.kotlinmvp.mvp.contract.SearchContract
 import com.hazz.kotlinmvp.mvp.model.SearchModel
+import com.hazz.kotlinmvp.net.exception.ExceptionHandle
 
 /**
  * Created by xuhao on 2017/12/4.
@@ -20,6 +21,11 @@ class SearchPresenter : BasePresenter<SearchContract.View>(), SearchContract.Pre
      */
     override fun requestHotWordData() {
         checkViewAttached()
+        checkViewAttached()
+        mRootView?.apply {
+            closeSoftKeyboard()
+            showLoading()
+        }
         addSubscription(disposable = searchModel.requestHotWordData()
                 .subscribe({ string ->
                     mRootView?.apply {
@@ -27,7 +33,8 @@ class SearchPresenter : BasePresenter<SearchContract.View>(), SearchContract.Pre
                     }
                 }, { throwable ->
                     mRootView?.apply {
-                        showError(throwable.toString())
+                        //处理异常
+                        showError(ExceptionHandle.handleException(throwable),ExceptionHandle.errorCode)
                     }
                 }))
     }
@@ -37,7 +44,10 @@ class SearchPresenter : BasePresenter<SearchContract.View>(), SearchContract.Pre
      */
     override fun querySearchData(words: String) {
         checkViewAttached()
-        mRootView?.showLoading()
+        mRootView?.apply {
+            closeSoftKeyboard()
+            showLoading()
+        }
         addSubscription(disposable = searchModel.getSearchResult(words)
                 .subscribe({ issue ->
                     mRootView?.apply {
@@ -51,7 +61,8 @@ class SearchPresenter : BasePresenter<SearchContract.View>(), SearchContract.Pre
                 }, { throwable ->
                     mRootView?.apply {
                         dismissLoading()
-                        showError(throwable.toString())
+                        //处理异常
+                        showError(ExceptionHandle.handleException(throwable),ExceptionHandle.errorCode)
                     }
                 })
         )
@@ -72,7 +83,8 @@ class SearchPresenter : BasePresenter<SearchContract.View>(), SearchContract.Pre
                         }
                     }, { throwable ->
                         mRootView?.apply {
-                            showError(throwable.toString())
+                            //处理异常
+                            showError(ExceptionHandle.handleException(throwable),ExceptionHandle.errorCode)
                         }
                     }))
         }

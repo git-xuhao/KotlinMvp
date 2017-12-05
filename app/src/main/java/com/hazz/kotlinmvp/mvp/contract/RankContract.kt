@@ -17,7 +17,7 @@ interface RankContract {
          */
         fun setRankList(itemList: ArrayList<HomeBean.Issue.Item>)
 
-        fun showError(errorMsg:String)
+        fun showError(errorMsg:String,errorCode:Int)
     }
 
 

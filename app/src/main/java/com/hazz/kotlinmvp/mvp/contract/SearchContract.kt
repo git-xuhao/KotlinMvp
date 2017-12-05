@@ -20,6 +20,10 @@ interface SearchContract {
          * 设置搜索关键词返回的结果
          */
         fun setSearchResult(issue:HomeBean.Issue)
+        /**
+         * 关闭软件盘
+         */
+        fun closeSoftKeyboard()
 
         /**
          * 设置空 View
@@ -27,7 +31,7 @@ interface SearchContract {
         fun setEmptyView()
 
 
-        fun showError(errorMsg: String)
+        fun showError(errorMsg: String,errorCode:Int)
     }
 
 

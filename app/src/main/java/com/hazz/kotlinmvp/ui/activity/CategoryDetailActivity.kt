@@ -22,7 +22,6 @@ import kotlinx.android.synthetic.main.activity_category_detail.*
  */
 class CategoryDetailActivity : BaseActivity(), CategoryDetailContract.View {
 
-
     private val mPresenter by lazy { CategoryDetailPresenter() }
 
     private val mAdapter by lazy { CategoryDetailAdapter(this, itemList, R.layout.item_category_detail) }
@@ -79,19 +78,21 @@ class CategoryDetailActivity : BaseActivity(), CategoryDetailContract.View {
                 }
             }
         })
-        //获取当前分类列表
-        mPresenter.getCategoryDetailList(categoryData?.id!!)
-
 
     }
 
+    override fun start() {
+        //获取当前分类列表
+        mPresenter.getCategoryDetailList(categoryData?.id!!)
+    }
+
     override fun showLoading() {
-//        showToast("Loading")
+        multipleStatusView.showLoading()
 
     }
 
     override fun dismissLoading() {
-//        showToast("加载完成")
+        multipleStatusView.showContent()
     }
 
     override fun setCateDetailList(itemList: ArrayList<HomeBean.Issue.Item>) {
@@ -100,7 +101,7 @@ class CategoryDetailActivity : BaseActivity(), CategoryDetailContract.View {
     }
 
     override fun showError(errorMsg: String) {
-        showToast(errorMsg)
+        multipleStatusView.showError()
     }
 
 

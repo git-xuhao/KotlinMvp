@@ -25,6 +25,7 @@ class ClearEditText @JvmOverloads constructor(context: Context, attrs: Attribute
         init()
     }
 
+    @Suppress("DEPRECATION")
     private fun init() {
         // 获取EditText的DrawableRight,假如没有设置我们就使用默认的图片,获取图片的顺序是左上右下（0,1,2,3,）
         mClearDrawable = compoundDrawables[2]

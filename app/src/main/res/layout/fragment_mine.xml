@@ -46,7 +46,7 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/nickname"
         android:textColor="@color/color_black"
-        android:textSize="28sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
@@ -56,7 +56,7 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/view_homepage"
         android:textColor="@color/color_gray"
-        android:textSize="16sp" />
+        android:textSize="14sp" />
 
 
     <LinearLayout
@@ -115,51 +115,51 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_marginBottom="50dp"
-            >
+            android:orientation="vertical">
 
 
-        <TextView
-            android:id="@+id/tv_mine_message"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="bottom|center_horizontal"
-            android:text="@string/mine_message"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_mine_message"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center|center_horizontal"
+                android:text="@string/mine_message"
+                android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/tv_mine_attention"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="bottom|center_horizontal"
-            android:text="@string/mine_attention"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_mine_attention"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center|center_horizontal"
+                android:text="@string/mine_attention"
+                android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/tv_mine_cache"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="bottom|center_horizontal"
-            android:text="@string/mine_cache"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_mine_cache"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center|center_horizontal"
+                android:text="@string/mine_cache"
+                android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/tv_watch_history"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="bottom|center_horizontal"
-            android:text="@string/view_history"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_watch_history"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center|center_horizontal"
+                android:text="@string/view_history"
+                android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/tv_feedback"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="bottom|center_horizontal"
-            android:text="@string/feedback"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_feedback"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center|center_horizontal"
+                android:text="@string/feedback"
+                android:textSize="14sp" />
         </LinearLayout>
+
 
     </android.support.v4.widget.NestedScrollView>
 

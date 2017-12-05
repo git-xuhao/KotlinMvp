@@ -10,8 +10,8 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.hazz.kotlinmvp"
-        minSdkVersion rootProject.ext.android["minSdkVersion"]
-        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -27,13 +27,11 @@ android {
 
         debug {
             minifyEnabled false
-            debuggable true
         }
 
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            debuggable false
         }
     }
 
@@ -45,28 +43,21 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
-
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1') {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-
-
     // Support库
     implementation rootProject.ext.supportLibs
     // 网络请求库
     implementation rootProject.ext.networkLibs
     // RxJava2
     implementation rootProject.ext.rxJavaLibs
-
     implementation rootProject.ext.otherLibs
-
     // APT dependencies(Kotlin内置的注解处理器)
     kapt rootProject.ext.annotationProcessorLibs
-
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     // 底部菜单
     implementation('com.flyco.tablayout:FlycoTabLayout_Lib:2.1.0@aar') {
@@ -81,7 +72,6 @@ dependencies {
     //smartRefreshLayout 下拉刷新
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
-
     //Banner
     implementation 'cn.bingoogolapple:bga-banner:2.1.8@aar'
     // 视屏播放器
@@ -91,6 +81,5 @@ dependencies {
     //Google开源的一个布局控件
     implementation 'com.google.android:flexbox:0.3.1'
 
-
-
+    implementation project(':multiple-status-view')
 }

@@ -5,7 +5,7 @@ import org.reactivestreams.Publisher
 
 /**
  * Created by xuhao on 2017/11/17.
- * desc:
+ * desc:RxJava2.x 5中基础相应类型
  */
 
 

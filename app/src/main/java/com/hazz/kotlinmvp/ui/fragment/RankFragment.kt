@@ -7,6 +7,8 @@ import com.hazz.kotlinmvp.base.BaseFragment
 import com.hazz.kotlinmvp.mvp.contract.RankContract
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.mvp.presenter.RankPresenter
+import com.hazz.kotlinmvp.net.exception.ErrorStatus
+import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.ui.adapter.CategoryDetailAdapter
 import kotlinx.android.synthetic.main.fragment_rank.*
 
@@ -46,6 +48,8 @@ class RankFragment : BaseFragment(), RankContract.View {
         mRecyclerView.layoutManager = LinearLayoutManager(activity)
         mRecyclerView.adapter = mAdapter
 
+        mLayoutStatusView =multipleStatusView
+
     }
 
     override fun lazyLoad() {
@@ -55,15 +59,28 @@ class RankFragment : BaseFragment(), RankContract.View {
     }
 
     override fun showLoading() {
+        mLayoutStatusView?.showLoading()
     }
 
     override fun dismissLoading() {
+        mLayoutStatusView?.showContent()
     }
 
     override fun setRankList(itemList: ArrayList<HomeBean.Issue.Item>) {
         mAdapter.addData(itemList)
     }
 
-    override fun showError(errorMsg: String) {
+    override fun showError(errorMsg: String,errorCode:Int) {
+        showToast(errorMsg)
+        if (errorCode == ErrorStatus.NETWORK_ERROR) {
+            mLayoutStatusView?.showNoNetwork()
+        } else {
+            mLayoutStatusView?.showError()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mPresenter.detachView()
     }
 }

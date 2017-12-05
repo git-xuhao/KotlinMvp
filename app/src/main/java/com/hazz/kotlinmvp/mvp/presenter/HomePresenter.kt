@@ -1,9 +1,10 @@
 package com.hazz.kotlinmvp.mvp.presenter
 
 import com.hazz.kotlinmvp.base.BasePresenter
-import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.mvp.contract.HomeContract
 import com.hazz.kotlinmvp.mvp.model.HomeModel
+import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
+import com.hazz.kotlinmvp.net.exception.ExceptionHandle
 
 /**
  * Created by xuhao on 2017/11/8.
@@ -49,6 +50,7 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
                     //根据 nextPageUrl 请求下一页数据
                     homeModel.loadMoreData(homeBean.nextPageUrl)
                 })
+
                 .subscribe({ homeBean->
                     mRootView?.apply {
                         dismissLoading()
@@ -63,7 +65,7 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
                             //移除 item
                             newBannerItemList.remove(item)
                         }
-                        // 记录Banner 长度
+                        // 重新赋值 Banner 长度
                         bannerHomeBean!!.issueList[0].count = bannerHomeBean!!.issueList[0].itemList.size
 
                         //赋值过滤后的数据 + banner 数据
@@ -76,7 +78,7 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
                 }, { t ->
                     mRootView?.apply {
                         dismissLoading()
-                        showError(t.toString())
+                        showError(ExceptionHandle.handleException(t),ExceptionHandle.errorCode)
                     }
                 })
 
@@ -89,12 +91,10 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
      */
 
     override fun loadMoreData() {
-         mRootView?.showLoading()
          val disposable = nextPageUrl?.let {
              homeModel.loadMoreData(it)
                      .subscribe({ homeBean->
                          mRootView?.apply {
-                             dismissLoading()
                              //过滤掉 Banner2(包含广告,等不需要的 Type), 具体查看接口分析
                              val newItemList = homeBean.issueList[0].itemList
 
@@ -111,8 +111,7 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
 
                      },{ t ->
                          mRootView?.apply {
-                             dismissLoading()
-                             showError(t.toString())
+                             showError(ExceptionHandle.handleException(t),ExceptionHandle.errorCode)
                          }
                      })
 

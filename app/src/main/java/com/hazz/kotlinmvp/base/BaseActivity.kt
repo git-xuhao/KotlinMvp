@@ -3,12 +3,11 @@ package com.hazz.kotlinmvp.base
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.content.Context.INPUT_METHOD_SERVICE
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import android.view.inputmethod.InputMethodManager.HIDE_IMPLICIT_ONLY
-import android.view.inputmethod.InputMethodManager.RESULT_SHOWN
-
+import com.classic.common.MultipleStatusView
+import com.hazz.kotlinmvp.showToast
 
 
 /**
@@ -16,15 +15,26 @@ import android.view.inputmethod.InputMethodManager.RESULT_SHOWN
  * created: 2017/10/25
  * desc:BaseActivity基类
  */
- abstract class BaseActivity: AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
+    /**
+     * 多种状态的 View 的切换
+     */
+    protected var mLayoutStatusView: MultipleStatusView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layoutId())
         initData()
         initView()
+        start()
+        mLayoutStatusView?.setOnClickListener(mRetryClickListener)
 
     }
+    open val mRetryClickListener: View.OnClickListener = View.OnClickListener {
+        showToast("您点击了重试视图----baseActivity")
+        start()
+    }
+
 
     /**
      *  加载布局
@@ -41,11 +51,16 @@ import android.view.inputmethod.InputMethodManager.RESULT_SHOWN
      */
     abstract fun initView()
 
+    /**
+     * 开始请求
+     */
+    abstract fun start()
+
 
     /**
      * 打卡软键盘
      */
-    fun openKeybord(mEditText: EditText, mContext: Context) {
+    fun openKeyBord(mEditText: EditText, mContext: Context) {
         val imm = mContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(mEditText, InputMethodManager.RESULT_SHOWN)
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
@@ -54,14 +69,10 @@ import android.view.inputmethod.InputMethodManager.RESULT_SHOWN
     /**
      * 关闭软键盘
      */
-    fun closeKeybord(mEditText: EditText, mContext: Context) {
+    fun closeKeyBord(mEditText: EditText, mContext: Context) {
         val imm = mContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(mEditText.windowToken, 0)
     }
-
-
-
-
 
 
 }

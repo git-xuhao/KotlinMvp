@@ -26,7 +26,7 @@ interface HomeContract {
         /**
          * 显示错误信息
          */
-        fun showError(msg: String)
+        fun showError(msg: String,errorCode:Int)
 
 
     }

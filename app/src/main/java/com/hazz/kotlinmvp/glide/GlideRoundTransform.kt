@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.hazz.kotlinmvp.glide
 
 import android.content.Context

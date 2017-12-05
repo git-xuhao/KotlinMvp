@@ -3,6 +3,7 @@ package com.hazz.kotlinmvp.mvp.presenter
 import com.hazz.kotlinmvp.base.BasePresenter
 import com.hazz.kotlinmvp.mvp.contract.RankContract
 import com.hazz.kotlinmvp.mvp.model.RankModel
+import com.hazz.kotlinmvp.net.exception.ExceptionHandle
 
 /**
  * Created by xuhao on 2017/11/30.
@@ -28,7 +29,8 @@ class RankPresenter : BasePresenter<RankContract.View>(), RankContract.Presenter
                 }, { throwable ->
                     mRootView?.apply {
                         dismissLoading()
-                        showError(throwable.toString())
+                        //处理异常
+                        showError(ExceptionHandle.handleException(throwable),ExceptionHandle.errorCode)
                     }
                 })
         addSubscription(disposable)

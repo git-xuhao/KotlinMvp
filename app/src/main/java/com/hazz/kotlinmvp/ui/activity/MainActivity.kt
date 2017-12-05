@@ -26,6 +26,7 @@ import java.util.*
 
 class MainActivity : BaseActivity() {
 
+
     private val mTitles = arrayOf("每日精选", "分类", "热门", "我的")
 
     // 未被选中的图标
@@ -161,6 +162,10 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initData() {
+
+    }
+    override fun start() {
+
     }
 
     var mExitTime: Long = 0

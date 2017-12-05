@@ -27,4 +27,11 @@
     <string name="mine_cache">我的缓存</string>
     <string name="view_history">观看记录</string>
     <string name="feedback">意见反馈</string>
+
+
+
+    <string name="loading_text">加载中&#8230;</string>
+    <string name="no_network">请检查网络后点击重新加载</string>
+    <string name="data_error">数据获取失败(ㄒoㄒ)~~</string>
+    <string name="empty_view_hint">暂时木有内容呀~~</string>
 </resources>
