@@ -82,8 +82,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin"
-            android:src="@android:drawable/ic_menu_share"
+            android:src="@mipmap/ic_action_share"
             app:elevation="3dp"
+            app:backgroundTint="@color/color_blue"
             app:fabSize="auto"
             app:layout_anchor="@id/app_bar"
             app:layout_anchorGravity="bottom|end" />

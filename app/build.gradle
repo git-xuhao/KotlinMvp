@@ -7,6 +7,14 @@ apply plugin: 'kotlin-android-extensions' //扩展插件
 apply plugin: 'kotlin-kapt'  //kapt3插件
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'ktmp'
+            keyPassword 'ktmp123456'
+            storeFile file('../ktmp.jks')
+            storePassword 'ktmp123456'
+        }
+    }
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.hazz.kotlinmvp"
@@ -15,31 +23,33 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
         javaCompileOptions {
             annotationProcessorOptions {
                 includeCompileClasspath true
             }
         }
+        signingConfig signingConfigs.config
     }
-
     buildTypes {
-
         debug {
             minifyEnabled false
+            debuggable true
+            signingConfig signingConfigs.config
         }
-
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+            signingConfig signingConfigs.config
+            zipAlignEnabled true
         }
     }
-
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
-
+    productFlavors {
+    }
 }
 
 dependencies {
@@ -80,6 +90,5 @@ dependencies {
     implementation 'com.orhanobut:logger:2.1.1'
     //Google开源的一个布局控件
     implementation 'com.google.android:flexbox:0.3.1'
-
     implementation project(':multiple-status-view')
 }

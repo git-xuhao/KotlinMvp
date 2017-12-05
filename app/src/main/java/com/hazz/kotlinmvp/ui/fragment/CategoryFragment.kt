@@ -50,6 +50,7 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
     override fun getLayoutId(): Int = R.layout.fragment_category
 
 
+    @Suppress("DEPRECATION")
     override fun initView() {
         mPresenter.attachView(this)
 
