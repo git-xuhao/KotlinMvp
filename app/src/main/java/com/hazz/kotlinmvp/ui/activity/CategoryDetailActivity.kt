@@ -12,8 +12,8 @@ import com.hazz.kotlinmvp.mvp.contract.CategoryDetailContract
 import com.hazz.kotlinmvp.mvp.model.bean.CategoryBean
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.mvp.presenter.CategoryDetailPresenter
-import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.ui.adapter.CategoryDetailAdapter
+import com.hazz.kotlinmvp.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_category_detail.*
 
 /**
@@ -78,6 +78,10 @@ class CategoryDetailActivity : BaseActivity(), CategoryDetailContract.View {
                 }
             }
         })
+
+        //状态栏透明和间距处理
+        StatusBarUtil.darkMode(this)
+        StatusBarUtil.setPaddingSmart(this, toolbar)
 
     }
 

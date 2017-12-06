@@ -24,6 +24,7 @@ import com.hazz.kotlinmvp.net.exception.ErrorStatus
 import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.ui.adapter.CategoryDetailAdapter
 import com.hazz.kotlinmvp.ui.adapter.HotKeywordsAdapter
+import com.hazz.kotlinmvp.utils.StatusBarUtil
 import com.hazz.kotlinmvp.view.ViewAnimUtils
 import kotlinx.android.synthetic.main.activity_search.*
 
@@ -116,6 +117,10 @@ class SearchActivity : BaseActivity(), SearchContract.View {
         })
 
         mLayoutStatusView = multipleStatusView
+
+        //状态栏透明和间距处理
+        StatusBarUtil.darkMode(this)
+        StatusBarUtil.setPaddingSmart(this, toolbar)
 
     }
     /**

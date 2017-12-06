@@ -1,31 +1,51 @@
 package com.hazz.kotlinmvp.ui.activity
 
-import com.hazz.kotlinmvp.R
-import com.hazz.kotlinmvp.base.BaseActivity
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.graphics.Typeface
+import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.Animation.AnimationListener
-import android.view.animation.AlphaAnimation
+import com.hazz.kotlinmvp.MyApplication
+import com.hazz.kotlinmvp.R
+import com.hazz.kotlinmvp.base.BaseActivity
+import com.hazz.kotlinmvp.utils.AppUtils
 import kotlinx.android.synthetic.main.activity_splash.*
-import android.content.Intent
-
-
 
 
 /**
  * Created by xuhao on 2017/12/5.
- * desc:
+ * desc: 启动页
  */
 class SplashActivity : BaseActivity() {
+
+
+    private var textTypeface: Typeface?=null
+
+    private var descTypeFace: Typeface?=null
+
+    init {
+        textTypeface = Typeface.createFromAsset(MyApplication.context.assets, "fonts/Lobster-1.4.otf")
+        descTypeFace = Typeface.createFromAsset(MyApplication.context.assets, "fonts/FZLanTingHeiS-L-GB-Regular.TTF")
+    }
+
+
     override fun layoutId(): Int = R.layout.activity_splash
 
     override fun initData() {
 
     }
 
+    @SuppressLint("SetTextI18n")
     override fun initView() {
+
+        tv_app_name.typeface = textTypeface
+        tv_splash_desc.typeface = descTypeFace
+        tv_version_name.text = "v${AppUtils.getVerName(MyApplication.context)}"
+
         //渐变展示启动屏
         val aa = AlphaAnimation(0.3f, 1.0f)
-        aa.duration = 2000
+        aa.duration = 3000
         layout_splash.startAnimation(aa)
         aa.setAnimationListener(object : AnimationListener {
             override fun onAnimationEnd(arg0: Animation) {

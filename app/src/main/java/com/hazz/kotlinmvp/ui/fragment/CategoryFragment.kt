@@ -14,6 +14,7 @@ import com.hazz.kotlinmvp.net.exception.ErrorStatus
 import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.ui.adapter.CategoryAdapter
 import com.hazz.kotlinmvp.utils.DisplayManager
+import com.hazz.kotlinmvp.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.fragment_category.*
 
 /**
@@ -69,6 +70,11 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
 
         })
 
+        //状态栏透明和间距处理
+        StatusBarUtil.darkMode(activity)
+        StatusBarUtil.setPaddingSmart(activity, toolbar)
+        StatusBarUtil.setPaddingSmart(activity,mRecyclerView)
+
     }
 
     override fun lazyLoad() {
@@ -78,7 +84,7 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
     }
 
     override fun showLoading() {
-        mLayoutStatusView?.showLoading()
+//        mLayoutStatusView?.showLoading()
     }
 
     override fun dismissLoading() {

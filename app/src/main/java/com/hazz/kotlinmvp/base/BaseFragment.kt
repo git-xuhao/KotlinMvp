@@ -60,7 +60,6 @@ import com.hazz.kotlinmvp.showToast
     }
 
     open val mRetryClickListener: View.OnClickListener = View.OnClickListener {
-        showToast("您点击了重试视图----base")
         lazyLoad()
     }
 

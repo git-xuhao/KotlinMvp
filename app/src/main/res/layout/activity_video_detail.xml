@@ -6,6 +6,7 @@
     <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
         android:id="@+id/mVideoView"
         android:layout_width="match_parent"
+        android:background="@color/color_black"
         android:layout_height="250dp" />
 
     <ImageView

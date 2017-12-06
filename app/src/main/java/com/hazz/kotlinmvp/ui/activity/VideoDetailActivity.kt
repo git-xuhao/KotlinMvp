@@ -17,6 +17,7 @@ import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.mvp.presenter.VideoDetailPresenter
 import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.ui.adapter.VideoDetailAdapter
+import com.hazz.kotlinmvp.utils.StatusBarUtil
 import com.hazz.kotlinmvp.view.VideoListener
 import com.orhanobut.logger.Logger
 import com.shuyu.gsyvideoplayer.listener.LockClickListener
@@ -133,6 +134,10 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
 
         //设置相关视频 Item 的点击事件
         mAdapter.setOnItemDetailClick { mPresenter.loadVideoInfo(it) }
+
+        //状态栏透明和间距处理
+        StatusBarUtil.immersive(this)
+        StatusBarUtil.setPaddingSmart(this, mVideoView)
     }
 
     override fun start() {

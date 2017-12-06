@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor">
@@ -12,11 +11,15 @@
         android:id="@+id/mRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlAccentColor="@color/colorAccent"
+        android:background="@android:color/white"
+        app:srlAccentColor="@android:color/white"
+        app:srlEnableHeaderTranslationContent="false"
         app:srlEnableLoadmore="false"
-        app:srlEnableOverScrollBounce="true"
-        app:srlEnablePreviewInEditMode="true"
-        app:srlPrimaryColor="@color/color_white">
+        app:srlPrimaryColor="@color/colorPrimary">
+
+        <com.scwang.smartrefresh.header.MaterialHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -34,38 +37,46 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/mRecyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingBottom="@dimen/padding_tab_layout_bottom" />
 
             </com.classic.common.MultipleStatusView>
 
-            <RelativeLayout
+            <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize">
 
-                <TextView
-                    android:id="@+id/tv_header_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/color_item_title"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                <RelativeLayout
+                    android:id="@+id/rel_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/iv_search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="15dp"
-                    android:transitionName="@string/search_transition_name"
-                    tools:src="@mipmap/ic_action_search_black"
-                    tools:targetApi="lollipop" />
+                    <TextView
+                        android:id="@+id/tv_header_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/color_item_title"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
+                    <ImageView
+                        android:id="@+id/iv_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="15dp"
+                        android:transitionName="@string/search_transition_name"
+                        tools:src="@mipmap/ic_action_search_black"
+                        tools:targetApi="lollipop" />
 
-            </RelativeLayout>
+                </RelativeLayout>
+
+            </android.support.v7.widget.Toolbar>
 
         </FrameLayout>
 

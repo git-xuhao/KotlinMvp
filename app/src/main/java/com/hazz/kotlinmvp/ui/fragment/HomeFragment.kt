@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.View
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.base.BaseFragment
 import com.hazz.kotlinmvp.mvp.contract.HomeContract
@@ -16,7 +15,9 @@ import com.hazz.kotlinmvp.net.exception.ErrorStatus
 import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.ui.activity.SearchActivity
 import com.hazz.kotlinmvp.ui.adapter.HomeAdapter
+import com.hazz.kotlinmvp.utils.StatusBarUtil
 import com.orhanobut.logger.Logger
+import com.scwang.smartrefresh.header.MaterialHeader
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -41,6 +42,7 @@ class HomeFragment : BaseFragment(), HomeContract.View {
     private var loadingMore = false
 
     private var isRefresh = false
+    private var mMaterialHeader:MaterialHeader?=null
 
     companion object {
         fun getInstance(title: String): HomeFragment {
@@ -70,11 +72,19 @@ class HomeFragment : BaseFragment(), HomeContract.View {
      */
     override fun initView() {
         mPresenter.attachView(this)
-
+        //内容跟随偏移
+        mRefreshLayout.setEnableHeaderTranslationContent(true)
         mRefreshLayout.setOnRefreshListener {
             isRefresh = true
             mPresenter.requestHomeData(num)
         }
+        mMaterialHeader = mRefreshLayout.refreshHeader as MaterialHeader?
+        //打开下拉刷新区域块背景:
+        mMaterialHeader?.setShowBezierWave(true)
+        //设置下拉刷新主题颜色
+        mRefreshLayout.setPrimaryColorsId(R.color.app_color_theme_6, R.color.color_title_bg)
+
+
         mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
@@ -122,6 +132,10 @@ class HomeFragment : BaseFragment(), HomeContract.View {
 
         mLayoutStatusView = multipleStatusView
 
+        //状态栏透明和间距处理
+        StatusBarUtil.darkMode(activity)
+        StatusBarUtil.setPaddingSmart(activity, toolbar)
+
     }
 
     private fun openSearchActivity() {
@@ -139,7 +153,7 @@ class HomeFragment : BaseFragment(), HomeContract.View {
 
 
     /**
-     * 显示 Loading
+     * 显示 Loading （下拉刷新的时候不需要显示 Loading）
      */
     override fun showLoading() {
         if (!isRefresh) {

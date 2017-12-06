@@ -7,10 +7,16 @@
     android:orientation="vertical">
 
 
-    <RelativeLayout
+    <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/color_title_bg">
+
+    <RelativeLayout
+        android:id="@+id/rel_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/iv_setting"
@@ -21,6 +27,7 @@
             android:src="@mipmap/ic_setting" />
 
     </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
 
 
     <LinearLayout
@@ -33,7 +40,7 @@
             android:id="@+id/iv_avatar"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@mipmap/ic_launcher_round"
+            android:src="@mipmap/img_avatar"
             app:borderColor="@color/color_gray"
             app:borderWidth="2dp"
             app:type="circle" />

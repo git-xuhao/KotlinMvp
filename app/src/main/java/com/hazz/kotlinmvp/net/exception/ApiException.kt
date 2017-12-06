@@ -9,7 +9,7 @@ class ApiException : RuntimeException {
     private var code: Int? = null
 
 
-    constructor(throwable: Throwable, code: Int, code1: Int) : super(throwable) {
+    constructor(throwable: Throwable, code: Int) : super(throwable) {
         this.code = code
     }
 
