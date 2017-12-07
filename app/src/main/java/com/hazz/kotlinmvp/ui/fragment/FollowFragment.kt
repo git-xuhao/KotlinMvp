@@ -8,6 +8,8 @@ import com.hazz.kotlinmvp.base.BaseFragment
 import com.hazz.kotlinmvp.mvp.contract.FollowContract
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.mvp.presenter.FollowPresenter
+import com.hazz.kotlinmvp.net.exception.ErrorStatus
+import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.ui.adapter.FollowAdapter
 import kotlinx.android.synthetic.main.layout_recyclerview.*
 
@@ -76,11 +78,12 @@ class FollowFragment : BaseFragment(), FollowContract.View {
 
 
     override fun showLoading() {
+        multipleStatusView.showLoading()
 
     }
 
     override fun dismissLoading() {
-
+        multipleStatusView.showContent()
     }
 
     override fun setFollowInfo(issue: HomeBean.Issue) {
@@ -89,8 +92,16 @@ class FollowFragment : BaseFragment(), FollowContract.View {
         mFollowAdapter.addData(itemList)
     }
 
+    /**
+     * 显示错误信息
+     */
     override fun showError(errorMsg: String, errorCode: Int) {
-
+        showToast(errorMsg)
+        if (errorCode == ErrorStatus.NETWORK_ERROR) {
+            mLayoutStatusView?.showNoNetwork()
+        } else {
+            mLayoutStatusView?.showError()
+        }
     }
 
     override fun onDestroy() {

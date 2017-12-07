@@ -34,10 +34,15 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@color/color_title_bg"
+        app:tabMinWidth="100dp"
         app:tabIndicatorColor="#000"
         app:tabIndicatorHeight="2dp"
         app:tabSelectedTextColor="#000"
         app:tabTextColor="#5000" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/division_line"
+        android:background="@color/color_light_black"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/mViewPager"

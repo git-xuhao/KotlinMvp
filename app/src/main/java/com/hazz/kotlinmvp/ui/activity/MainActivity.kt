@@ -24,17 +24,17 @@ import java.util.*
 class MainActivity : BaseActivity() {
 
 
-    private val mTitles = arrayOf("每日精选", "分类", "热门", "我的")
+    private val mTitles = arrayOf("每日精选", "发现", "热门", "我的")
 
     // 未被选中的图标
-    private val mIconUnSelectIds = intArrayOf(R.mipmap.ic_home_normal, R.mipmap.ic_category_normal, R.mipmap.ic_hot_normal, R.mipmap.ic_mine_normal)
+    private val mIconUnSelectIds = intArrayOf(R.mipmap.ic_home_normal, R.mipmap.ic_discovery_normal, R.mipmap.ic_hot_normal, R.mipmap.ic_mine_normal)
     // 被选中的图标
-    private val mIconSelectIds = intArrayOf(R.mipmap.ic_home_selected, R.mipmap.ic_category_selected, R.mipmap.ic_hot_selected, R.mipmap.ic_mine_selected)
+    private val mIconSelectIds = intArrayOf(R.mipmap.ic_home_selected, R.mipmap.ic_discovery_selected, R.mipmap.ic_hot_selected, R.mipmap.ic_mine_selected)
 
     private val mTabEntities = ArrayList<CustomTabEntity>()
 
     private var mHomeFragment: HomeFragment? = null
-    private var mCategoryFragment: DiscoveryFragment? = null
+    private var mDiscoveryFragment: DiscoveryFragment? = null
     private var mHotFragment: HotFragment? = null
     private var mMeiTuFragment: MineFragment?=null
 
@@ -93,11 +93,11 @@ class MainActivity : BaseActivity() {
                 transaction.show(mHomeFragment)
             }
             1 //分类
-            -> if (mCategoryFragment == null) {
-                mCategoryFragment = DiscoveryFragment.getInstance(mTitles[position])
-                transaction.add(R.id.fl_container, mCategoryFragment, "category")
+            -> if (mDiscoveryFragment == null) {
+                mDiscoveryFragment = DiscoveryFragment.getInstance(mTitles[position])
+                transaction.add(R.id.fl_container, mDiscoveryFragment, "category")
             } else {
-                transaction.show(mCategoryFragment)
+                transaction.show(mDiscoveryFragment)
             }
             2 //热门
             -> if ( mHotFragment == null) {
@@ -133,8 +133,8 @@ class MainActivity : BaseActivity() {
         if (null != mHomeFragment) {
             transaction.hide(mHomeFragment)
         }
-        if (null != mCategoryFragment) {
-            transaction.hide(mCategoryFragment)
+        if (null != mDiscoveryFragment) {
+            transaction.hide(mDiscoveryFragment)
         }
         if (null != mHotFragment) {
             transaction.hide(mHotFragment)

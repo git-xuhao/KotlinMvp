@@ -91,7 +91,7 @@ class CategoryDetailActivity : BaseActivity(), CategoryDetailContract.View {
     }
 
     override fun showLoading() {
-        multipleStatusView.showLoading()
+//        multipleStatusView.showLoading()
 
     }
 

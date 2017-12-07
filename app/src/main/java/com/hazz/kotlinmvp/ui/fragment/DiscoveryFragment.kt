@@ -6,6 +6,7 @@ import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.base.BaseFragment
 import com.hazz.kotlinmvp.base.BaseFragmentAdapter
 import com.hazz.kotlinmvp.utils.StatusBarUtil
+import com.hazz.kotlinmvp.view.TabLayoutHelper
 import kotlinx.android.synthetic.main.fragment_hot.*
 
 /**
@@ -38,7 +39,7 @@ class DiscoveryFragment:BaseFragment(){
         StatusBarUtil.darkMode(activity)
         StatusBarUtil.setPaddingSmart(activity, toolbar)
 
-        tv_header_title.text = "发现"
+        tv_header_title.text = mTitle
 
         tabList.add("关注")
         tabList.add("分类")
@@ -50,6 +51,7 @@ class DiscoveryFragment:BaseFragment(){
          */
         mViewPager.adapter = BaseFragmentAdapter(childFragmentManager,fragments,tabList)
         mTabLayout.setupWithViewPager(mViewPager)
+        TabLayoutHelper.setUpIndicatorWidth(mTabLayout)
 
 
 
