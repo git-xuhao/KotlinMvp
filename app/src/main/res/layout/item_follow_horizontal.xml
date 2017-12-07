@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/padding_common_v"
+    android:paddingBottom="@dimen/padding_common_v"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/iv_cover_feed"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginEnd="@dimen/padding_common_d"
+        android:scaleType="fitXY"
+        android:src="@drawable/placeholder_banner" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_common_d"
+        android:layout_marginTop="@dimen/padding_common_v"
+        android:textColor="@color/color_black"
+        android:textSize="@dimen/textSize_content"
+        tools:text="一起来健身吧：Fly" />
+
+    <TextView
+        android:id="@+id/tv_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_common_d"
+        android:layout_marginTop="@dimen/padding_common_d"
+        android:textColor="@color/color_gray"
+        android:textSize="@dimen/textSize_small"
+        tools:text="#生活 / 04" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="@dimen/padding_common_v"
+        android:background="@color/color_division_line" />
+
+
+</LinearLayout>

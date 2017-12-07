@@ -71,7 +71,7 @@ class HotFragment : BaseFragment(), HotTabContract.View {
         tabInfoBean.tabInfo.tabList.mapTo(mTabTitleList) { it.name }
         tabInfoBean.tabInfo.tabList.mapTo(mFragmentList) { RankFragment.getInstance(it.apiUrl) }
 
-        mViewPager.adapter = BaseFragmentAdapter(fragmentManager,mFragmentList,mTabTitleList)
+        mViewPager.adapter = BaseFragmentAdapter(childFragmentManager,mFragmentList,mTabTitleList)
         mTabLayout.setupWithViewPager(mViewPager)
 
     }

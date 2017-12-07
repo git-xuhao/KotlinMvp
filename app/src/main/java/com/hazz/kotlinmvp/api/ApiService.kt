@@ -1,5 +1,6 @@
 package com.hazz.kotlinmvp.api
 
+import com.hazz.kotlinmvp.mvp.model.bean.AuthorInfoBean
 import com.hazz.kotlinmvp.mvp.model.bean.CategoryBean
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.mvp.model.bean.TabInfoBean
@@ -42,7 +43,7 @@ interface ApiService{
     /**
      * 获取分类详情List
      */
-    @GET("v4/categories/videoList")
+    @GET("v4/categories/videoList?")
     fun getCategoryDetailList(@Query("id") id: Long): Observable<HomeBean.Issue>
 
     /**
@@ -68,6 +69,18 @@ interface ApiService{
      */
     @GET("v3/queries/hot")
     fun getHotWord():Observable<ArrayList<String>>
+
+    /**
+     * 关注
+     */
+    @GET("v4/tabs/follow")
+    fun getFollowInfo():Observable<HomeBean.Issue>
+
+    /**
+     * 作者信息
+     */
+    @GET("v4/pgcs/detail/tab?")
+    fun getAuthorInfo(@Query("id") id: Long):Observable<AuthorInfoBean>
 
 
 

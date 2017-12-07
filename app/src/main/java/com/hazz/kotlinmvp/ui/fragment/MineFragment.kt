@@ -1,8 +1,12 @@
 package com.hazz.kotlinmvp.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.base.BaseFragment
+import com.hazz.kotlinmvp.ui.activity.AboutActivity
+import com.hazz.kotlinmvp.ui.activity.ProfileHomePageActivity
 import com.hazz.kotlinmvp.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.fragment_mine.*
 
@@ -10,14 +14,7 @@ import kotlinx.android.synthetic.main.fragment_mine.*
  * Created by xuhao on 2017/11/9.
  * 我的
  */
-class MineFragment : BaseFragment() {
-
-
-    override fun initView() {
-        //状态栏透明和间距处理
-        StatusBarUtil.darkMode(activity)
-        StatusBarUtil.setPaddingSmart(activity, toolbar)
-    }
+class MineFragment : BaseFragment(),View.OnClickListener {
 
 
     private var mTitle:String? =null
@@ -36,8 +33,40 @@ class MineFragment : BaseFragment() {
 
     override fun getLayoutId(): Int= R.layout.fragment_mine
 
+    override fun initView() {
+        //状态栏透明和间距处理
+        StatusBarUtil.darkMode(activity)
+        StatusBarUtil.setPaddingSmart(activity, toolbar)
+
+        iv_avatar.setOnClickListener(this)
+        tv_view_homepage.setOnClickListener(this)
+        iv_about.setOnClickListener(this)
+
+
+    }
+
     override fun lazyLoad() {
 
     }
+
+
+
+    override fun onClick(v: View?) {
+        when{
+            v?.id==R.id.iv_avatar|| v?.id==R.id.tv_view_homepage -> {
+                val intent = Intent(activity, ProfileHomePageActivity::class.java)
+                startActivity(intent)
+            }
+            v?.id==R.id.iv_about ->{
+                val intent = Intent(activity, AboutActivity::class.java)
+                startActivity(intent)
+            }
+
+        }
+    }
+
+
+
+
 
 }

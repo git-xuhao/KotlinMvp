@@ -71,9 +71,9 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
         })
 
         //状态栏透明和间距处理
-        StatusBarUtil.darkMode(activity)
-        StatusBarUtil.setPaddingSmart(activity, toolbar)
-        StatusBarUtil.setPaddingSmart(activity,mRecyclerView)
+//        StatusBarUtil.darkMode(activity)
+//        StatusBarUtil.setPaddingSmart(activity, toolbar)
+//        StatusBarUtil.setPaddingSmart(activity,mRecyclerView)
 
     }
 
@@ -84,7 +84,7 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
     }
 
     override fun showLoading() {
-//        mLayoutStatusView?.showLoading()
+        mLayoutStatusView?.showLoading()
     }
 
     override fun dismissLoading() {

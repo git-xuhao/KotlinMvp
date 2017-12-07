@@ -9,10 +9,7 @@ import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.base.BaseActivity
 import com.hazz.kotlinmvp.mvp.model.bean.TabEntity
 import com.hazz.kotlinmvp.showToast
-import com.hazz.kotlinmvp.ui.fragment.CategoryFragment
-import com.hazz.kotlinmvp.ui.fragment.HomeFragment
-import com.hazz.kotlinmvp.ui.fragment.HotFragment
-import com.hazz.kotlinmvp.ui.fragment.MineFragment
+import com.hazz.kotlinmvp.ui.fragment.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -37,7 +34,7 @@ class MainActivity : BaseActivity() {
     private val mTabEntities = ArrayList<CustomTabEntity>()
 
     private var mHomeFragment: HomeFragment? = null
-    private var mCategoryFragment: CategoryFragment? = null
+    private var mCategoryFragment: DiscoveryFragment? = null
     private var mHotFragment: HotFragment? = null
     private var mMeiTuFragment: MineFragment?=null
 
@@ -97,7 +94,7 @@ class MainActivity : BaseActivity() {
             }
             1 //分类
             -> if (mCategoryFragment == null) {
-                mCategoryFragment = CategoryFragment.getInstance(mTitles[position])
+                mCategoryFragment = DiscoveryFragment.getInstance(mTitles[position])
                 transaction.add(R.id.fl_container, mCategoryFragment, "category")
             } else {
                 transaction.show(mCategoryFragment)

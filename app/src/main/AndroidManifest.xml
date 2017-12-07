@@ -24,8 +24,7 @@
         <activity
             android:name=".ui.activity.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar.FullScreen"
-            >
+            android:theme="@style/AppTheme.NoActionBar.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,22 +32,36 @@
             </intent-filter>
         </activity>
 
+        <!-- 主页面 -->
         <activity
             android:name=".ui.activity.MainActivity"
             android:screenOrientation="portrait" />
 
+        <!-- 视频播放详情页面 -->
         <activity
             android:name=".ui.activity.VideoDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
+        <!-- 分类详情 -->
         <activity
             android:name=".ui.activity.CategoryDetailActivity"
             android:screenOrientation="portrait" />
 
+        <!-- 搜索页面 -->
         <activity
             android:name=".ui.activity.SearchActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
+
+        <!-- 个人主页 -->
+        <activity
+            android:name=".ui.activity.ProfileHomePageActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 关于 -->
+        <activity
+            android:name=".ui.activity.AboutActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

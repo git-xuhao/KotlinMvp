@@ -7,6 +7,7 @@
 
     <string name="category_title">全部分类</string>
     <string name="hot_title">人气榜</string>
+    <string name="about">关于</string>
 
     <string name="search_transition_name">transition_reveal</string>
     <string name="search_hint_text">帮你找到感兴趣的视频</string>
@@ -35,4 +36,12 @@
     <string name="data_error">数据获取失败(ㄒoㄒ)~~</string>
     <string name="empty_view_hint">暂时木有内容呀~~</string>
     <string name="splash_text">每日精选视频，让你大开眼界</string>
+    
+    
+    <string name="copy_right_notice">内容部分数据归原公司《开眼Eyepetizer》版权所有</string>
+    <string name="not_use_commercial">本APP只供学习交流和研究之用，\n请勿用作商业用途！</string>
+    <string name="since">copyright ©2017 Xiho.</string>
+    <string name="gitHub">GitHub</string>
+
+    
 </resources>

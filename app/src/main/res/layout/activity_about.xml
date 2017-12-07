@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/backgroundColor">
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:src="@mipmap/web_hi_res_512" />
+
+    <TextView
+        android:id="@+id/tv_app_name"
+        style="@style/AppTheme.Label"
+        android:layout_below="@+id/iv_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/padding_common_d"
+        android:text="@string/app_name"
+        android:textColor="@color/color_black"
+        android:textSize="@dimen/textSize_title" />
+
+    <TextView
+        android:id="@+id/tv_version_name"
+        style="@style/AppTheme.Label"
+        android:layout_below="@+id/tv_app_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/padding_common_d"
+        tools:text="v1.0.0" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:background="@color/color_title_bg"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/relayout_gitHub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/padding_common_h"
+            android:paddingStart="@dimen/padding_common_h">
+
+            <TextView
+                style="@style/AppTheme.Label"
+                android:layout_centerVertical="true"
+                android:paddingBottom="@dimen/padding_common"
+                android:paddingTop="@dimen/padding_common"
+                android:text="@string/gitHub"
+                android:textColor="@color/color_black" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_action_more_black" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_division_line" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/padding_common_h"
+            android:paddingStart="@dimen/padding_common_h">
+
+            <TextView
+                style="@style/AppTheme.Label"
+                android:layout_centerVertical="true"
+                android:paddingBottom="@dimen/padding_common"
+                android:paddingTop="@dimen/padding_common"
+                android:text="@string/feedback"
+                android:textColor="@color/color_black" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_action_more_black" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_not_use_commercial"
+        android:gravity="center"
+        android:text="@string/copy_right_notice"
+        android:textColor="@color/color_gray"
+        android:textSize="@dimen/textSize_small"
+
+        />
+
+    <TextView
+        android:id="@+id/tv_not_use_commercial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="@dimen/padding_common_d"
+        android:gravity="center"
+        android:text="@string/not_use_commercial"
+        android:textColor="@color/color_gray"
+        android:textSize="@dimen/textSize_small"
+
+        />
+
+    <TextView
+        android:id="@+id/tv_since"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="@string/since"
+        android:textColor="@color/color_gray"
+        android:textSize="@dimen/textSize_small_10" />
+
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            android:background="@color/color_title_bg">
+
+                <TextView
+                    android:id="@+id/tv_header_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:text="@string/about"
+                    android:textColor="@color/color_item_title"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+        </android.support.v7.widget.Toolbar>
+
+</RelativeLayout>

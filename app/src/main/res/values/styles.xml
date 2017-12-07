@@ -22,4 +22,51 @@
 
     <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+
+    <style name="AppTheme.Label">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/textSize_content</item>
+        <item name="android:textColor">@color/color_gray</item>
+    </style>
+
+
+    <style name="AppTheme.Label.Title">
+        <item name="android:textColor">@color/color_black</item>
+        <item name="android:textSize">@dimen/textSize_titleSmall</item>
+    </style>
+
+    <style name="AppTheme.Label.Description">
+        <item name="android:gravity">top</item>
+        <item name="android:lineSpacingExtra">5dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">@dimen/textSize_content</item>
+        <item name="android:singleLine">false</item>
+    </style>
+
+    <style name="AppTheme.Label.Layout">
+        <item name="android:paddingTop">@dimen/padding_common_v</item>
+        <item name="android:paddingBottom">@dimen/padding_common_v</item>
+        <item name="android:paddingLeft">@dimen/padding_common_h</item>
+        <item name="android:paddingRight">@dimen/padding_common_h</item>
+    </style>
+
+
+    <style name="AppTheme.DiverLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:dividerHeight">0.5dp</item>
+        <item name="android:divider">@color/color_gray</item>
+        <item name="android:background">@color/color_gray</item>
+    </style>
+
+    <style name="AppTheme.Toolbar" parent="Widget.AppCompat.ActionBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    </style>
+
 </resources>

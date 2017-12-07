@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/parallax"
+        android:layout_width="match_parent"
+        android:layout_height="670dp"
+        android:layout_marginTop="-300dp"
+        android:src="@drawable/gradient_bg"
+        android:scaleType="fitXY"
+        app:layout_collapseMode="parallax" />
+
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlEnablePreviewInEditMode="false">
+
+        <com.scwang.smartrefresh.header.MaterialHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srlAccentColor="@android:color/white" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.design.widget.CollapsingToolbarLayout
+                        android:id="@+id/collapse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:contentScrim="?attr/colorPrimary"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                        app:titleEnabled="false">
+
+                        <RelativeLayout
+                            android:id="@+id/panel_lyt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginTop="200dp"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:id="@+id/panel"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginTop="40dp"
+                                android:background="@android:color/white"
+                                android:paddingBottom="@dimen/padding_common_v"
+                                android:paddingLeft="@dimen/padding_common_h"
+                                android:paddingRight="@dimen/padding_common_h"
+                                android:paddingTop="@dimen/padding_common_v">
+
+                                <TextView
+                                    android:id="@+id/attention"
+                                    style="@style/AppTheme.Label"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="0dp"
+                                    android:background="@drawable/btn_radius_theme_bg"
+                                    android:paddingBottom="8dp"
+                                    android:paddingLeft="25dp"
+                                    android:paddingRight="25dp"
+                                    android:paddingTop="8dp"
+                                    android:text="关注"
+                                    android:textColor="@android:color/white" />
+
+                                <TextView
+                                    android:id="@+id/leaveWord"
+                                    style="@style/AppTheme.Label"
+                                    android:layout_marginLeft="@dimen/padding_common"
+                                    android:layout_marginRight="@dimen/padding_common"
+                                    android:layout_marginTop="0dp"
+                                    android:layout_toStartOf="@id/attention"
+                                    android:background="@drawable/btn_radius_theme_border_bg"
+                                    android:paddingBottom="8dp"
+                                    android:paddingLeft="25dp"
+                                    android:paddingRight="25dp"
+                                    android:paddingTop="8dp"
+                                    android:text="留言"
+                                    android:textColor="@color/colorPrimaryDark" />
+
+                                <TextView
+                                    android:id="@+id/nickname"
+                                    style="@style/AppTheme.Label.Title"
+                                    android:layout_below="@id/attention"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/nickname" />
+
+                                <LinearLayout
+                                    android:id="@+id/relationship"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/nickname"
+                                    android:layout_marginTop="@dimen/padding_common">
+
+                                    <TextView
+                                        android:id="@+id/relationship_attention"
+                                        style="@style/AppTheme.Label"
+                                        android:text="关注 88 " />
+
+                                    <TextView
+                                        style="@style/AppTheme.Label"
+                                        android:layout_marginLeft="@dimen/padding_common_h"
+                                        android:layout_marginRight="@dimen/padding_common_h"
+                                        android:text="|" />
+
+                                    <TextView
+                                        android:id="@+id/relationship_fans"
+                                        style="@style/AppTheme.Label"
+                                        android:text="粉丝 10000" />
+                                </LinearLayout>
+
+                                <TextView
+                                    android:id="@+id/signature"
+                                    style="@style/AppTheme.Label.Description"
+                                    android:layout_below="@id/relationship"
+                                    android:layout_marginTop="@dimen/padding_common"
+                                    android:text="这个人很懒，什么也没留下..."
+                                    android:textColor="@color/color_darker_gray" />
+
+                            </RelativeLayout>
+
+                            <com.hazz.kotlinmvp.view.CircleImageView
+                                android:id="@+id/iv_avatar"
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_marginStart="@dimen/padding_common"
+                                android:src="@mipmap/img_avatar"
+                                app:borderColor="@color/color_gray"
+                                app:borderWidth="2dp"
+                                app:type="circle" />
+
+                            <TextView
+                                android:id="@+id/visitor"
+                                style="@style/AppTheme.Label.Layout"
+                                android:layout_alignParentEnd="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:shadowColor="#aa000000"
+                                android:shadowDx="2.5"
+                                android:shadowDy="2.5"
+                                android:shadowRadius="10"
+                                android:text="访客总量 888"
+                                android:textColor="@android:color/white" />
+
+                            <View
+                                style="@style/AppTheme.DiverLine"
+                                android:layout_alignParentBottom="true" />
+                        </RelativeLayout>
+
+                    </android.support.design.widget.CollapsingToolbarLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/backgroundColor"
+                        android:orientation="vertical"
+                        android:paddingBottom="0dp"
+                        app:layout_scrollFlags="scroll">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/padding_common"
+                            android:background="@color/color_division_line"
+                            android:orientation="vertical"
+                            android:paddingBottom="@dimen/division_line"
+                            android:paddingTop="@dimen/division_line">
+
+                            <LinearLayout
+                                android:id="@+id/fmc_center_dynamic"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/white"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical"
+                                android:paddingBottom="3dp"
+                                android:paddingLeft="@dimen/padding_common"
+                                android:paddingRight="@dimen/padding_common"
+                                android:paddingTop="3dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="@dimen/padding_common"
+                                    android:paddingEnd="@dimen/padding_common_d"
+                                    android:paddingStart="@dimen/padding_common_d"
+                                    android:paddingTop="@dimen/padding_common"
+                                    android:singleLine="true"
+                                    android:text="动态"
+                                    android:textColor="@color/color_gray"
+                                    android:textSize="@dimen/textSize_content" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <WebView
+                    android:id="@+id/mWebView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/color_title_bg"
+        app:layout_collapseMode="pin"
+        app:navigationIcon="?attr/homeAsUpIndicator">
+
+        <android.support.v7.widget.ButtonBarLayout
+            android:id="@+id/buttonBarLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <com.hazz.kotlinmvp.view.CircleImageView
+                android:id="@+id/toolbar_avatar"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="@dimen/padding_common_d"
+                android:src="@mipmap/img_avatar"
+                app:borderColor="@color/color_gray"
+                app:borderWidth="2dp"
+                app:type="circle" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/nickname"
+                android:textColor="@color/color_black"
+                android:textSize="16sp" />
+        </android.support.v7.widget.ButtonBarLayout>
+    </android.support.v7.widget.Toolbar>
+
+
+</FrameLayout>

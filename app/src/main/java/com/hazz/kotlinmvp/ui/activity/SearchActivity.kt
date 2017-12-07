@@ -60,6 +60,9 @@ class SearchActivity : BaseActivity(), SearchContract.View {
 
     override fun layoutId(): Int = R.layout.activity_search
 
+    /**
+     * 进入页面
+     */
     override fun initData() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setUpEnterAnimation() // 入场动画
@@ -67,15 +70,6 @@ class SearchActivity : BaseActivity(), SearchContract.View {
         } else {
             setUpView()
         }
-    }
-
-    private fun setUpView() {
-        val animation = AnimationUtils.loadAnimation(this, android.R.anim.fade_in)
-        animation.duration = 300
-        rel_container.startAnimation(animation)
-        rel_container.visibility = View.VISIBLE
-        //打开软键盘
-        openKeyBord(et_search_view, applicationContext)
     }
 
     override fun initView() {
@@ -258,6 +252,16 @@ class SearchActivity : BaseActivity(), SearchContract.View {
             }
         })
     }
+
+    private fun setUpView() {
+        val animation = AnimationUtils.loadAnimation(this, android.R.anim.fade_in)
+        animation.duration = 300
+        rel_container.startAnimation(animation)
+        rel_container.visibility = View.VISIBLE
+        //打开软键盘
+        openKeyBord(et_search_view, applicationContext)
+    }
+
 
     /**
      * 展示动画

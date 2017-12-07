@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#CCFFFFFF</color>
-    <color name="colorPrimaryDark">#c000A8E1</color>
+    <color name="colorPrimaryDark">#00b0ff</color>
     <color name="colorAccent">#EF5362</color>
 
-    <color name="color_gray">#5000</color>
+    <color name="color_gray">#808080</color>
 
 
     <color name="app_color_theme_1">#EF5362</color> <!-- Grapefruit -->
@@ -13,9 +13,13 @@
     <color name="app_color_theme_4">#9FD661</color> <!-- Grass -->
     <color name="app_color_theme_5">#3FD0AD</color> <!-- Mint -->
     <color name="app_color_theme_6">#2BBDF3</color> <!-- Aqua -->
-    <color name="app_color_theme_7">#5A9AEF</color> <!-- Blue Jeans -->
+    <color name="app_color_theme_7">#00b0ff</color> <!-- Blue Jeans -->
     <color name="app_color_theme_8">#AC8FEF</color> <!-- Lavender -->
     <color name="app_color_theme_9">#EE85C1</color> <!-- Pink Rose -->
+
+    <color name="color_pink">#ff4081</color>
+    <color name="color_orange">#dd2c00</color>
+    <color name="color_blue_dark">#1248e1</color>
 
 
 
@@ -36,6 +40,8 @@
 
     <color name="color_lighter_gray">#ddd</color>
     <color name="color_darker_gray">#aaa</color>
+
+    <color name="color_division_line">#33aaaaaa</color>
     
     <color name="color_translucent">#00000000</color>
 

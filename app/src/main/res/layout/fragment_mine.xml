@@ -19,12 +19,12 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/iv_setting"
+            android:id="@+id/iv_about"
             android:layout_width="wrap_content"
             android:layout_height="?attr/actionBarSize"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="15dp"
-            android:src="@mipmap/ic_setting" />
+            android:src="@mipmap/ic_about" />
 
     </RelativeLayout>
     </android.support.v7.widget.Toolbar>
@@ -60,16 +60,18 @@
         android:id="@+id/tv_view_homepage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="@dimen/padding_common_d"
+        android:paddingBottom="@dimen/padding_common_d"
         android:layout_gravity="center_horizontal"
         android:text="@string/view_homepage"
         android:textColor="@color/color_gray"
-        android:textSize="14sp" />
+        android:textSize="@dimen/textSize_small" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="20dp">
 
         <LinearLayout
             android:layout_width="0dp"
