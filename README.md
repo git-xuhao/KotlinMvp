@@ -11,7 +11,7 @@
 -
 # Project screenshot
 
-<!--<img src="http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_01.PNG"  width="430" height="420/>
+<img src="http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_01.PNG"  width="430" height="420/>
 <img src="http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_03.PNG"  width="430" height="420"/>
 <img src="http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_04.PNG"  width="430" height="420" />
 <img src="http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_05.PNG"  width="430" height="420"/ >
@@ -22,6 +22,11 @@
 <img src="http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_10.PNG"  width="430" height="420"/ >
 <img src="http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_11.PNG"  width="430" height="420"/ >
 <img src="http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_12.PNG"  width="430" height="420"/ >
--->
+
+# Tip
 心动了吗？赶快下载[APK](https://fir.im/kotlinmvp)体验吧！
+
+# 项目简介
+
+待更新~
 
