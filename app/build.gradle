@@ -40,7 +40,7 @@ android {
             signingConfig signingConfigs.config
         }
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable false
             signingConfig signingConfigs.config
@@ -52,6 +52,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
     }
     productFlavors {
+    }
+
+    dexOptions {
+        jumboMode true
     }
 }
 
@@ -98,11 +102,11 @@ dependencies {
     //模糊透明 View
     implementation 'com.github.mmin18:realtimeblurview:1.1.0'
     //leakCanary
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
     //腾讯 bugly
-    compile 'com.tencent.bugly:crashreport:2.6.6.1'
+    implementation 'com.tencent.bugly:crashreport:2.6.6.1'
     //运行时权限
-    compile 'me.weyye.hipermission:library:1.0.7'
+    implementation 'me.weyye.hipermission:library:1.0.7'
 
 }
