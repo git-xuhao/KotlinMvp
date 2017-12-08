@@ -7,3 +7,18 @@
 [![](https://img.shields.io/badge/Author-xuhao-red.svg)](http://xuhaoblog.com)
 [![](https://img.shields.io/badge/QQ-504105930-blue.svg)](http://xuhaoblog.com)
 
+--
+# Project screenshot
+
+
+![](http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_01.PNG)
+![](http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_03.PNG)
+![](http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_04.PNG)
+![](http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_05.PNG)
+![](http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_06.PNG)
+![](http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_07.PNG)
+![](http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_08.PNG)
+![](http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_09.PNG)
+![](http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_10.PNG)
+![](http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_11.PNG)
+![](http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_12.PNG)
