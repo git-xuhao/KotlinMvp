@@ -215,10 +215,10 @@
                 </LinearLayout>
 
 
-                <WebView
-                    android:id="@+id/mWebView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                <!--<WebView-->
+                    <!--android:id="@+id/mWebView"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="13dp" />-->
 
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>

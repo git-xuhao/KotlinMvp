@@ -1,2 +1,3 @@
 # KotlinMvp
-基于Kotlin语言，MVP架构
+[![](https://jitpack.io/v/git-xuhao/KotlinMvp.svg)](https://jitpack.io/#git-xuhao/KotlinMvp)
+
