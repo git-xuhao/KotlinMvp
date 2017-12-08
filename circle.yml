@@ -22,3 +22,7 @@ dependencies:
 test:
   override:
     - ./gradlew build
+    
+licenses:
+  - android-sdk-license-.+
+  - '.+'
