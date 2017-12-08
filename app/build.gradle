@@ -29,6 +29,9 @@ android {
             }
         }
         signingConfig signingConfigs.config
+        // 实现毛玻璃那种透明的效果需要添加的库
+        renderscriptTargetApi 19
+        renderscriptSupportModeEnabled true    // Enable RS support
     }
     buildTypes {
         debug {
@@ -68,6 +71,7 @@ dependencies {
     implementation rootProject.ext.otherLibs
     // APT dependencies(Kotlin内置的注解处理器)
     kapt rootProject.ext.annotationProcessorLibs
+
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     // 底部菜单
     implementation('com.flyco.tablayout:FlycoTabLayout_Lib:2.1.0@aar') {
@@ -91,4 +95,14 @@ dependencies {
     //Google开源的一个布局控件
     implementation 'com.google.android:flexbox:0.3.1'
     implementation project(':multiple-status-view')
+    //模糊透明 View
+    implementation 'com.github.mmin18:realtimeblurview:1.1.0'
+    //leakCanary
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+    //腾讯 bugly
+    compile 'com.tencent.bugly:crashreport:2.6.6.1'
+    //运行时权限
+    compile 'me.weyye.hipermission:library:1.0.7'
+
 }

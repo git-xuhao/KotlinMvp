@@ -7,6 +7,7 @@ import android.support.v4.view.ViewCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.transition.Transition
 import android.view.View
+import android.widget.ImageView
 import com.bumptech.glide.load.DecodeFormat
 import com.hazz.kotlinmvp.Constants
 import com.hazz.kotlinmvp.R
@@ -20,6 +21,7 @@ import com.hazz.kotlinmvp.ui.adapter.VideoDetailAdapter
 import com.hazz.kotlinmvp.utils.StatusBarUtil
 import com.hazz.kotlinmvp.view.VideoListener
 import com.orhanobut.logger.Logger
+import com.scwang.smartrefresh.header.MaterialHeader
 import com.shuyu.gsyvideoplayer.listener.LockClickListener
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
@@ -60,7 +62,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
     private var isTransition: Boolean = false
 
     private var transition: Transition? = null
-
+    private var mMaterialHeader:MaterialHeader?=null
 
     override fun layoutId(): Int = R.layout.activity_video_detail
 
@@ -72,12 +74,51 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         mPresenter.attachView(this)
         //过渡动画
         initTransition()
+        initVideoViewConfig()
+
+        mRecyclerView.layoutManager = LinearLayoutManager(this)
+        mRecyclerView.adapter = mAdapter
+
+        //设置相关视频 Item 的点击事件
+        mAdapter.setOnItemDetailClick { mPresenter.loadVideoInfo(it) }
+
+        //状态栏透明和间距处理
+        StatusBarUtil.immersive(this)
+        StatusBarUtil.setPaddingSmart(this, mVideoView)
+
+        /***  下拉刷新  ***/
+        //内容跟随偏移
+        mRefreshLayout.setEnableHeaderTranslationContent(true)
+        mRefreshLayout.setOnRefreshListener {
+           loadVideoInfo()
+        }
+        mMaterialHeader = mRefreshLayout.refreshHeader as MaterialHeader?
+        //打开下拉刷新区域块背景:
+        mMaterialHeader?.setShowBezierWave(true)
+        //设置下拉刷新主题颜色
+        mRefreshLayout.setPrimaryColorsId(R.color.color_light_black, R.color.color_title_bg)
+    }
+
+
+    /**
+     * 初始化 VideoView 的配置
+     */
+    private fun initVideoViewConfig(){
         //设置旋转
         orientationUtils = OrientationUtils(this, mVideoView)
         //是否旋转
         mVideoView.isRotateViewAuto = false
         //是否可以滑动调整
         mVideoView.setIsTouchWiget(true)
+
+        //增加封面
+        val imageView =ImageView(this);
+        imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+        GlideApp.with(this)
+                .load(itemData?.data?.cover?.feed)
+                .centerCrop()
+                .into(imageView)
+        mVideoView.thumbImageView = imageView
 
         mVideoView.setStandardVideoAllCallBack(object : VideoListener {
 
@@ -127,21 +168,11 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
             }
 
         })
-
-
-        mRecyclerView.layoutManager = LinearLayoutManager(this)
-        mRecyclerView.adapter = mAdapter
-
-        //设置相关视频 Item 的点击事件
-        mAdapter.setOnItemDetailClick { mPresenter.loadVideoInfo(it) }
-
-        //状态栏透明和间距处理
-        StatusBarUtil.immersive(this)
-        StatusBarUtil.setPaddingSmart(this, mVideoView)
     }
 
+
     override fun start() {
-        loadVideoInfo()
+
     }
 
     /**
@@ -158,7 +189,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
     }
 
     override fun dismissLoading() {
-
+        mRefreshLayout.finishRefresh()
     }
 
     /**
@@ -216,6 +247,12 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         }
     }
 
+    /**
+     * 1.加载视频信息
+     */
+    fun loadVideoInfo(){
+        mPresenter.loadVideoInfo(itemData!!)
+    }
 
     /**
      * 监听返回键
@@ -224,11 +261,14 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         orientationUtils?.backToProtVideo()
         if (StandardGSYVideoPlayer.backFromWindowFull(this))
             return
+        //释放所有
+        mVideoView.setStandardVideoAllCallBack(null)
+        GSYVideoPlayer.releaseAllVideos()
         if (isTransition && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) run {
             super.onBackPressed()
         }else{
             finish()
-            overridePendingTransition(R.anim.anim_in, R.anim.anim_out)
+            overridePendingTransition(R.anim.anim_out, R.anim.anim_in)
         }
     }
 
@@ -294,12 +334,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         })
     }
 
-    /**
-     * 加载视频信息
-     */
-    fun loadVideoInfo(){
-        mPresenter.loadVideoInfo(itemData!!)
-    }
+
 
 
 }

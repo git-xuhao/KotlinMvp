@@ -1,7 +1,13 @@
 package com.hazz.kotlinmvp.ui.adapter
 
+import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
+import android.database.Cursor
 import android.graphics.Typeface
+import android.net.Uri
+import android.provider.MediaStore
+import android.support.v4.content.ContextCompat.startActivity
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -18,6 +24,7 @@ import com.hazz.kotlinmvp.view.ExpandableTextView
 import com.hazz.kotlinmvp.view.recyclerview.MultipleType
 import com.hazz.kotlinmvp.view.recyclerview.ViewHolder
 import com.hazz.kotlinmvp.view.recyclerview.adapter.CommonAdapter
+import java.io.File
 
 /**
  * Created by xuhao on 2017/11/25.
@@ -101,6 +108,7 @@ class VideoDetailAdapter(mContext: Context, data: ArrayList<HomeBean.Issue.Item>
                         GlideApp.with(MyApplication.context)
                                 .load(path)
                                 .optionalTransform(GlideRoundTransform())
+                                .placeholder(R.drawable.placeholder_banner)
                                 .into(iv)
                     }
                 })

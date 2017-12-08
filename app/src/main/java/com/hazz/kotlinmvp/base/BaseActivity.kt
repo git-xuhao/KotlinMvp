@@ -7,6 +7,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import com.classic.common.MultipleStatusView
+import com.hazz.kotlinmvp.MyApplication
 import com.hazz.kotlinmvp.showToast
 
 
@@ -27,9 +28,15 @@ abstract class BaseActivity : AppCompatActivity() {
         initData()
         initView()
         start()
-        mLayoutStatusView?.setOnClickListener(mRetryClickListener)
+        initListener()
+
 
     }
+
+    private fun initListener() {
+        mLayoutStatusView?.setOnClickListener(mRetryClickListener)
+    }
+
     open val mRetryClickListener: View.OnClickListener = View.OnClickListener {
         start()
     }
@@ -73,6 +80,11 @@ abstract class BaseActivity : AppCompatActivity() {
         imm.hideSoftInputFromWindow(mEditText.windowToken, 0)
     }
 
+
+    override fun onDestroy() {
+        super.onDestroy()
+        MyApplication.getRefWatcher(this)?.watch(this)
+    }
 
 }
 

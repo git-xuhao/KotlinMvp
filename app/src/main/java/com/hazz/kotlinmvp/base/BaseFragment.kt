@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.classic.common.MultipleStatusView
+import com.hazz.kotlinmvp.MyApplication
 import com.hazz.kotlinmvp.showToast
 
 /**
@@ -79,4 +80,9 @@ import com.hazz.kotlinmvp.showToast
      * 懒加载
      */
     abstract fun lazyLoad()
+
+    override fun onDestroy() {
+        super.onDestroy()
+        MyApplication.getRefWatcher(activity)?.watch(activity)
+    }
 }

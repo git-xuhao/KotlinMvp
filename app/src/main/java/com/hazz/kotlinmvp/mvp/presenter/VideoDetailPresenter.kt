@@ -7,6 +7,7 @@ import com.hazz.kotlinmvp.dataFormat
 import com.hazz.kotlinmvp.mvp.contract.VideoDetailContract
 import com.hazz.kotlinmvp.mvp.model.VideoDetailModel
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
+import com.hazz.kotlinmvp.net.exception.ExceptionHandle
 import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.utils.DisplayManager
 import com.hazz.kotlinmvp.utils.NetworkUtil
@@ -73,13 +74,18 @@ class VideoDetailPresenter : BasePresenter<VideoDetailContract.View>(), VideoDet
      * 请求相关的视频数据
      */
     override fun requestRelatedVideo(id: Long) {
-
+        mRootView?.showLoading()
         val disposable = videoDetailModel.requestRelatedData(id)
                 .subscribe({ issue ->
-                    mRootView?.setRecentRelatedVideo(issue.itemList)
+                    mRootView?.apply {
+                        dismissLoading()
+                        setRecentRelatedVideo(issue.itemList)
+                    }
                 }, { t ->
-                    mRootView?.setErrorMsg(t.toString())
-
+                    mRootView?.apply {
+                        dismissLoading()
+                        setErrorMsg(ExceptionHandle.handleException(t))
+                    }
                 })
 
         addSubscription(disposable)

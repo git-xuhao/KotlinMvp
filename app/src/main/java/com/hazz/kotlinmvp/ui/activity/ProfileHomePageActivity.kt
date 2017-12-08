@@ -56,15 +56,15 @@ class ProfileHomePageActivity : BaseActivity() {
             private val h = DensityUtil.dp2px(170f)
             private val color = ContextCompat.getColor(applicationContext, R.color.colorPrimary) and 0x00ffffff
             override fun onScrollChange(v: NestedScrollView, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int) {
-                var scrollY = scrollY
+                var tScrollY= scrollY
                 if (lastScrollY < h) {
-                    scrollY = Math.min(h, scrollY)
-                    mScrollY = if (scrollY > h) h else scrollY
+                    tScrollY = Math.min(h, tScrollY)
+                    mScrollY = if (tScrollY > h) h else tScrollY
                     buttonBarLayout.alpha = 1f * mScrollY / h
                     toolbar.setBackgroundColor(255 * mScrollY / h shl 24 or color)
                     parallax.translationY = (mOffset - mScrollY).toFloat()
                 }
-                lastScrollY = scrollY
+                lastScrollY = tScrollY
             }
         })
         buttonBarLayout.alpha = 0f
@@ -73,22 +73,22 @@ class ProfileHomePageActivity : BaseActivity() {
         toolbar.setNavigationOnClickListener { finish() }
 
 
-        refreshLayout.setOnRefreshListener { mWebView.loadUrl("http://xuhaoblog.com") }
-        refreshLayout.autoRefresh()
+        refreshLayout.setOnRefreshListener {  }
+//        refreshLayout.autoRefresh()
 
-        mWebView.settings.javaScriptEnabled = true
-        mWebView.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                view.loadUrl(url)
-                return true
-            }
-
-            override fun onPageFinished(view: WebView, url: String) {
-                super.onPageFinished(view, url)
-                refreshLayout.finishRefresh()
-                view.loadUrl(String.format(Locale.CHINA, "javascript:document.body.style.paddingTop='%fpx'; void 0", DensityUtil.px2dp(mWebView.paddingTop.toFloat())))
-            }
-        }
+//        mWebView.settings.javaScriptEnabled = true
+//        mWebView.webViewClient = object : WebViewClient() {
+//            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+//                view.loadUrl(url)
+//                return true
+//            }
+//
+//            override fun onPageFinished(view: WebView, url: String) {
+//                super.onPageFinished(view, url)
+//                refreshLayout.finishRefresh()
+//                view.loadUrl(String.format(Locale.CHINA, "javascript:document.body.style.paddingTop='%fpx'; void 0", DensityUtil.px2dp(mWebView.paddingTop.toFloat())))
+//            }
+//        }
 
     }
 

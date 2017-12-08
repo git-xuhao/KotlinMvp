@@ -11,3 +11,6 @@
 //热门搜索词
 http://baobab.kaiyanapp.com/api/v3/queries/hot
 ["阅后即瞎","日食记","复仇者联盟","励志","谷阿莫","复仇者联盟3","美食","广告","爱情","舞蹈","搞笑","漫威","动画","日本","电影相关","健身","VR","滑板","脱口秀","寻梦环游记"]
+
+作者信息
+http://baobab.kaiyanapp.com/api/v4/pgcs/detail/tab?id=571

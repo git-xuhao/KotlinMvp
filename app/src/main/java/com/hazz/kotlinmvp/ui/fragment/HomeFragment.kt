@@ -82,7 +82,7 @@ class HomeFragment : BaseFragment(), HomeContract.View {
         //打开下拉刷新区域块背景:
         mMaterialHeader?.setShowBezierWave(true)
         //设置下拉刷新主题颜色
-        mRefreshLayout.setPrimaryColorsId(R.color.app_color_theme_6, R.color.color_title_bg)
+        mRefreshLayout.setPrimaryColorsId(R.color.color_light_black, R.color.color_title_bg)
 
 
         mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {

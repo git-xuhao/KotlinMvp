@@ -26,5 +26,8 @@ class Constants private constructor(){
 
         val BUNDLE_VIDEO_DATA = "video_data"
         val BUNDLE_CATEGORY_DATA = "category_data"
+
+        //腾讯 Bugly APP id
+        val BUGLY_APPID="176aad0d9e"
     }
 }

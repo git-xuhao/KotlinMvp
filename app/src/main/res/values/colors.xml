@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#CCFFFFFF</color>
-    <color name="colorPrimaryDark">#00b0ff</color>
+    <color name="colorPrimaryDark">#549cf8</color>
     <color name="colorAccent">#EF5362</color>
 
-    <color name="color_gray">#808080</color>
+    <color name="color_gray">#9a9a9a</color>
+    
+    <color name="color_gray_translucent">#5000</color>
 
 
     <color name="app_color_theme_1">#EF5362</color> <!-- Grapefruit -->
@@ -19,7 +21,7 @@
 
     <color name="color_pink">#ff4081</color>
     <color name="color_orange">#dd2c00</color>
-    <color name="color_blue_dark">#1248e1</color>
+    <color name="color_blue_dark">#ee447AA4</color>
 
 
 
@@ -41,7 +43,7 @@
     <color name="color_lighter_gray">#ddd</color>
     <color name="color_darker_gray">#aaa</color>
 
-    <color name="color_division_line">#33aaaaaa</color>
+    <color name="color_division_line">@color/color_lighter_gray</color>
     
     <color name="color_translucent">#00000000</color>
 

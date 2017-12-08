@@ -8,19 +8,14 @@ import android.util.Log
 import com.hazz.kotlinmvp.utils.DisplayManager
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
-import kotlin.properties.Delegates
-import com.scwang.smartrefresh.layout.constant.SpinnerStyle
-import com.scwang.smartrefresh.layout.footer.ClassicsFooter
-import com.scwang.smartrefresh.layout.api.RefreshLayout
-import com.scwang.smartrefresh.layout.api.RefreshFooter
-import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreater
-import com.scwang.smartrefresh.layout.SmartRefreshLayout
-import com.scwang.smartrefresh.layout.header.ClassicsHeader
-import com.scwang.smartrefresh.layout.api.RefreshHeader
-import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreater
 import com.orhanobut.logger.PrettyFormatStrategy
-import com.orhanobut.logger.FormatStrategy
 import com.scwang.smartrefresh.header.MaterialHeader
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import com.squareup.leakcanary.LeakCanary
+import com.squareup.leakcanary.RefWatcher
+import com.tencent.bugly.crashreport.CrashReport
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlin.properties.Delegates
 
 
 /**
@@ -29,7 +24,7 @@ import com.scwang.smartrefresh.header.MaterialHeader
 
 class MyApplication : Application(){
 
-
+    private var refWatcher: RefWatcher? = null
 
     companion object {
 
@@ -39,34 +34,30 @@ class MyApplication : Application(){
         var context: Context by Delegates.notNull()
             private set
 
-
-    }
-    init {
-        //static 代码段可以防止内存泄露 (全局的下拉刷新，上拉加载样式）
-        //设置全局的Header构建器
-        SmartRefreshLayout.setDefaultRefreshHeaderCreater { context, layout ->
-            layout?.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white) //全局设置主题颜色
-             MaterialHeader(context)
+        fun getRefWatcher(context: Context): RefWatcher? {
+            val myApplication = context.applicationContext as MyApplication
+            return myApplication.refWatcher
         }
-        //设置全局的Footer构建器
-//        SmartRefreshLayout.setDefaultRefreshFooterCreater { context, _ ->
-//            //指定为经典Footer，默认是 BallPulseFooter
-//            ClassicsFooter(context).setSpinnerStyle(SpinnerStyle.Scale)
-//        }
+
     }
-
-
 
     override fun onCreate() {
         super.onCreate()
-
         context = applicationContext
+        refWatcher = setupLeakCanary()
         initConfig()
         DisplayManager.init(this)
         registerActivityLifecycleCallbacks(mActivityLifecycleCallbacks)
 
 
     }
+
+    private fun setupLeakCanary(): RefWatcher {
+        return if (LeakCanary.isInAnalyzerProcess(this)) {
+            RefWatcher.DISABLED
+        } else LeakCanary.install(this)
+    }
+
 
     /**
      * 初始化配置
@@ -84,7 +75,8 @@ class MyApplication : Application(){
                 return BuildConfig.DEBUG
             }
         })
-
+        //测试阶段建议设置成true，发布时设置为false。
+        CrashReport.initCrashReport(applicationContext, Constants.BUGLY_APPID, false)
     }
 
 
