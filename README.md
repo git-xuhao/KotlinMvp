@@ -11,20 +11,12 @@
 -
 # Project screenshot
 
-<div style="float:left;border:solid 1px 000;margin:2px;"><img src="http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_01.PNG"  width="430" height="420"></div>
-<div style="float:left;border:solid 1px 000;margin:2px;"><img src="http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_03.PNG"  width="430" height="420" ></div>
-<div style="float:left;border:solid 1px 000;margin:2px;"><img src="http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_04.PNG"  width="430" height="420" ></div>
-<div style="float:left;border:solid 1px 000;margin:2px;"><img src="http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_05.PNG"  width="430" height="420" ></div>
-<div style="float:left;border:solid 1px 000;margin:2px;"><img src="http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_06.PNG"  width="430" height="420" ></div>
-<div style="float:left;border:solid 1px 000;margin:2px;"><img src="http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_07.PNG"  width="430" height="420" ></div>
-<div style="float:left;border:solid 1px 000;margin:2px;"><img src="http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_08.PNG"  width="430" height="420" ></div>
-<div style="float:left;border:solid 1px 000;margin:2px;"><img src="http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_09.PNG"  width="430" height="420" ></div>
-<div style="float:left;border:solid 1px 000;margin:2px;"><img src="http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_10.PNG"  width="430" height="420" ></div>
-<div style="float:left;border:solid 1px 000;margin:2px;"><img src="http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_11.PNG"  width="430" height="420" ></div>
-<div style="float:left;border:solid 1px 000;margin:2px;"><img src="http://oyp2zrwnm.bkt.clouddn.com/Nexus%205X_12.PNG"  width="430" height="420" ></div>
+![](http://oyp2zrwnm.bkt.clouddn.com/pt2017_12_09_10_27_10.jpg)
+
 
 
 # Tip
+
 心动了吗？赶快下载[APK](https://fir.im/kotlinmvp)体验吧！
 
 # 项目简介

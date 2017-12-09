@@ -20,6 +20,7 @@ import kotlin.properties.Delegates
 
 /**
  * Created by xuhao on 2017/11/16.
+ *
  */
 
 class MyApplication : Application(){
