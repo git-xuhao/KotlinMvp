@@ -6,6 +6,29 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="项目地址：https://github.com/git-xuhao/KotlinMvp"
+                />
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>

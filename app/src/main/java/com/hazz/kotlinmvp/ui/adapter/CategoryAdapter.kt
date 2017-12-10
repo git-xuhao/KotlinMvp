@@ -7,14 +7,10 @@ import android.graphics.Typeface
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
 import com.hazz.kotlinmvp.Constants
 import com.hazz.kotlinmvp.MyApplication
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.glide.GlideApp
-import com.hazz.kotlinmvp.glide.GlideRoundTransform
 import com.hazz.kotlinmvp.mvp.model.bean.CategoryBean
 import com.hazz.kotlinmvp.ui.activity.CategoryDetailActivity
 import com.hazz.kotlinmvp.view.recyclerview.ViewHolder
@@ -53,7 +49,7 @@ class CategoryAdapter(mContext: Context, categoryList: ArrayList<CategoryBean>, 
 
         holder.setImagePath(R.id.iv_category, object : ViewHolder.HolderImageLoader(data.bgPicture) {
             override fun loadImage(iv: ImageView, path: String) {
-                GlideApp.with(MyApplication.context)
+                GlideApp.with(mContext)
                         .load(path)
                         .placeholder(R.color.color_darker_gray)
                         .into(iv)

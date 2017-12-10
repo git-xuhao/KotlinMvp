@@ -96,7 +96,7 @@ class VideoDetailAdapter(mContext: Context, data: ArrayList<HomeBean.Issue.Item>
                 holder.setText(R.id.tv_tag, "#${data.data.category} / ${durationFormat(data.data.duration)}")
                 holder.setImagePath(R.id.iv_video_small_card, object : ViewHolder.HolderImageLoader(data.data.cover.detail) {
                     override fun loadImage(iv: ImageView, path: String) {
-                        GlideApp.with(MyApplication.context)
+                        GlideApp.with(mContext)
                                 .load(path)
                                 .optionalTransform(GlideRoundTransform())
                                 .placeholder(R.drawable.placeholder_banner)
@@ -133,7 +133,7 @@ class VideoDetailAdapter(mContext: Context, data: ArrayList<HomeBean.Issue.Item>
             holder.setImagePath(R.id.iv_avatar, object : ViewHolder.HolderImageLoader(data.data.author.icon) {
                 override fun loadImage(iv: ImageView, path: String) {
                     //加载头像
-                    GlideApp.with(MyApplication.context)
+                    GlideApp.with(mContext)
                             .load(path)
                             .placeholder(R.mipmap.default_avatar).circleCrop()
                             .into(iv)

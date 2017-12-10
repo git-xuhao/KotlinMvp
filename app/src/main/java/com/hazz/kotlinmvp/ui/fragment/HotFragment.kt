@@ -9,7 +9,6 @@ import com.hazz.kotlinmvp.mvp.contract.HotTabContract
 import com.hazz.kotlinmvp.mvp.model.bean.TabInfoBean
 import com.hazz.kotlinmvp.mvp.presenter.HotTabPresenter
 import com.hazz.kotlinmvp.utils.StatusBarUtil
-import com.hazz.kotlinmvp.view.TabLayoutHelper
 import kotlinx.android.synthetic.main.fragment_hot.*
 
 /**

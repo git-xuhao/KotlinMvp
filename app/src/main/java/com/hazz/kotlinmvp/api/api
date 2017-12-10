@@ -1,12 +1,26 @@
 
 
 
+//首页精选
+http://baobab.kaiyanapp.com/api/v2/feed?
 
+//相关视频
+http://baobab.kaiyanapp.com/api/v4/video/related?id=xxx
 
+//获取分类
+http://baobab.kaiyanapp.com/api/v4/categories
 
+//获取分类详情List
+http://baobab.kaiyanapp.com/api/v4/categories/videoList?id=xxx
 
+//获取排行榜的 Info
+http://baobab.kaiyanapp.com/api/v4/rankList
 
+//获取搜索信息
+http://baobab.kaiyanapp.com/api/v1/search?&num=10&start=10&query=xxx
 
+//热门搜索关键词
+http://baobab.kaiyanapp.com/api/v3/queries/hot
 
 //热门搜索词
 http://baobab.kaiyanapp.com/api/v3/queries/hot

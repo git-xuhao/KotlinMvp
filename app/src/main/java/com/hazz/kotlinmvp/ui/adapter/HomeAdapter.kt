@@ -10,8 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import cn.bingoogolapple.bgabanner.BGABanner
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.hazz.kotlinmvp.Constants
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.durationFormat

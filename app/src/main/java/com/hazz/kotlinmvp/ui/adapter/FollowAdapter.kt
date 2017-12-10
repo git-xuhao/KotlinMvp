@@ -11,7 +11,6 @@ import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.view.recyclerview.MultipleType
 import com.hazz.kotlinmvp.view.recyclerview.ViewHolder
 import com.hazz.kotlinmvp.view.recyclerview.adapter.CommonAdapter
-import com.orhanobut.logger.Logger
 
 /**
  * Created by xuhao on 2017/12/7.
