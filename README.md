@@ -1,4 +1,5 @@
 # KotlinMvp
+
 [![](https://jitpack.io/v/git-xuhao/KotlinMvp.svg)](https://jitpack.io/#git-xuhao/KotlinMvp)
 [![Build Status](https://travis-ci.org/git-xuhao/KotlinMvp.svg?branch=master)](https://travis-ci.org/git-xuhao/KotlinMvp)
 [![CircleCI](https://circleci.com/gh/git-xuhao/KotlinMvp/tree/master.svg?style=svg)](https://circleci.com/gh/git-xuhao/KotlinMvp/tree/master)
@@ -8,12 +9,14 @@
 [![](https://img.shields.io/badge/QQ-504105930-blue.svg)](http://xuhaoblog.com)
 
 ![这里写图片描述](http://oyp2zrwnm.bkt.clouddn.com/ic_launcher.png)
-GitHub项目地址：[https://github.com/git-xuhao/KotlinMvp](https://github.com/git-xuhao/KotlinMvp)
 
-KT看吧 是仿着“开眼Eyepetizer”之前版本并加上自己的想法，开发的一款的短视频小应用，每日为你推荐精选视频，让你大开眼界。本项目采用 Kotlin 语言编写，结合 MVP+RxJava2+Retrofit2+Glide等的架构设计，学习 Kotlin 利用空余时间开发的一款小项目，代码结构清晰有详细注释，**项目中的 API 均来自开眼视频，纯属学习交流使用，不得用于商业用途！**有任何疑问，建议请提 Issue或联系[![](https://img.shields.io/badge/Gmail:-igeekho@gmail.com-blue.svg)]()
+GitHub地址：[https://github.com/git-xuhao/KotlinMvp](https://github.com/git-xuhao/KotlinMvp)
 
+（开源不易，喜欢的话希望给个 Star 或者 Fork，谢谢！）
 
-## Project screenshot
+《KotlinMvp》 是仿着“开眼Eyepetizer”之前版本并加上自己的想法，开发的一款的短视频小应用，每日为你推荐精选视频，让你大开眼界。本项目采用 Kotlin 语言编写，结合 MVP+RxJava2+Retrofit2+Glide等的架构设计，学习 Kotlin 利用空余时间开发的一款小项目，代码结构清晰有详细注释，如有任何疑问和建议请提 Issue或联系[![](https://img.shields.io/badge/Gmail:-igeekho@gmail.com-blue.svg)]()
+
+## 项目截图
 
 ![](http://oyp2zrwnm.bkt.clouddn.com/pt2017_12_09_10_27_10.jpg)
 
@@ -21,7 +24,11 @@ KT看吧 是仿着“开眼Eyepetizer”之前版本并加上自己的想法，�
 
 ## 下载体验
 
-[![](https://img.shields.io/badge/Download-apk-green.svg)](https://fir.im/kotlinmvp)
+点击[![](https://img.shields.io/badge/Download-apk-green.svg)](https://fir.im/kotlinmvp) 或者扫描下方二维码
+
+<img src="http://oyp2zrwnm.bkt.clouddn.com/QR-code-kotlin-mvp.png" width = "250" height = "250" alt="图片名称" align=center />
+
+
 
 ## 技术要点
 主要使用的第三方开源框架有：
@@ -38,13 +45,22 @@ KT看吧 是仿着“开眼Eyepetizer”之前版本并加上自己的想法，�
  - [BGABanner-Android](https://github.com/bingoogolapple/BGABanner-Android)
  - [GSYVideoPlayer](https://github.com/CarGuo/GSYVideoPlayer)
 
-## About Me
+## 更新日志
 
-Email: igeekho@gmail.com
-Home: [https://xuhaoblog.com](https://xuhaoblog.com)
-CSDN:[http://blog.csdn.net/u011974987](http://blog.csdn.net/u011974987)
-简书: [http://www.jianshu.com/u/25bc3e1e7595](http://www.jianshu.com/u/25bc3e1e7595)
- 
+**v1.0**
+
+ - 初始化版本，主要功能已经完成。
+
+## 关于我
+
+ - Email: igeekho@gmail.com
+ - Home: [https://xuhaoblog.com](https://xuhaoblog.com)
+ - CSDN:[http://blog.csdn.net/u011974987](http://blog.csdn.net/u011974987)
+ - 简书: [http://www.jianshu.com/u/25bc3e1e7595](http://www.jianshu.com/u/25bc3e1e7595)
+
+## 声明
+**项目中的 API 均来自开眼视频，纯属学习交流使用，不得用于商业用途！**
+
 ## LICENSE
 ```
 Copyright 2017 Xiho
@@ -61,4 +77,5 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+
 
