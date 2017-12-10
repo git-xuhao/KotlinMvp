@@ -7,6 +7,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/0ee634e0cc3042f8a98e33d6135f39a6)](https://www.codacy.com/app/git-xuhao/KotlinMvp?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=git-xuhao/KotlinMvp&amp;utm_campaign=Badge_Grade)
 [![](https://img.shields.io/badge/Author-xuhao-red.svg)](http://xuhaoblog.com)
 [![](https://img.shields.io/badge/QQ-504105930-blue.svg)](http://xuhaoblog.com)
+[![](https://img.shields.io/badge/LICENSE-2.0-green.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 ![这里写图片描述](http://oyp2zrwnm.bkt.clouddn.com/ic_launcher.png)
 
@@ -18,9 +19,12 @@ GitHub地址：[https://github.com/git-xuhao/KotlinMvp](https://github.com/git-x
 
 ## 项目截图
 
+- 截图
+
 ![](http://oyp2zrwnm.bkt.clouddn.com/pt2017_12_09_10_27_10.jpg)
 
-
+- gif 图
+<img src="http://oyp2zrwnm.bkt.clouddn.com/kotlin-mvp.gif" width = "400" height = "720" alt="图片名称" align=center />
 
 ## 下载体验
 
@@ -45,6 +49,14 @@ GitHub地址：[https://github.com/git-xuhao/KotlinMvp](https://github.com/git-x
  - [BGABanner-Android](https://github.com/bingoogolapple/BGABanner-Android)
  - [GSYVideoPlayer](https://github.com/CarGuo/GSYVideoPlayer)
 
+模块说明：
+ 
+ - **每日精选：**首页采用下拉刷新+RecyclerView 实现，Banner展示每日精选推荐的视频，监听 RecyclerView 的滑动事件，实现 TitleBar 的隐藏显示功能，底部菜单采用高斯模糊的半透明效果，使整个 APP 风格更加清爽。
+ - **发现：** 包括关注和分类模块，关注是推荐的作者上传的视频，分类包括时尚、运动、创意、广告、音乐、旅行、生活、记录、开胃、游戏、萌宠、动画、综艺、搞笑等可自由选择想查看的类型视频。
+ - **热门：** 热门排行榜包括周排行、月排行、总排行的视频列表。
+ - **搜索：** 根据关键字搜索榜你找到感兴趣的视频。
+ - **我的：** 个人主页的相关介绍。
+
 ## 更新日志
 
 **v1.0**
@@ -58,9 +70,14 @@ GitHub地址：[https://github.com/git-xuhao/KotlinMvp](https://github.com/git-x
  - CSDN:[http://blog.csdn.net/u011974987](http://blog.csdn.net/u011974987)
  - 简书: [http://www.jianshu.com/u/25bc3e1e7595](http://www.jianshu.com/u/25bc3e1e7595)
 
+## Thanks
+
+- 感谢所有优秀的开源项目
+- [Eyepetizer](https://github.com/kaikaixue/Eyepetizer) ：最初是看了这个项目才开始做的，学了不少东西，写出了我自己的代码风格
+
 ## 声明
 **项目中的 API 均来自开眼视频，纯属学习交流使用，不得用于商业用途！**
-
+ 
 ## LICENSE
 ```
 Copyright 2017 Xiho
@@ -77,5 +94,4 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-
 

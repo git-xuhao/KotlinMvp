@@ -228,7 +228,6 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         GlideApp.with(this)
                 .load(url)
                 .centerCrop()
-                .format(DecodeFormat.PREFER_ARGB_8888)
                 .into(mVideoBackground)
     }
 
