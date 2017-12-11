@@ -46,17 +46,33 @@ android {
             signingConfig signingConfigs.config
             zipAlignEnabled true
         }
+
     }
+    // 自定义输出配置
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "kotlinmvp_v${variant.versionName}_${variant.name}.apk"
+        }
+    }
+
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
     productFlavors {
+
     }
+
+
 
     dexOptions {
         jumboMode true
     }
+}
+
+//获取时间的方法
+def createDate() {
+    return new Date().format("MMdd_HHmm", TimeZone.getTimeZone("GMT+8"))
 }
 
 dependencies {
