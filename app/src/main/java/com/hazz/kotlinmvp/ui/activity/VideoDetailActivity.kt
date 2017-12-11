@@ -1,5 +1,6 @@
 package com.hazz.kotlinmvp.ui.activity
 
+import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.res.Configuration
 import android.os.Build
@@ -8,8 +9,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.transition.Transition
 import android.view.View
 import android.widget.ImageView
-import com.bumptech.glide.load.DecodeFormat
 import com.hazz.kotlinmvp.Constants
+import com.hazz.kotlinmvp.MyApplication
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.base.BaseActivity
 import com.hazz.kotlinmvp.glide.GlideApp
@@ -19,6 +20,7 @@ import com.hazz.kotlinmvp.mvp.presenter.VideoDetailPresenter
 import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.ui.adapter.VideoDetailAdapter
 import com.hazz.kotlinmvp.utils.StatusBarUtil
+import com.hazz.kotlinmvp.utils.WatchHistoryUtils
 import com.hazz.kotlinmvp.view.VideoListener
 import com.orhanobut.logger.Logger
 import com.scwang.smartrefresh.header.MaterialHeader
@@ -27,7 +29,10 @@ import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
 import com.shuyu.gsyvideoplayer.video.base.GSYVideoPlayer
 import kotlinx.android.synthetic.main.activity_video_detail.*
+import java.text.SimpleDateFormat
+import java.util.*
 
+@SuppressLint("SimpleDateFormat")
 /**
  * Created by xuhao on 2017/11/25.
  * desc: 视频详情
@@ -40,6 +45,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         val TRANSITION = "TRANSITION"
     }
 
+
     /**
      * 第一次调用的时候初始化
      */
@@ -47,13 +53,16 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
 
     private val mAdapter by lazy { VideoDetailAdapter(this, itemList) }
 
+    private val mFormat by lazy { SimpleDateFormat("yyyyMMddHHmmss"); }
+
+
     /**
      * Item 详细数据
      */
-    private var itemData: HomeBean.Issue.Item? = null
+    private lateinit var itemData: HomeBean.Issue.Item
     private var orientationUtils: OrientationUtils? = null
 
-    private val itemList = ArrayList<HomeBean.Issue.Item>()
+    private var itemList = ArrayList<HomeBean.Issue.Item>()
 
     private var isPlay: Boolean = false
     private var isPause: Boolean = false
@@ -62,7 +71,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
     private var isTransition: Boolean = false
 
     private var transition: Transition? = null
-    private var mMaterialHeader:MaterialHeader?=null
+    private var mMaterialHeader: MaterialHeader? = null
 
     override fun layoutId(): Int = R.layout.activity_video_detail
 
@@ -90,7 +99,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         //内容跟随偏移
         mRefreshLayout.setEnableHeaderTranslationContent(true)
         mRefreshLayout.setOnRefreshListener {
-           loadVideoInfo()
+            loadVideoInfo()
         }
         mMaterialHeader = mRefreshLayout.refreshHeader as MaterialHeader?
         //打开下拉刷新区域块背景:
@@ -103,7 +112,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
     /**
      * 初始化 VideoView 的配置
      */
-    private fun initVideoViewConfig(){
+    private fun initVideoViewConfig() {
         //设置旋转
         orientationUtils = OrientationUtils(this, mVideoView)
         //是否旋转
@@ -112,7 +121,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         mVideoView.setIsTouchWiget(true)
 
         //增加封面
-        val imageView =ImageView(this);
+        val imageView = ImageView(this);
         imageView.scaleType = ImageView.ScaleType.CENTER_CROP
         GlideApp.with(this)
                 .load(itemData?.data?.cover?.feed)
@@ -175,12 +184,31 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
 
     }
 
+
+
     /**
      * 初始化数据
      */
     override fun initData() {
         itemData = intent.getSerializableExtra(Constants.BUNDLE_VIDEO_DATA) as HomeBean.Issue.Item
         isTransition = intent.getBooleanExtra(TRANSITION, false)
+
+        saveWatchVideoHistoryInfo(itemData)
+    }
+
+
+    /**
+     * 保存观看记录
+     */
+    private fun saveWatchVideoHistoryInfo(watchItem: HomeBean.Issue.Item) {
+        //保存之前要先查询sp中是否有该value的记录，有则删除.这样保证搜索历史记录不会有重复条目
+        val historyMap = WatchHistoryUtils.getAll(Constants.FILE_WATCH_HISTORY_NAME,MyApplication.context) as Map<*, *>
+        for ((key,value) in historyMap) {
+            if (watchItem == WatchHistoryUtils.getObject(Constants.FILE_WATCH_HISTORY_NAME,MyApplication.context, key as String)) {
+                WatchHistoryUtils.remove(Constants.FILE_WATCH_HISTORY_NAME,MyApplication.context, key)
+            }
+        }
+        WatchHistoryUtils.putObject(Constants.FILE_WATCH_HISTORY_NAME,MyApplication.context, watchItem,"" + mFormat.format(Date()))
     }
 
 
@@ -196,6 +224,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
      * 设置播放视频 URL
      */
     override fun setVideo(url: String) {
+        Logger.d("playUrl:$url")
         mVideoView.setUp(url, false, "")
         //开始自动播放
         mVideoView.startPlayLogic()
@@ -218,6 +247,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
      */
     override fun setRecentRelatedVideo(itemList: ArrayList<HomeBean.Issue.Item>) {
         mAdapter.addData(itemList)
+        this.itemList = itemList
     }
 
 
@@ -249,7 +279,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
     /**
      * 1.加载视频信息
      */
-    fun loadVideoInfo(){
+    fun loadVideoInfo() {
         mPresenter.loadVideoInfo(itemData!!)
     }
 
@@ -265,7 +295,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         GSYVideoPlayer.releaseAllVideos()
         if (isTransition && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) run {
             super.onBackPressed()
-        }else{
+        } else {
             finish()
             overridePendingTransition(R.anim.anim_out, R.anim.anim_in)
         }
@@ -332,8 +362,6 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
 
         })
     }
-
-
 
 
 }

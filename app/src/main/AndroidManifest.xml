@@ -68,6 +68,10 @@
         <activity
             android:name=".ui.activity.AboutActivity"
             android:screenOrientation="portrait" />
+        <!-- 观看记录 -->
+        <activity android:name=".ui.activity.WatchHistoryActivity"
+            android:screenOrientation="portrait"
+            />
 
     </application>
 

@@ -80,6 +80,7 @@
             android:gravity="center">
 
             <TextView
+                android:id="@+id/tv_collection"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:drawablePadding="7dp"
@@ -101,6 +102,7 @@
             android:gravity="center">
 
             <TextView
+                android:id="@+id/tv_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="15dp"

@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="670dp"
         android:layout_marginTop="-300dp"
-        android:src="@drawable/gradient_bg"
-        android:scaleType="fitXY"
+        android:src="@mipmap/img_profile_head"
+        android:scaleType="centerCrop"
         app:layout_collapseMode="parallax" />
 
 
@@ -215,10 +215,10 @@
                 </LinearLayout>
 
 
-                <!--<WebView-->
-                    <!--android:id="@+id/mWebView"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="13dp" />-->
+                <WebView
+                    android:id="@+id/mWebView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>

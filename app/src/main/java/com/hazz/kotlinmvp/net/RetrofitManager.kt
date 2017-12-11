@@ -4,8 +4,7 @@ import com.hazz.kotlinmvp.MyApplication
 import com.hazz.kotlinmvp.api.ApiService
 import com.hazz.kotlinmvp.api.UriConstant
 import com.hazz.kotlinmvp.utils.NetworkUtil
-import com.hazz.kotlinmvp.utils.SpUtils
-import com.orhanobut.logger.Logger
+import com.hazz.kotlinmvp.utils.Preference
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -16,6 +15,7 @@ import java.util.concurrent.TimeUnit
 
 /**
  * Created by xuhao on 2017/11/16.
+ *
  */
 
 object RetrofitManager{
@@ -27,6 +27,8 @@ object RetrofitManager{
 
 
     val service: ApiService by lazy { getRetrofit()!!.create(ApiService::class.java)}
+
+    private var token:String by Preference("token","")
 
     /**
      * 设置公共参数
@@ -53,7 +55,7 @@ object RetrofitManager{
             val originalRequest = chain.request()
             val requestBuilder = originalRequest.newBuilder()
                     // Provide your custom header here
-                    .header("token", SpUtils.get("token", "") as String)
+                    .header("token", token)
                     .method(originalRequest.method(), originalRequest.body())
             val request = requestBuilder.build()
             chain.proceed(request)
@@ -120,7 +122,7 @@ object RetrofitManager{
                             .baseUrl(UriConstant.BASE_URL)  //自己配置
                             .client(client!!)
                             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                            .addConverterFactory(GsonConverterFactory.create()) //这里是用的fastjson的
+                            .addConverterFactory(GsonConverterFactory.create())
                             .build()
                 }
             }

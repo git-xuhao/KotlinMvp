@@ -3,7 +3,6 @@ package com.hazz.kotlinmvp.ui.activity
 import android.annotation.SuppressLint
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.NestedScrollView
-import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.hazz.kotlinmvp.R
@@ -73,22 +72,22 @@ class ProfileHomePageActivity : BaseActivity() {
         toolbar.setNavigationOnClickListener { finish() }
 
 
-        refreshLayout.setOnRefreshListener {  }
-//        refreshLayout.autoRefresh()
+        refreshLayout.setOnRefreshListener {  mWebView.loadUrl("https://xuhaoblog.com/KotlinMvp") }
+        refreshLayout.autoRefresh()
 
-//        mWebView.settings.javaScriptEnabled = true
-//        mWebView.webViewClient = object : WebViewClient() {
-//            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-//                view.loadUrl(url)
-//                return true
-//            }
-//
-//            override fun onPageFinished(view: WebView, url: String) {
-//                super.onPageFinished(view, url)
-//                refreshLayout.finishRefresh()
-//                view.loadUrl(String.format(Locale.CHINA, "javascript:document.body.style.paddingTop='%fpx'; void 0", DensityUtil.px2dp(mWebView.paddingTop.toFloat())))
-//            }
-//        }
+        mWebView.settings.javaScriptEnabled = true
+        mWebView.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                view.loadUrl(url)
+                return true
+            }
+
+            override fun onPageFinished(view: WebView, url: String) {
+                super.onPageFinished(view, url)
+                refreshLayout.finishRefresh()
+                view.loadUrl(String.format(Locale.CHINA, "javascript:document.body.style.paddingTop='%fpx'; void 0", DensityUtil.px2dp(mWebView.paddingTop.toFloat())))
+            }
+        }
 
     }
 

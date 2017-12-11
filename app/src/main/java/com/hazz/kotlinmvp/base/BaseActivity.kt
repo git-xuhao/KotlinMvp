@@ -8,7 +8,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import com.classic.common.MultipleStatusView
 import com.hazz.kotlinmvp.MyApplication
-import com.hazz.kotlinmvp.showToast
 
 
 /**

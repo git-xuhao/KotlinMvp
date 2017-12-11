@@ -271,7 +271,7 @@ class ExpandableTextView : LinearLayout, View.OnClickListener {
     }
 
     private fun applyAlphaAnimation(view: View?, alpha: Float) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             view!!.alpha = alpha
         } else {
             val alphaAnimation = AlphaAnimation(alpha, alpha)

@@ -28,7 +28,6 @@ class MyApplication : Application(){
 
         private val TAG = "MyApplication"
 
-        @JvmStatic
         var context: Context by Delegates.notNull()
             private set
 

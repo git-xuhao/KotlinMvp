@@ -13,11 +13,6 @@
         android:orientation="vertical"
         android:padding="15dp">
 
-        <com.hazz.kotlinmvp.view.ExpandableTextView
-            android:id="@+id/expand_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            expandableTextView:maxCollapsedLines="0">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -59,6 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
+                    android:visibility="gone"
                     android:src="@mipmap/ic_action_down_white" />
 
             </RelativeLayout>
@@ -73,7 +69,6 @@
                 android:textColor="@color/color_lighter_gray"
                 android:textSize="12sp"
                 tools:text="亚当是个喜欢在学校惹是生非的青少年，但他的内心其实很混沌，因为家庭成员不能说的秘密，所以才导致他如此夸张，" />
-        </com.hazz.kotlinmvp.view.ExpandableTextView>
 
 
         <LinearLayout

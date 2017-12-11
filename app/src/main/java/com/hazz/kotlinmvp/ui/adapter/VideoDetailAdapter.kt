@@ -12,7 +12,6 @@ import com.hazz.kotlinmvp.durationFormat
 import com.hazz.kotlinmvp.glide.GlideApp
 import com.hazz.kotlinmvp.glide.GlideRoundTransform
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
-import com.hazz.kotlinmvp.view.ExpandableTextView
 import com.hazz.kotlinmvp.view.recyclerview.MultipleType
 import com.hazz.kotlinmvp.view.recyclerview.ViewHolder
 import com.hazz.kotlinmvp.view.recyclerview.adapter.CommonAdapter
@@ -92,17 +91,19 @@ class VideoDetailAdapter(mContext: Context, data: ArrayList<HomeBean.Issue.Item>
 
             }
             data.type == "videoSmallCard" -> {
-                holder.setText(R.id.tv_title, data.data?.title!!)
-                holder.setText(R.id.tv_tag, "#${data.data.category} / ${durationFormat(data.data.duration)}")
-                holder.setImagePath(R.id.iv_video_small_card, object : ViewHolder.HolderImageLoader(data.data.cover.detail) {
-                    override fun loadImage(iv: ImageView, path: String) {
-                        GlideApp.with(mContext)
-                                .load(path)
-                                .optionalTransform(GlideRoundTransform())
-                                .placeholder(R.drawable.placeholder_banner)
-                                .into(iv)
-                    }
-                })
+                with(holder) {
+                    setText(R.id.tv_title, data.data?.title!!)
+                    setText(R.id.tv_tag, "#${data.data.category} / ${durationFormat(data.data.duration)}")
+                    setImagePath(R.id.iv_video_small_card, object : ViewHolder.HolderImageLoader(data.data.cover.detail) {
+                            override fun loadImage(iv: ImageView, path: String) {
+                                GlideApp.with(mContext)
+                                        .load(path)
+                                        .optionalTransform(GlideRoundTransform())
+                                        .placeholder(R.drawable.placeholder_banner)
+                                        .into(iv)
+                            }
+                        })
+                }
                 // 判断onItemClickRelatedVideo 并使用
                 holder.itemView.setOnClickListener { mOnItemClickRelatedVideo?.invoke(data) }
 
@@ -117,7 +118,7 @@ class VideoDetailAdapter(mContext: Context, data: ArrayList<HomeBean.Issue.Item>
     private fun setVideoDetailInfo(data: HomeBean.Issue.Item, holder: ViewHolder) {
         data.data?.title?.let { holder.setText(R.id.tv_title, it) }
         //视频简介
-        holder.getView<ExpandableTextView>(R.id.expand_text_view).text = data.data?.description
+        data.data?.description?.let { holder.setText(R.id.expandable_text, it) }
         //标签
         holder.setText(R.id.tv_tag, "#${data.data?.category} / ${durationFormat(data.data?.duration)}")
         //喜欢
@@ -128,17 +129,19 @@ class VideoDetailAdapter(mContext: Context, data: ArrayList<HomeBean.Issue.Item>
         holder.setText(R.id.tv_action_reply, data.data?.consumption?.replyCount.toString())
 
         if (data.data?.author != null) {
-            holder.setText(R.id.tv_author_name, data.data.author.name)
-            holder.setText(R.id.tv_author_desc, data.data.author.description)
-            holder.setImagePath(R.id.iv_avatar, object : ViewHolder.HolderImageLoader(data.data.author.icon) {
-                override fun loadImage(iv: ImageView, path: String) {
-                    //加载头像
-                    GlideApp.with(mContext)
-                            .load(path)
-                            .placeholder(R.mipmap.default_avatar).circleCrop()
-                            .into(iv)
-                }
-            })
+            with(holder) {
+                setText(R.id.tv_author_name, data.data.author.name)
+                setText(R.id.tv_author_desc, data.data.author.description)
+                setImagePath(R.id.iv_avatar, object : ViewHolder.HolderImageLoader(data.data.author.icon) {
+                    override fun loadImage(iv: ImageView, path: String) {
+                        //加载头像
+                        GlideApp.with(mContext)
+                                .load(path)
+                                .placeholder(R.mipmap.default_avatar).circleCrop()
+                                .into(iv)
+                    }
+                })
+            }
         } else {
             holder.setViewVisibility(R.id.layout_author_view, View.GONE)
         }

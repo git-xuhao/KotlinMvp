@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.View
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.base.BaseFragment
+import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.ui.activity.AboutActivity
 import com.hazz.kotlinmvp.ui.activity.ProfileHomePageActivity
+import com.hazz.kotlinmvp.ui.activity.WatchHistoryActivity
 import com.hazz.kotlinmvp.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.fragment_mine.*
 
@@ -38,9 +40,18 @@ class MineFragment : BaseFragment(),View.OnClickListener {
         StatusBarUtil.darkMode(activity)
         StatusBarUtil.setPaddingSmart(activity, toolbar)
 
-        iv_avatar.setOnClickListener(this)
         tv_view_homepage.setOnClickListener(this)
+        iv_avatar.setOnClickListener(this)
         iv_about.setOnClickListener(this)
+
+        tv_collection.setOnClickListener(this)
+        tv_comment.setOnClickListener(this)
+
+        tv_mine_message.setOnClickListener(this)
+        tv_mine_attention.setOnClickListener(this)
+        tv_mine_cache.setOnClickListener(this)
+        tv_watch_history.setOnClickListener(this)
+        tv_feedback.setOnClickListener(this)
 
 
     }
@@ -61,6 +72,13 @@ class MineFragment : BaseFragment(),View.OnClickListener {
                 val intent = Intent(activity, AboutActivity::class.java)
                 startActivity(intent)
             }
+            v?.id==R.id.tv_collection -> showToast("收藏")
+            v?.id==R.id.tv_comment -> showToast("评论")
+            v?.id==R.id.tv_mine_message -> showToast("我的消息")
+            v?.id==R.id.tv_mine_attention -> showToast("我的关注")
+            v?.id==R.id.tv_mine_attention -> showToast("我的缓存")
+            v?.id==R.id.tv_watch_history -> startActivity(Intent(activity,WatchHistoryActivity::class.java))
+            v?.id==R.id.tv_feedback -> showToast("意见反馈")
 
         }
     }

@@ -53,6 +53,8 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
     @Suppress("DEPRECATION")
     override fun initView() {
         mPresenter.attachView(this)
+        //获取分类信息
+        mPresenter.getCategoryData()
 
         mLayoutStatusView = multipleStatusView
 
@@ -77,8 +79,7 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
     }
 
     override fun lazyLoad() {
-        //获取分类信息
-        mPresenter.getCategoryData()
+
 
     }
 
