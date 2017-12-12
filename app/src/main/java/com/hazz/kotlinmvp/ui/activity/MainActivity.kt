@@ -36,7 +36,7 @@ class MainActivity : BaseActivity() {
     private var mHomeFragment: HomeFragment? = null
     private var mDiscoveryFragment: DiscoveryFragment? = null
     private var mHotFragment: HotFragment? = null
-    private var mMeiTuFragment: MineFragment?=null
+    private var mMineFragment: MineFragment?=null
 
     //默认为0
     private var mIndex = 0
@@ -44,7 +44,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (savedInstanceState != null) {
-            mIndex = savedInstanceState.getInt("mTabIndex")
+            mIndex = savedInstanceState.getInt("currTabIndex")
         }
         super.onCreate(savedInstanceState)
         initTab()
@@ -92,10 +92,10 @@ class MainActivity : BaseActivity() {
             } else {
                 transaction.show(mHomeFragment)
             }
-            1 //分类
+            1 //发现
             -> if (mDiscoveryFragment == null) {
                 mDiscoveryFragment = DiscoveryFragment.getInstance(mTitles[position])
-                transaction.add(R.id.fl_container, mDiscoveryFragment, "category")
+                transaction.add(R.id.fl_container, mDiscoveryFragment, "discovery")
             } else {
                 transaction.show(mDiscoveryFragment)
             }
@@ -108,12 +108,12 @@ class MainActivity : BaseActivity() {
                 transaction.show(mHotFragment)
             }
 
-            3 //更多
-            -> if (mMeiTuFragment == null) {
-                mMeiTuFragment = MineFragment.getInstance(mTitles[position])
-                transaction.add(R.id.fl_container, mMeiTuFragment, "mei")
+            3 //我的
+            -> if (mMineFragment == null) {
+                mMineFragment = MineFragment.getInstance(mTitles[position])
+                transaction.add(R.id.fl_container, mMineFragment, "mine")
             } else {
-                transaction.show(mMeiTuFragment)
+                transaction.show(mMineFragment)
             }
             else -> {
 
@@ -139,8 +139,8 @@ class MainActivity : BaseActivity() {
         if (null != mHotFragment) {
             transaction.hide(mHotFragment)
         }
-        if (null != mMeiTuFragment) {
-            transaction.hide(mMeiTuFragment)
+        if (null != mMineFragment) {
+            transaction.hide(mMineFragment)
         }
 
     }
