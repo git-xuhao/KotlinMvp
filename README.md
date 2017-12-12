@@ -24,7 +24,7 @@ GitHub地址：[https://github.com/git-xuhao/KotlinMvp](https://github.com/git-x
 
 - gif
 
- ![这里写图片描述](http://oyp2zrwnm.bkt.clouddn.com/kotlin-mvp-1.gif)
+ ![这里写图片描述](/screenshot/kotlin-mvp-1.gif)
 
 
 ## 下载体验
