@@ -21,7 +21,7 @@ GitHub地址：[https://github.com/git-xuhao/KotlinMvp](https://github.com/git-x
 
 ## 前言
 
-前段时间学习了 Kotlin 的一些语法，然后就写了这个项目熟悉下一 Android 未来的官方语言，总体下来，感觉比较爽，相比 Java 而言源代码行数有所减少 、方法数也有所减少 。
+前段时间学习了 Kotlin 的一些语法，然后就写了这个项目熟悉一下 Android的官方语言，总体下来，感觉比较爽，相比 Java 而言源代码行数有所减少、方法数也有所减少。
 
 Kotlin 团队为 Android 开发提供了一套超越标准语言功能的工具：
 
