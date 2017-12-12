@@ -36,7 +36,7 @@ Kotlin 团队为 Android 开发提供了一套超越标准语言功能的工具�
 
 - gif
 
- <img src="/screenshot/kotlin-mvp-1.gif" style="width: 30%;">
+   <img src="/screenshot/kotlin-mvp-1.gif" style="width: 30%;">
 
 
 ## 下载体验
