@@ -95,7 +95,7 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
                 //取出banner 显示的 img 和 Title
                 Observable.fromIterable(bannerItemData)
                         .subscribe({ list ->
-                            bannerFeedList.add(list.data!!.cover.feed)
+                            bannerFeedList.add(list.data?.cover?.feed!!)
                             bannerTitleList.add(list.data.title)
                         })
 
