@@ -8,6 +8,7 @@ import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.util.Pair
 import android.view.View
 import android.widget.ImageView
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.hazz.kotlinmvp.Constants
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.durationFormat
@@ -35,6 +36,7 @@ class FollowHorizontalAdapter(mContext: Context, categoryList: ArrayList<HomeBea
                 GlideApp.with(mContext)
                         .load(path)
                         .placeholder(R.drawable.placeholder_banner)
+                        .transition(DrawableTransitionOptions().crossFade())
                         .into(holder.getView(R.id.iv_cover_feed))
             }
 

@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import cn.bingoogolapple.bgabanner.BGABanner
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.hazz.kotlinmvp.Constants
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.durationFormat
@@ -108,6 +109,7 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
                             override fun fillBannerItem(bgaBanner: BGABanner?, imageView: ImageView?, feedImageUrl: String?, position: Int) {
                                 GlideApp.with(mContext)
                                         .load(feedImageUrl)
+                                        .transition(DrawableTransitionOptions().crossFade())
                                         .placeholder(R.drawable.placeholder_banner)
                                         .into(imageView)
 
@@ -181,6 +183,7 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
         GlideApp.with(mContext)
                 .load(cover)
                 .placeholder(R.drawable.placeholder_banner)
+                .transition(DrawableTransitionOptions().crossFade())
                 .into(holder.getView(R.id.iv_cover_feed))
 
         // 如果提供者信息为空，就显示默认
@@ -188,12 +191,14 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
             GlideApp.with(mContext)
                     .load(defAvatar)
                     .placeholder(R.mipmap.default_avatar).circleCrop()
+                    .transition(DrawableTransitionOptions().crossFade())
                     .into(holder.getView(R.id.iv_avatar))
 
         } else {
             GlideApp.with(mContext)
                     .load(avatar)
                     .placeholder(R.mipmap.default_avatar).circleCrop()
+                    .transition(DrawableTransitionOptions().crossFade())
                     .into(holder.getView(R.id.iv_avatar))
         }
         holder.setText(R.id.tv_title, itemData?.title?:"")

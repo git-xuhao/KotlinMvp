@@ -9,6 +9,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.transition.Transition
 import android.view.View
 import android.widget.ImageView
+import com.bumptech.glide.load.DecodeFormat
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.hazz.kotlinmvp.Constants
 import com.hazz.kotlinmvp.MyApplication
 import com.hazz.kotlinmvp.R
@@ -121,10 +123,10 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         mVideoView.setIsTouchWiget(true)
 
         //增加封面
-        val imageView = ImageView(this);
+        val imageView = ImageView(this)
         imageView.scaleType = ImageView.ScaleType.CENTER_CROP
         GlideApp.with(this)
-                .load(itemData?.data?.cover?.feed)
+                .load(itemData.data?.cover?.feed)
                 .centerCrop()
                 .into(imageView)
         mVideoView.thumbImageView = imageView
@@ -203,7 +205,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
     private fun saveWatchVideoHistoryInfo(watchItem: HomeBean.Issue.Item) {
         //保存之前要先查询sp中是否有该value的记录，有则删除.这样保证搜索历史记录不会有重复条目
         val historyMap = WatchHistoryUtils.getAll(Constants.FILE_WATCH_HISTORY_NAME,MyApplication.context) as Map<*, *>
-        for ((key,value) in historyMap) {
+        for ((key, _) in historyMap) {
             if (watchItem == WatchHistoryUtils.getObject(Constants.FILE_WATCH_HISTORY_NAME,MyApplication.context, key as String)) {
                 WatchHistoryUtils.remove(Constants.FILE_WATCH_HISTORY_NAME,MyApplication.context, key)
             }
@@ -237,7 +239,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         itemData = itemInfo
         mAdapter.addData(itemInfo)
         // 请求相关的最新等视频
-        mPresenter.requestRelatedVideo(itemInfo.data!!.id)
+        mPresenter.requestRelatedVideo(itemInfo.data?.id?:0)
 
     }
 
@@ -258,6 +260,8 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         GlideApp.with(this)
                 .load(url)
                 .centerCrop()
+                .format(DecodeFormat.PREFER_ARGB_8888)
+                .transition(DrawableTransitionOptions().crossFade())
                 .into(mVideoBackground)
     }
 
@@ -280,7 +284,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
      * 1.加载视频信息
      */
     fun loadVideoInfo() {
-        mPresenter.loadVideoInfo(itemData!!)
+        mPresenter.loadVideoInfo(itemData)
     }
 
     /**

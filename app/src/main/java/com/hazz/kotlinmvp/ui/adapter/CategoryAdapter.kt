@@ -7,6 +7,7 @@ import android.graphics.Typeface
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.hazz.kotlinmvp.Constants
 import com.hazz.kotlinmvp.MyApplication
 import com.hazz.kotlinmvp.R
@@ -52,6 +53,8 @@ class CategoryAdapter(mContext: Context, categoryList: ArrayList<CategoryBean>, 
                 GlideApp.with(mContext)
                         .load(path)
                         .placeholder(R.color.color_darker_gray)
+                        .transition(DrawableTransitionOptions().crossFade())
+                        .thumbnail(0.5f)
                         .into(iv)
             }
         })

@@ -7,6 +7,7 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.util.Pair
 import android.view.View
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.hazz.kotlinmvp.Constants
 import com.hazz.kotlinmvp.R
@@ -45,6 +46,7 @@ class CategoryDetailAdapter(context: Context, dataList: ArrayList<HomeBean.Issue
         GlideApp.with(mContext)
                 .load(cover)
                 .apply(RequestOptions().placeholder(R.drawable.placeholder_banner))
+                .transition(DrawableTransitionOptions().crossFade())
                 .into(holder.getView(R.id.iv_image))
         holder.setText(R.id.tv_title, itemData?.title?:"")
 

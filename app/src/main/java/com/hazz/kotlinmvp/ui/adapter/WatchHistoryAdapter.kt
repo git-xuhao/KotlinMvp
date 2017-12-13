@@ -9,6 +9,7 @@ import android.support.v4.util.Pair
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.hazz.kotlinmvp.Constants
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.durationFormat
@@ -36,6 +37,7 @@ class WatchHistoryAdapter(context: Context, dataList: ArrayList<HomeBean.Issue.I
                     GlideApp.with(mContext)
                             .load(path)
                             .placeholder(R.drawable.placeholder_banner)
+                            .transition(DrawableTransitionOptions().crossFade())
                             .into(iv)
                 }
             })
