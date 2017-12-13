@@ -98,6 +98,7 @@ Kotlin 团队为 Android 开发提供了一套超越标准语言功能的工具�
 
 ## LICENSE
 
+```
 Copyright 2017 Xiho
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -111,5 +112,5 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
+```
 
