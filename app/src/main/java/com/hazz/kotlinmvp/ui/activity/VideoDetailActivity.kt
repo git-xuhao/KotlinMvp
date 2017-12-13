@@ -21,6 +21,7 @@ import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.mvp.presenter.VideoDetailPresenter
 import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.ui.adapter.VideoDetailAdapter
+import com.hazz.kotlinmvp.utils.CleanLeakUtils
 import com.hazz.kotlinmvp.utils.StatusBarUtil
 import com.hazz.kotlinmvp.utils.WatchHistoryUtils
 import com.hazz.kotlinmvp.view.VideoListener
@@ -318,6 +319,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
     }
 
     override fun onDestroy() {
+        CleanLeakUtils.fixInputMethodManagerLeak(this)
         super.onDestroy()
         GSYVideoPlayer.releaseAllVideos()
         orientationUtils?.releaseListener()

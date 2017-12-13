@@ -24,6 +24,7 @@ import com.hazz.kotlinmvp.net.exception.ErrorStatus
 import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.ui.adapter.CategoryDetailAdapter
 import com.hazz.kotlinmvp.ui.adapter.HotKeywordsAdapter
+import com.hazz.kotlinmvp.utils.CleanLeakUtils
 import com.hazz.kotlinmvp.utils.StatusBarUtil
 import com.hazz.kotlinmvp.view.ViewAnimUtils
 import kotlinx.android.synthetic.main.activity_search.*
@@ -311,6 +312,7 @@ class SearchActivity : BaseActivity(), SearchContract.View {
     }
 
     override fun onDestroy() {
+        CleanLeakUtils.fixInputMethodManagerLeak(this)
         super.onDestroy()
         mPresenter.detachView()
         mTextTypeface = null
