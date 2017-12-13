@@ -95,8 +95,8 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
                 //取出banner 显示的 img 和 Title
                 Observable.fromIterable(bannerItemData)
                         .subscribe({ list ->
-                            bannerFeedList.add(list.data?.cover?.feed!!)
-                            bannerTitleList.add(list.data.title)
+                            bannerFeedList.add(list.data?.cover?.feed?:"")
+                            bannerTitleList.add(list.data?.title?:"")
                         })
 
                 //设置 banner
@@ -124,7 +124,7 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
             }
         //TextHeader
             ITEM_TYPE_TEXT_HEADER -> {
-                holder.setText(R.id.tvHeader, mData[position + bannerItemSize - 1].data?.text!!)
+                holder.setText(R.id.tvHeader, mData[position + bannerItemSize - 1].data?.text?:"")
             }
 
         //content
@@ -196,20 +196,20 @@ class HomeAdapter(context: Context, data: ArrayList<HomeBean.Issue.Item>)
                     .placeholder(R.mipmap.default_avatar).circleCrop()
                     .into(holder.getView(R.id.iv_avatar))
         }
-        holder.setText(R.id.tv_title, itemData?.title!!)
+        holder.setText(R.id.tv_title, itemData?.title?:"")
 
         //遍历标签
-        itemData.tags.take(4).forEach {
+        itemData?.tags?.take(4)?.forEach {
             tagText += (it.name + "/")
         }
         // 格式化时间
-        val timeFormat = durationFormat(itemData.duration)
+        val timeFormat = durationFormat(itemData?.duration)
 
         tagText += timeFormat
 
         holder.setText(R.id.tv_tag, tagText!!)
 
-        holder.setText(R.id.tv_category, "#" + itemData.category)
+        holder.setText(R.id.tv_category, "#" + itemData?.category)
 
         holder.setOnItemClickListener(listener = View.OnClickListener {
             goToVideoPlayer(mContext as Activity, holder.getView(R.id.iv_cover_feed), item)

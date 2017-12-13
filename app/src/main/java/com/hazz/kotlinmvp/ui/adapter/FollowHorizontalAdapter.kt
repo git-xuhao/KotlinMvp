@@ -41,18 +41,18 @@ class FollowHorizontalAdapter(mContext: Context, categoryList: ArrayList<HomeBea
         })
 
         //横向 RecyclerView 封页图下面标题
-        holder.setText(R.id.tv_title,horizontalItemData?.title!!)
+        holder.setText(R.id.tv_title,horizontalItemData?.title?:"")
 
         // 格式化时间
-        val timeFormat = durationFormat(horizontalItemData.duration)
-
-        if (data.data.tags.isNotEmpty()) {
+        val timeFormat = durationFormat(horizontalItemData?.duration)
             //标签
-            holder.setText(R.id.tv_tag, "#${data.data.tags[0].name} / $timeFormat")
-        }
-        holder.setOnItemClickListener(listener = View.OnClickListener {
+        with(holder) {
+            setText(R.id.tv_tag, "#${horizontalItemData?.tags?.get(0)?.name} / $timeFormat")
+
+            setOnItemClickListener(listener = View.OnClickListener {
             goToVideoPlayer(mContext as Activity, holder.getView(R.id.iv_cover_feed), data)
         })
+        }
 
 
     }

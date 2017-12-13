@@ -40,18 +40,18 @@ class CategoryDetailAdapter(context: Context, dataList: ArrayList<HomeBean.Issue
      */
     private fun setVideoItem(holder: ViewHolder, item: HomeBean.Issue.Item) {
         val itemData = item.data
-        val cover = itemData?.cover?.feed
+        val cover = itemData?.cover?.feed?:""
         // 加载封页图
         GlideApp.with(mContext)
                 .load(cover)
                 .apply(RequestOptions().placeholder(R.drawable.placeholder_banner))
                 .into(holder.getView(R.id.iv_image))
-        holder.setText(R.id.tv_title, itemData?.title!!)
+        holder.setText(R.id.tv_title, itemData?.title?:"")
 
         // 格式化时间
-        val timeFormat = durationFormat(itemData.duration)
+        val timeFormat = durationFormat(itemData?.duration)
 
-        holder.setText(R.id.tv_tag, "#${itemData.category}/$timeFormat")
+        holder.setText(R.id.tv_tag, "#${itemData?.category}/$timeFormat")
 
         holder.setOnItemClickListener(listener = View.OnClickListener {
             goToVideoPlayer(mContext as Activity, holder.getView(R.id.iv_image), item)
