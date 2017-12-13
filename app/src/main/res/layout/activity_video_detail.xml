@@ -36,6 +36,7 @@
             android:layout_below="@id/mVideoView"
             android:background="@color/color_light_black" />
 
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/mRecyclerView"
             android:layout_width="match_parent"

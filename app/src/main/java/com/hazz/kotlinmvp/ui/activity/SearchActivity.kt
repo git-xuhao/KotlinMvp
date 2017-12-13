@@ -92,12 +92,13 @@ class SearchActivity : BaseActivity(), SearchContract.View {
             }
         })
 
-
+        //取消
         tv_cancel.setOnClickListener { onBackPressed() }
-
+        //键盘的搜索按钮
         et_search_view.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    closeSoftKeyboard()
                     keyWords = et_search_view.text.toString().trim()
                     if (keyWords.isNullOrEmpty()) {
                         showToast("请输入你感兴趣的关键词")
@@ -154,6 +155,7 @@ class SearchActivity : BaseActivity(), SearchContract.View {
         mRecyclerView_hot.adapter = mHotKeywordsAdapter
         //设置 Tag 的点击事件
         mHotKeywordsAdapter?.setOnTagItemClickListener {
+            closeSoftKeyboard()
             keyWords = it
             mPresenter.querySearchData(it)
         }
@@ -167,7 +169,6 @@ class SearchActivity : BaseActivity(), SearchContract.View {
 
         hideHotWordView()
         tv_search_count.visibility = View.VISIBLE
-
         tv_search_count.text = String.format(resources.getString(R.string.search_result_count), keyWords, issue.total)
 
         itemList = issue.itemList
@@ -305,13 +306,14 @@ class SearchActivity : BaseActivity(), SearchContract.View {
 
     // 默认回退
     private fun defaultBackPressed() {
-        closeKeyBord(et_search_view, applicationContext)
+        closeSoftKeyboard()
         super.onBackPressed()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         mPresenter.detachView()
+        mTextTypeface = null
     }
 
 

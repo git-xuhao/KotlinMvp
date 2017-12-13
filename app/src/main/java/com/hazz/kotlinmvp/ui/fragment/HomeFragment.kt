@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.ActivityOptionsCompat
+import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.hazz.kotlinmvp.R
@@ -42,7 +43,7 @@ class HomeFragment : BaseFragment(), HomeContract.View {
     private var loadingMore = false
 
     private var isRefresh = false
-    private var mMaterialHeader:MaterialHeader?=null
+    private var mMaterialHeader: MaterialHeader? = null
 
     companion object {
         fun getInstance(title: String): HomeFragment {
@@ -183,6 +184,7 @@ class HomeFragment : BaseFragment(), HomeContract.View {
 
         mRecyclerView.adapter = mHomeAdapter
         mRecyclerView.layoutManager = linearLayoutManager
+        mRecyclerView.itemAnimator = DefaultItemAnimator()
 
     }
 
