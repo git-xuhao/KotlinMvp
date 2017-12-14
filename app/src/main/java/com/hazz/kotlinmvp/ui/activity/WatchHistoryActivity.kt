@@ -8,6 +8,7 @@ import com.hazz.kotlinmvp.base.BaseActivity
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.ui.adapter.WatchHistoryAdapter
 import com.hazz.kotlinmvp.utils.WatchHistoryUtils
+import kotlinx.android.synthetic.main.activity_about.*
 import kotlinx.android.synthetic.main.layout_recyclerview.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -35,6 +36,8 @@ class WatchHistoryActivity : BaseActivity() {
     }
 
     override fun initView() {
+        //返回
+        toolbar.setNavigationOnClickListener { finish() }
 
         val mAdapter = WatchHistoryAdapter(this, itemListData, R.layout.item_video_small_card)
         mRecyclerView.layoutManager = LinearLayoutManager(this)
