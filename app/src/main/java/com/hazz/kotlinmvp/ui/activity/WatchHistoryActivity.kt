@@ -7,6 +7,7 @@ import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.base.BaseActivity
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.ui.adapter.WatchHistoryAdapter
+import com.hazz.kotlinmvp.utils.StatusBarUtil
 import com.hazz.kotlinmvp.utils.WatchHistoryUtils
 import kotlinx.android.synthetic.main.activity_about.*
 import kotlinx.android.synthetic.main.layout_recyclerview.*
@@ -48,6 +49,11 @@ class WatchHistoryActivity : BaseActivity() {
         }else{
             multipleStatusView.showEmpty()
         }
+
+        //状态栏透明和间距处理
+        StatusBarUtil.darkMode(this)
+        StatusBarUtil.setPaddingSmart(this, toolbar)
+        StatusBarUtil.setPaddingSmart(this,mRecyclerView)
 
     }
 
