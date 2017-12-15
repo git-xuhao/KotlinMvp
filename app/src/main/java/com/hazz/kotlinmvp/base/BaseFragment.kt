@@ -48,8 +48,8 @@ import com.hazz.kotlinmvp.showToast
         super.onViewCreated(view, savedInstanceState)
         isViewPrepare = true
         initView()
-        //多种状态切换的view 重试点击事件
         lazyLoadDataIfPrepared()
+        //多种状态切换的view 重试点击事件
         mLayoutStatusView?.setOnClickListener(mRetryClickListener)
     }
 

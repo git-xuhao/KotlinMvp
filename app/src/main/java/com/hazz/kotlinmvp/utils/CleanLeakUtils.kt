@@ -18,7 +18,6 @@ object CleanLeakUtils {
         if (destContext == null) {
             return
         }
-        Logger.d("xiho，fix。。。。。。。。。。。。。。。。。")
         val inputMethodManager = destContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
         val viewArray = arrayOf("mCurRootView", "mServedView", "mNextServedView")

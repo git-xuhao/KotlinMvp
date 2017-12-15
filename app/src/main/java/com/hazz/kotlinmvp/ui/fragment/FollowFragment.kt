@@ -70,6 +70,8 @@ class FollowFragment : BaseFragment(), FollowContract.View {
             }
         })
 
+        mLayoutStatusView = multipleStatusView
+
     }
 
     override fun lazyLoad() {
@@ -98,9 +100,9 @@ class FollowFragment : BaseFragment(), FollowContract.View {
     override fun showError(errorMsg: String, errorCode: Int) {
         showToast(errorMsg)
         if (errorCode == ErrorStatus.NETWORK_ERROR) {
-            mLayoutStatusView?.showNoNetwork()
+            multipleStatusView.showNoNetwork()
         } else {
-            mLayoutStatusView?.showError()
+            multipleStatusView.showError()
         }
     }
 

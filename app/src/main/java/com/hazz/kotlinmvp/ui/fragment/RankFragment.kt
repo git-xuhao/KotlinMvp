@@ -59,11 +59,11 @@ class RankFragment : BaseFragment(), RankContract.View {
     }
 
     override fun showLoading() {
-        mLayoutStatusView?.showLoading()
+        multipleStatusView.showLoading()
     }
 
     override fun dismissLoading() {
-        mLayoutStatusView?.showContent()
+        multipleStatusView.showContent()
     }
 
     override fun setRankList(itemList: ArrayList<HomeBean.Issue.Item>) {
@@ -73,9 +73,9 @@ class RankFragment : BaseFragment(), RankContract.View {
     override fun showError(errorMsg: String,errorCode:Int) {
         showToast(errorMsg)
         if (errorCode == ErrorStatus.NETWORK_ERROR) {
-            mLayoutStatusView?.showNoNetwork()
+            multipleStatusView.showNoNetwork()
         } else {
-            mLayoutStatusView?.showError()
+            multipleStatusView.showError()
         }
     }
 

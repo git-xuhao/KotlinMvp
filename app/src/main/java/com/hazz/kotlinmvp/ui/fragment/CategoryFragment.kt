@@ -53,8 +53,7 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
     @Suppress("DEPRECATION")
     override fun initView() {
         mPresenter.attachView(this)
-        //获取分类信息
-        mPresenter.getCategoryData()
+
 
         mLayoutStatusView = multipleStatusView
 
@@ -80,15 +79,16 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
 
     override fun lazyLoad() {
 
-
+        //获取分类信息
+        mPresenter.getCategoryData()
     }
 
     override fun showLoading() {
-        mLayoutStatusView?.showLoading()
+        multipleStatusView?.showLoading()
     }
 
     override fun dismissLoading() {
-        mLayoutStatusView?.showContent()
+        multipleStatusView?.showContent()
     }
 
     /**
@@ -103,9 +103,9 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
     override fun showError(errorMsg: String,errorCode:Int) {
         showToast(errorMsg)
         if (errorCode == ErrorStatus.NETWORK_ERROR) {
-            mLayoutStatusView?.showNoNetwork()
+            multipleStatusView?.showNoNetwork()
         } else {
-            mLayoutStatusView?.showError()
+            multipleStatusView?.showError()
         }
     }
 

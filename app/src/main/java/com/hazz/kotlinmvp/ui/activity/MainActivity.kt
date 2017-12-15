@@ -165,7 +165,7 @@ class MainActivity : BaseActivity() {
 
     }
 
-    var mExitTime: Long = 0
+    private var mExitTime: Long = 0
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

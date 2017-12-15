@@ -3,6 +3,7 @@ package com.hazz.kotlinmvp.mvp.presenter
 import com.hazz.kotlinmvp.base.BasePresenter
 import com.hazz.kotlinmvp.mvp.contract.HotTabContract
 import com.hazz.kotlinmvp.mvp.model.HotTabModel
+import com.hazz.kotlinmvp.net.exception.ExceptionHandle
 
 /**
  * Created by xuhao on 2017/11/30.
@@ -21,7 +22,8 @@ class HotTabPresenter:BasePresenter<HotTabContract.View>(),HotTabContract.Presen
                     mRootView?.setTabInfo(tabInfo)
                 },{
                     throwable->
-                    mRootView?.showError(throwable.toString())
+                    //处理异常
+                    mRootView?.showError(ExceptionHandle.handleException(throwable), ExceptionHandle.errorCode)
                 })
         addSubscription(disposable)
     }

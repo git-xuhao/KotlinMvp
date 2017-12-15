@@ -18,7 +18,7 @@ class FollowPresenter : BasePresenter<FollowContract.View>(), FollowContract.Pre
     private var nextPageUrl:String?=null
 
     /**
-     *  请求排行榜数据
+     *  请求关注数据
      */
     override fun requestFollowList() {
         checkViewAttached()

@@ -54,7 +54,7 @@ class SplashActivity : BaseActivity() {
 
         //渐变展示启动屏
         alphaAnimation= AlphaAnimation(0.3f, 1.0f)
-        alphaAnimation?.duration = 3000
+        alphaAnimation?.duration = 2000
         alphaAnimation?.setAnimationListener(object : AnimationListener {
             override fun onAnimationEnd(arg0: Animation) {
                 redirectTo()

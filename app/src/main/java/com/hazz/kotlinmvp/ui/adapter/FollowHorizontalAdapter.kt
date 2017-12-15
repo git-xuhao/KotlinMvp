@@ -17,6 +17,7 @@ import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.ui.activity.VideoDetailActivity
 import com.hazz.kotlinmvp.view.recyclerview.ViewHolder
 import com.hazz.kotlinmvp.view.recyclerview.adapter.CommonAdapter
+import com.orhanobut.logger.Logger
 
 /**
  * Created by xuhao on 2017/12/7.
@@ -30,7 +31,7 @@ class FollowHorizontalAdapter(mContext: Context, categoryList: ArrayList<HomeBea
      */
     override fun bindData(holder: ViewHolder, data: HomeBean.Issue.Item, position: Int) {
         val horizontalItemData = data.data
-        holder.setImagePath(R.id.iv_cover_feed,object :ViewHolder.HolderImageLoader(data.data?.cover?.feed!!){
+        holder.setImagePath(R.id.iv_cover_feed, object : ViewHolder.HolderImageLoader(data.data?.cover?.feed!!) {
             override fun loadImage(iv: ImageView, path: String) {
                 // 加载封页图
                 GlideApp.with(mContext)
@@ -43,17 +44,23 @@ class FollowHorizontalAdapter(mContext: Context, categoryList: ArrayList<HomeBea
         })
 
         //横向 RecyclerView 封页图下面标题
-        holder.setText(R.id.tv_title,horizontalItemData?.title?:"")
+        holder.setText(R.id.tv_title, horizontalItemData?.title ?: "")
 
         // 格式化时间
         val timeFormat = durationFormat(horizontalItemData?.duration)
-            //标签
+        //标签
         with(holder) {
-            setText(R.id.tv_tag, "#${horizontalItemData?.tags?.get(0)?.name} / $timeFormat")
+            Logger.d("horizontalItemData===title:${horizontalItemData?.title}tag:${horizontalItemData?.tags?.size}")
+
+            if (horizontalItemData?.tags != null && horizontalItemData.tags.size > 0) {
+                setText(R.id.tv_tag, "#${horizontalItemData.tags[0].name} / $timeFormat")
+            }else{
+                setText(R.id.tv_tag,"#$timeFormat")
+            }
 
             setOnItemClickListener(listener = View.OnClickListener {
-            goToVideoPlayer(mContext as Activity, holder.getView(R.id.iv_cover_feed), data)
-        })
+                goToVideoPlayer(mContext as Activity, holder.getView(R.id.iv_cover_feed), data)
+            })
         }
 
 

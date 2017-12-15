@@ -16,7 +16,7 @@ interface HotTabContract {
          */
         fun setTabInfo(tabInfoBean: TabInfoBean)
 
-        fun showError(errorMsg:String)
+        fun showError(errorMsg:String,errorCode:Int)
     }
 
 
