@@ -73,6 +73,8 @@ Kotlin 团队为 Android 开发提供了一套超越标准语言功能的工具�
 
 ## 更新日志
 
+**[最新记录请点击查看](https://github.com/git-xuhao/KotlinMvp/releases)**
+
 **v1.1**
 
  - 去除无用代码，添加观看记录功能。
