@@ -9,6 +9,8 @@
 [![](https://img.shields.io/badge/Author-xuhao-blue.svg)](http://xuhaoblog.com)
 [![](https://img.shields.io/badge/QQ-504105930-blue.svg)](http://xuhaoblog.com)
 
+**[English Document](https://github.com/git-xuhao/KotlinMvp/blob/master/README-en.md)**
+
 ![这里写图片描述](http://oyp2zrwnm.bkt.clouddn.com/ic_launcher.png)
 
 GitHub地址：[https://github.com/git-xuhao/KotlinMvp](https://github.com/git-xuhao/KotlinMvp)
@@ -43,6 +45,8 @@ Kotlin 团队为 Android 开发提供了一套超越标准语言功能的工具�
 
 点击[![](https://img.shields.io/badge/Download-apk-green.svg)](https://fir.im/kotlinmvp) 或者扫描下方二维码
 
+**（下方二维码，每日上限100次，如达到上限，还是 clone 源码吧！✧(≖ ◡ ≖✿)）**
+
 <img src="http://oyp2zrwnm.bkt.clouddn.com/QR-code-kotlin-mvp.png" width = "250" height = "250" alt="图片名称" align=center />
 
 
@@ -72,6 +76,8 @@ Kotlin 团队为 Android 开发提供了一套超越标准语言功能的工具�
  - **观看记录：** 查看之前看过的视频，按时间进行排序。
 
 ## 更新日志
+
+**[最新记录请点击查看](https://github.com/git-xuhao/KotlinMvp/releases)**
 
 **v1.1**
 
