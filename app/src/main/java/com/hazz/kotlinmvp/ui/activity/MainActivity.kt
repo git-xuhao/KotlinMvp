@@ -83,8 +83,8 @@ class MainActivity : BaseActivity() {
      */
     private fun switchFragment(position: Int) {
         val transaction = supportFragmentManager.beginTransaction()
-//        hideFragments(transaction) /**/
-        showToast(supportFragmentManager.fragments.size.toString())
+        hideFragments(transaction)
+//        showToast(supportFragmentManager.fragments.size.toString())
         /*重复进入退出视频详情页会导致fragment不断增加*/
 //        when (position) {
 //            0 //首页
@@ -122,47 +122,55 @@ class MainActivity : BaseActivity() {
 //
 //            }
 //        }
-        when (position){
-            0
-            ->{
+        when (position) {
+            0 //首页
+            -> if (mHomeFragment == null) {
                 var cacheMHomeFragment = supportFragmentManager.findFragmentByTag("home")
                 if(cacheMHomeFragment != null){
-                    transaction.show(cacheMHomeFragment)
+                    transaction.remove(cacheMHomeFragment)
                 }
-                else{
-                    mHomeFragment = HomeFragment.getInstance(mTitles[position])
-                    transaction.add(R.id.fl_container, mHomeFragment, "home")
-                }
+                mHomeFragment = HomeFragment.getInstance(mTitles[position])
+                transaction.add(R.id.fl_container, mHomeFragment, "home")
+            } else {
+                transaction.show(mHomeFragment)
             }
-            1->{
+            1 //发现
+            -> if (mDiscoveryFragment == null) {
                 var cacheMDiscoveryFragment = supportFragmentManager.findFragmentByTag("discovery")
                 if(cacheMDiscoveryFragment != null){
-                    transaction.show(cacheMDiscoveryFragment)
+                    transaction.remove(cacheMDiscoveryFragment)
                 }
-                else{
-                    mDiscoveryFragment = DiscoveryFragment.getInstance(mTitles[position])
-                    transaction.add(R.id.fl_container, mDiscoveryFragment, "discovery")
-                }
+                mDiscoveryFragment = DiscoveryFragment.getInstance(mTitles[position])
+                transaction.add(R.id.fl_container, mDiscoveryFragment, "discovery")
+            } else {
+                transaction.show(mDiscoveryFragment)
             }
-            2->{
-                var cacheMMineFragment = supportFragmentManager.findFragmentByTag("hot")
-                if(cacheMMineFragment != null){
-                    transaction.show(cacheMMineFragment)
-                }
-                else{
-                    mHotFragment = HotFragment.getInstance(mTitles[position])
-                    transaction.add(R.id.fl_container, mHotFragment, "hot")
-                }
-            }
-            3->{
-                var cacheMHotFragment = supportFragmentManager.findFragmentByTag("mine")
+            2 //热门
+            -> if ( mHotFragment == null) {
+                var cacheMHotFragment = supportFragmentManager.findFragmentByTag("hot")
                 if(cacheMHotFragment != null){
-                    transaction.show(cacheMHotFragment)
+                    transaction.remove(cacheMHotFragment)
                 }
-                else{
-                    mMineFragment = MineFragment.getInstance(mTitles[position])
-                    transaction.add(R.id.fl_container, mMineFragment, "mine")
+                mHotFragment = HotFragment.getInstance(mTitles[position])
+                transaction.add(R.id.fl_container, mHotFragment, "hot")
+            }
+            else {
+                transaction.show(mHotFragment)
+            }
+
+            3 //我的
+            -> if (mMineFragment == null) {
+                var cacheMMineFragment = supportFragmentManager.findFragmentByTag("mine")
+                if(cacheMMineFragment != null){
+                    transaction.remove(cacheMMineFragment)
                 }
+                mMineFragment = MineFragment.getInstance(mTitles[position])
+                transaction.add(R.id.fl_container, mMineFragment, "mine")
+            } else {
+                transaction.show(mMineFragment)
+            }
+            else -> {
+
             }
         }
         mIndex = position
@@ -190,6 +198,7 @@ class MainActivity : BaseActivity() {
 //            transaction.hide(mMineFragment)
 //        }
         var cacheMHomeFragment = supportFragmentManager.findFragmentByTag("home")
+
         var cacheMDiscoveryFragment = supportFragmentManager.findFragmentByTag("discovery")
         var cacheMMineFragment = supportFragmentManager.findFragmentByTag("hot")
         var cacheMHotFragment = supportFragmentManager.findFragmentByTag("mine")
