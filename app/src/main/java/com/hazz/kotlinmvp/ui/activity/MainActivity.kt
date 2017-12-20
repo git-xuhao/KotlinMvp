@@ -84,8 +84,6 @@ class MainActivity : BaseActivity() {
     private fun switchFragment(position: Int) {
         val transaction = supportFragmentManager.beginTransaction()
         hideFragments(transaction)
-        showToast(supportFragmentManager.fragments.size.toString())
-        /*重复进入退出视频详情页会导致fragment不断增加*/
         when (position) {
             0 //首页
             -> if (mHomeFragment == null) {
