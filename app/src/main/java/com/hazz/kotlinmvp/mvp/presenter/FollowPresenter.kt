@@ -32,7 +32,6 @@ class FollowPresenter : BasePresenter<FollowContract.View>(), FollowContract.Pre
                     }
                 }, { throwable ->
                     mRootView?.apply {
-                        dismissLoading()
                         //处理异常
                         showError(ExceptionHandle.handleException(throwable),ExceptionHandle.errorCode)
                     }

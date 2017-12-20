@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_hot.*
  * Created by xuhao on 2017/12/7.
  * desc: 发现(和热门首页同样的布局）
  */
-class DiscoveryFragment:BaseFragment(){
+class DiscoveryFragment : BaseFragment() {
 
     private val tabList = ArrayList<String>()
 
@@ -49,11 +49,9 @@ class DiscoveryFragment:BaseFragment(){
         /**
          * getSupportFragmentManager() 替换为getChildFragmentManager()
          */
-        mViewPager.adapter = BaseFragmentAdapter(childFragmentManager,fragments,tabList)
+        mViewPager.adapter = BaseFragmentAdapter(childFragmentManager, fragments, tabList)
         mTabLayout.setupWithViewPager(mViewPager)
         TabLayoutHelper.setUpIndicatorWidth(mTabLayout)
-
-
 
 
     }

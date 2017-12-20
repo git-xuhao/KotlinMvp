@@ -168,13 +168,13 @@ class HomeFragment : BaseFragment(), HomeContract.View {
      */
     override fun dismissLoading() {
         mRefreshLayout.finishRefresh()
-        mLayoutStatusView?.showContent()
     }
 
     /**
      * 设置首页数据
      */
     override fun setHomeData(homeBean: HomeBean) {
+        mLayoutStatusView?.showContent()
         Logger.d(homeBean)
 
         // Adapter

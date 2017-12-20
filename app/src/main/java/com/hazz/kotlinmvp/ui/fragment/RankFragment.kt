@@ -63,10 +63,12 @@ class RankFragment : BaseFragment(), RankContract.View {
     }
 
     override fun dismissLoading() {
-        multipleStatusView.showContent()
+
     }
 
     override fun setRankList(itemList: ArrayList<HomeBean.Issue.Item>) {
+        multipleStatusView.showContent()
+
         mAdapter.addData(itemList)
     }
 

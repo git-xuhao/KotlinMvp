@@ -91,12 +91,11 @@ class CategoryDetailActivity : BaseActivity(), CategoryDetailContract.View {
     }
 
     override fun showLoading() {
-//        multipleStatusView.showLoading()
 
     }
 
     override fun dismissLoading() {
-        multipleStatusView.showContent()
+
     }
 
     override fun setCateDetailList(itemList: ArrayList<HomeBean.Issue.Item>) {

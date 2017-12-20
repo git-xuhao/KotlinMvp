@@ -20,8 +20,8 @@ android {
         applicationId "com.hazz.kotlinmvp"
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode 3
-        versionName "1.2"
+        versionCode 4
+        versionName "1.2.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
@@ -76,10 +76,6 @@ android {
     }
 }
 
-//获取时间的方法
-def createDate() {
-    return new Date().format("MMdd_HHmm", TimeZone.getTimeZone("GMT+8"))
-}
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')

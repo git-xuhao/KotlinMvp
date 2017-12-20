@@ -28,7 +28,6 @@ class RankPresenter : BasePresenter<RankContract.View>(), RankContract.Presenter
                     }
                 }, { throwable ->
                     mRootView?.apply {
-                        dismissLoading()
                         //处理异常
                         showError(ExceptionHandle.handleException(throwable),ExceptionHandle.errorCode)
                     }

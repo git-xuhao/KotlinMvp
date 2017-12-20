@@ -62,15 +62,18 @@ class HotFragment : BaseFragment(), HotTabContract.View {
 
 
     override fun showLoading() {
+      multipleStatusView.showLoading()
     }
 
     override fun dismissLoading() {
+
     }
 
     /**
      * 设置 TabInfo
      */
     override fun setTabInfo(tabInfoBean: TabInfoBean) {
+        multipleStatusView.showContent()
 
         tabInfoBean.tabInfo.tabList.mapTo(mTabTitleList) { it.name }
         tabInfoBean.tabInfo.tabList.mapTo(mFragmentList) { RankFragment.getInstance(it.apiUrl) }

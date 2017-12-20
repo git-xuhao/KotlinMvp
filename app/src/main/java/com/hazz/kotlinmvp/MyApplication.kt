@@ -72,8 +72,6 @@ class MyApplication : Application(){
                 return BuildConfig.DEBUG
             }
         })
-        //测试阶段建议设置成true，发布时设置为false。
-        CrashReport.initCrashReport(applicationContext, Constants.BUGLY_APPID, false)
     }
 
 

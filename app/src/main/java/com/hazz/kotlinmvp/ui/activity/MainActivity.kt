@@ -84,51 +84,12 @@ class MainActivity : BaseActivity() {
     private fun switchFragment(position: Int) {
         val transaction = supportFragmentManager.beginTransaction()
         hideFragments(transaction)
-//        showToast(supportFragmentManager.fragments.size.toString())
+        showToast(supportFragmentManager.fragments.size.toString())
         /*重复进入退出视频详情页会导致fragment不断增加*/
-//        when (position) {
-//            0 //首页
-//            -> if (mHomeFragment == null) {
-//
-//                mHomeFragment = HomeFragment.getInstance(mTitles[position])
-//                transaction.add(R.id.fl_container, mHomeFragment, "home")
-//            } else {
-//                transaction.show(mHomeFragment)
-//            }
-//            1 //发现
-//            -> if (mDiscoveryFragment == null) {
-//                mDiscoveryFragment = DiscoveryFragment.getInstance(mTitles[position])
-//                transaction.add(R.id.fl_container, mDiscoveryFragment, "discovery")
-//            } else {
-//                transaction.show(mDiscoveryFragment)
-//            }
-//            2 //热门
-//            -> if ( mHotFragment == null) {
-//                mHotFragment = HotFragment.getInstance(mTitles[position])
-//                transaction.add(R.id.fl_container, mHotFragment, "hot")
-//            }
-//            else {
-//                transaction.show(mHotFragment)
-//            }
-//
-//            3 //我的
-//            -> if (mMineFragment == null) {
-//                mMineFragment = MineFragment.getInstance(mTitles[position])
-//                transaction.add(R.id.fl_container, mMineFragment, "mine")
-//            } else {
-//                transaction.show(mMineFragment)
-//            }
-//            else -> {
-//
-//            }
-//        }
         when (position) {
             0 //首页
             -> if (mHomeFragment == null) {
-                var cacheMHomeFragment = supportFragmentManager.findFragmentByTag("home")
-                if(cacheMHomeFragment != null){
-                    transaction.remove(cacheMHomeFragment)
-                }
+
                 mHomeFragment = HomeFragment.getInstance(mTitles[position])
                 transaction.add(R.id.fl_container, mHomeFragment, "home")
             } else {
@@ -136,10 +97,6 @@ class MainActivity : BaseActivity() {
             }
             1 //发现
             -> if (mDiscoveryFragment == null) {
-                var cacheMDiscoveryFragment = supportFragmentManager.findFragmentByTag("discovery")
-                if(cacheMDiscoveryFragment != null){
-                    transaction.remove(cacheMDiscoveryFragment)
-                }
                 mDiscoveryFragment = DiscoveryFragment.getInstance(mTitles[position])
                 transaction.add(R.id.fl_container, mDiscoveryFragment, "discovery")
             } else {
@@ -147,10 +104,6 @@ class MainActivity : BaseActivity() {
             }
             2 //热门
             -> if ( mHotFragment == null) {
-                var cacheMHotFragment = supportFragmentManager.findFragmentByTag("hot")
-                if(cacheMHotFragment != null){
-                    transaction.remove(cacheMHotFragment)
-                }
                 mHotFragment = HotFragment.getInstance(mTitles[position])
                 transaction.add(R.id.fl_container, mHotFragment, "hot")
             }
@@ -160,10 +113,6 @@ class MainActivity : BaseActivity() {
 
             3 //我的
             -> if (mMineFragment == null) {
-                var cacheMMineFragment = supportFragmentManager.findFragmentByTag("mine")
-                if(cacheMMineFragment != null){
-                    transaction.remove(cacheMMineFragment)
-                }
                 mMineFragment = MineFragment.getInstance(mTitles[position])
                 transaction.add(R.id.fl_container, mMineFragment, "mine")
             } else {
@@ -173,6 +122,7 @@ class MainActivity : BaseActivity() {
 
             }
         }
+
         mIndex = position
         tab_layout.currentTab = mIndex
         transaction.commitAllowingStateLoss()
@@ -184,53 +134,29 @@ class MainActivity : BaseActivity() {
      * @param transaction transaction
      */
     private fun hideFragments(transaction: FragmentTransaction) {
-        /*mHomeFragment 丢失问题应该用全局查找替代*/
-//        if (null != mHomeFragment) {
-//            transaction.hide(mHomeFragment)
-//        }
-//        if (null != mDiscoveryFragment) {
-//            transaction.hide(mDiscoveryFragment)
-//        }
-//        if (null != mHotFragment) {
-//            transaction.hide(mHotFragment)
-//        }
-//        if (null != mMineFragment) {
-//            transaction.hide(mMineFragment)
-//        }
-        var cacheMHomeFragment = supportFragmentManager.findFragmentByTag("home")
-
-        var cacheMDiscoveryFragment = supportFragmentManager.findFragmentByTag("discovery")
-        var cacheMMineFragment = supportFragmentManager.findFragmentByTag("hot")
-        var cacheMHotFragment = supportFragmentManager.findFragmentByTag("mine")
-        if (null != cacheMHomeFragment) {
-            transaction.hide(cacheMHomeFragment)
+        if (null != mHomeFragment) {
+            transaction.hide(mHomeFragment)
         }
-        if (null != cacheMDiscoveryFragment) {
-            transaction.hide(cacheMDiscoveryFragment)
+        if (null != mDiscoveryFragment) {
+            transaction.hide(mDiscoveryFragment)
         }
-        if (null != cacheMMineFragment) {
-            transaction.hide(cacheMMineFragment)
+        if (null != mHotFragment) {
+            transaction.hide(mHotFragment)
         }
-        if (null != cacheMHotFragment) {
-            transaction.hide(cacheMHotFragment)
+        if (null != mMineFragment) {
+            transaction.hide(mMineFragment)
         }
-
 
     }
 
 
     override fun onSaveInstanceState(outState: Bundle) {
 //        showToast("onSaveInstanceState->"+mIndex)
-        super.onSaveInstanceState(outState)
+//        super.onSaveInstanceState(outState)
         //记录fragment的位置,防止崩溃 activity被系统回收时，fragment错乱
         if (tab_layout != null) {
             outState.putInt("currTabIndex", mIndex)
         }
-    }
-    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
-//        showToast("onRestoreInstanceState->"+mIndex)
-//        switchFragment(savedInstanceState!!.getInt( mIndex.toString() ));
-//        super.onRestoreInstanceState(savedInstanceState)
     }
 
     override fun initView() {

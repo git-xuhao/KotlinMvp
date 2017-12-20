@@ -21,19 +21,16 @@ class CategoryDetailPresenter:BasePresenter<CategoryDetailContract.View>(),Categ
      */
     override fun getCategoryDetailList(id: Long) {
         checkViewAttached()
-        mRootView?.showLoading()
         val disposable= categoryDetailModel.getCategoryDetailList(id)
                 .subscribe({
                     issue ->
                     mRootView?.apply {
-                        dismissLoading()
                         nextPageUrl = issue.nextPageUrl
                         setCateDetailList(issue.itemList)
                     }
                 },{
                     throwable ->
                     mRootView?.apply {
-                        dismissLoading()
                         showError(throwable.toString())
                     }
                 })

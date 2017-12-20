@@ -16,6 +16,7 @@ class HotTabPresenter:BasePresenter<HotTabContract.View>(),HotTabContract.Presen
 
     override fun getTabInfo() {
         checkViewAttached()
+        mRootView?.showLoading()
         val disposable = hotTabModel.getTabInfo()
                 .subscribe({
                     tabInfo->
