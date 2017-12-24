@@ -36,7 +36,7 @@ class MainActivity : BaseActivity() {
     private var mHomeFragment: HomeFragment? = null
     private var mDiscoveryFragment: DiscoveryFragment? = null
     private var mHotFragment: HotFragment? = null
-    private var mMineFragment: MineFragment?=null
+    private var mMineFragment: MineFragment? = null
 
     //默认为0
     private var mIndex = 0
@@ -56,7 +56,6 @@ class MainActivity : BaseActivity() {
     override fun layoutId(): Int {
         return R.layout.activity_main
     }
-
 
 
     //初始化底部菜单
@@ -84,40 +83,33 @@ class MainActivity : BaseActivity() {
     private fun switchFragment(position: Int) {
         val transaction = supportFragmentManager.beginTransaction()
         hideFragments(transaction)
-        showToast(supportFragmentManager.fragments.size.toString())
-        /*重复进入退出视频详情页会导致fragment不断增加*/
         when (position) {
-            0 //首页
-            -> if (mHomeFragment == null) {
-
-                mHomeFragment = HomeFragment.getInstance(mTitles[position])
-                transaction.add(R.id.fl_container, mHomeFragment, "home")
-            } else {
-                transaction.show(mHomeFragment)
+            0 // 首页
+            -> mHomeFragment?.let {
+                transaction.show(it)
+            } ?: HomeFragment.getInstance(mTitles[position]).let {
+                mHomeFragment = it
+                transaction.add(R.id.fl_container, it, "home")
             }
-            1 //发现
-            -> if (mDiscoveryFragment == null) {
-                mDiscoveryFragment = DiscoveryFragment.getInstance(mTitles[position])
-                transaction.add(R.id.fl_container, mDiscoveryFragment, "discovery")
-            } else {
-                transaction.show(mDiscoveryFragment)
-            }
-            2 //热门
-            -> if ( mHotFragment == null) {
-                mHotFragment = HotFragment.getInstance(mTitles[position])
-                transaction.add(R.id.fl_container, mHotFragment, "hot")
-            }
-            else {
-                transaction.show(mHotFragment)
-            }
-
+            1  //发现
+            -> mDiscoveryFragment?.let {
+                transaction.show(it)
+            } ?: DiscoveryFragment.getInstance(mTitles[position]).let {
+                mDiscoveryFragment = it
+                transaction.add(R.id.fl_container, it, "discovery") }
+            2  //热门
+            -> mHotFragment?.let {
+                transaction.show(it)
+            } ?: HotFragment.getInstance(mTitles[position]).let {
+                mHotFragment = it
+                transaction.add(R.id.fl_container, it, "hot") }
             3 //我的
-            -> if (mMineFragment == null) {
-                mMineFragment = MineFragment.getInstance(mTitles[position])
-                transaction.add(R.id.fl_container, mMineFragment, "mine")
-            } else {
-                transaction.show(mMineFragment)
-            }
+            -> mMineFragment?.let {
+                transaction.show(it)
+            } ?: MineFragment.getInstance(mTitles[position]).let {
+                mMineFragment = it
+                transaction.add(R.id.fl_container, it, "mine") }
+
             else -> {
 
             }
@@ -134,19 +126,10 @@ class MainActivity : BaseActivity() {
      * @param transaction transaction
      */
     private fun hideFragments(transaction: FragmentTransaction) {
-        if (null != mHomeFragment) {
-            transaction.hide(mHomeFragment)
-        }
-        if (null != mDiscoveryFragment) {
-            transaction.hide(mDiscoveryFragment)
-        }
-        if (null != mHotFragment) {
-            transaction.hide(mHotFragment)
-        }
-        if (null != mMineFragment) {
-            transaction.hide(mMineFragment)
-        }
-
+        mHomeFragment?.let { transaction.hide(it) }
+        mDiscoveryFragment?.let { transaction.hide(it) }
+        mHotFragment?.let { transaction.hide(it) }
+        mMineFragment?.let { transaction.hide(it) }
     }
 
 
@@ -166,6 +149,7 @@ class MainActivity : BaseActivity() {
     override fun initData() {
 
     }
+
     override fun start() {
 
     }
@@ -184,7 +168,6 @@ class MainActivity : BaseActivity() {
         }
         return super.onKeyDown(keyCode, event)
     }
-
 
 
 }

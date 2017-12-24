@@ -16,7 +16,7 @@ import com.hazz.kotlinmvp.view.recyclerview.ViewHolder
 
 abstract class CommonAdapter<T>(var mContext: Context, var mData: ArrayList<T>, //条目布局
                                 private var mLayoutId: Int) : RecyclerView.Adapter<ViewHolder>() {
-    protected var mInflater: LayoutInflater?=null
+    protected var mInflater: LayoutInflater? = null
     private var mTypeSupport: MultipleType<T>? = null
 
     //使用接口回调点击事件
@@ -52,12 +52,21 @@ abstract class CommonAdapter<T>(var mContext: Context, var mData: ArrayList<T>, 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //绑定数据
         bindData(holder, mData[position], position)
+
+//        if (mItemClickListener != null) {
+//            holder.itemView.setOnClickListener { mItemClickListener!!.onItemClick(mData[position], position) }
+//        }
+//        //长按点击事件
+//        if (mItemLongClickListener != null) {
+//            holder.itemView.setOnLongClickListener { mItemLongClickListener!!.onItemLongClick(mData[position], position) }
+//        }
         //条目点击事件
-        if (mItemClickListener != null) {
+        mItemClickListener?.let {
             holder.itemView.setOnClickListener { mItemClickListener!!.onItemClick(mData[position], position) }
         }
+
         //长按点击事件
-        if (mItemLongClickListener != null) {
+        mItemLongClickListener?.let {
             holder.itemView.setOnLongClickListener { mItemLongClickListener!!.onItemLongClick(mData[position], position) }
         }
     }
