@@ -14,7 +14,7 @@ class CategoryDetailModel {
     /**
      * 获取分类下的 List 数据
      */
-    fun getCategoryDetailList(id: Long): Observable<HomeBean.Issue> {
+    fun  getCategoryDetailList(id: Long): Observable<HomeBean.Issue> {
         return RetrofitManager.service.getCategoryDetailList(id)
                 .compose(SchedulerUtils.ioToMain())
     }

@@ -277,7 +277,7 @@ class WatchHistoryUtils {
                 return editor.commit()
             }
             val baos = ByteArrayOutputStream()
-            var oos: ObjectOutputStream? = null
+            var oos: ObjectOutputStream?
             try {
                 oos = ObjectOutputStream(baos)
                 oos.writeObject(`object`)

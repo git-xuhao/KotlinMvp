@@ -44,16 +44,16 @@ class WatchHistoryActivity : BaseActivity() {
         mRecyclerView.layoutManager = LinearLayoutManager(this)
         mRecyclerView.adapter = mAdapter
 
-        if(itemListData.size>1){
+        if (itemListData.size > 0) {
             multipleStatusView.showContent()
-        }else{
+        } else {
             multipleStatusView.showEmpty()
         }
 
         //状态栏透明和间距处理
         StatusBarUtil.darkMode(this)
         StatusBarUtil.setPaddingSmart(this, toolbar)
-        StatusBarUtil.setPaddingSmart(this,mRecyclerView)
+        StatusBarUtil.setPaddingSmart(this, mRecyclerView)
 
     }
 
@@ -64,9 +64,9 @@ class WatchHistoryActivity : BaseActivity() {
     /**
      * 查询观看的历史记录
      */
-    private fun queryWatchHistory():ArrayList<HomeBean.Issue.Item> {
+    private fun queryWatchHistory(): ArrayList<HomeBean.Issue.Item> {
         val watchList = ArrayList<HomeBean.Issue.Item>()
-        val hisAll = WatchHistoryUtils.getAll(Constants.FILE_WATCH_HISTORY_NAME,MyApplication.context) as Map<*, *>
+        val hisAll = WatchHistoryUtils.getAll(Constants.FILE_WATCH_HISTORY_NAME, MyApplication.context) as Map<*, *>
         //将key排序升序
         val keys = hisAll.keys.toTypedArray()
         Arrays.sort(keys)
@@ -75,7 +75,7 @@ class WatchHistoryActivity : BaseActivity() {
         val hisLength = if (keyLength > HISTORY_MAX) HISTORY_MAX else keyLength
         // 反序列化和遍历 添加观看的历史记录
         (1..hisLength).mapTo(watchList) {
-            WatchHistoryUtils.getObject(Constants.FILE_WATCH_HISTORY_NAME,MyApplication.context,
+            WatchHistoryUtils.getObject(Constants.FILE_WATCH_HISTORY_NAME, MyApplication.context,
                     keys[keyLength - it] as String) as HomeBean.Issue.Item
         }
 
