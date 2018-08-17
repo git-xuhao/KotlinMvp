@@ -7,6 +7,7 @@ import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.base.BaseActivity
 import com.hazz.kotlinmvp.mvp.model.bean.HomeBean
 import com.hazz.kotlinmvp.ui.adapter.WatchHistoryAdapter
+import com.hazz.kotlinmvp.utils.Preference
 import com.hazz.kotlinmvp.utils.StatusBarUtil
 import com.hazz.kotlinmvp.utils.WatchHistoryUtils
 import kotlinx.android.synthetic.main.activity_about.*
@@ -25,7 +26,7 @@ class WatchHistoryActivity : BaseActivity() {
     private var itemListData = ArrayList<HomeBean.Issue.Item>()
 
     companion object {
-        private val HISTORY_MAX = 20
+        private const val HISTORY_MAX = 20
     }
 
     override fun layoutId(): Int = R.layout.layout_watch_history
@@ -78,7 +79,7 @@ class WatchHistoryActivity : BaseActivity() {
             WatchHistoryUtils.getObject(Constants.FILE_WATCH_HISTORY_NAME, MyApplication.context,
                     keys[keyLength - it] as String) as HomeBean.Issue.Item
         }
-
+        
         return watchList
     }
 

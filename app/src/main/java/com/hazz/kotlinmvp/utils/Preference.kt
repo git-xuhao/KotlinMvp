@@ -16,11 +16,26 @@ class Preference<T>(val name:String, private val default:T) {
 
     companion object {
         private const val file_name = "kotlin_mvp_file"
+
+        private val prefs: SharedPreferences by lazy {
+            MyApplication.context.getSharedPreferences(file_name, Context.MODE_PRIVATE)
+        }
+        /**
+         * 删除全部数据
+         */
+        fun clearPreference(){
+            prefs.edit().clear().apply()
+        }
+
+        /**
+         * 根据key删除存储数据
+         */
+        fun clearPreference(key : String){
+            prefs.edit().remove(key).apply()
+        }
     }
 
-    private val prefs: SharedPreferences by lazy {
-        MyApplication.context.getSharedPreferences(file_name, Context.MODE_PRIVATE)
-    }
+
 
 
     operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
@@ -56,19 +71,7 @@ class Preference<T>(val name:String, private val default:T) {
         return res as T
     }
 
-    /**
-     * 删除全部数据
-     */
-    fun clearPreference(){
-        prefs.edit().clear().apply()
-    }
 
-    /**
-     * 根据key删除存储数据
-     */
-    fun clearPreference(key : String){
-        prefs.edit().remove(key).apply()
-    }
 
     /**
      * 序列化对象
