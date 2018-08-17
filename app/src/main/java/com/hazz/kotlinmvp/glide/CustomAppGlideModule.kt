@@ -24,10 +24,10 @@ class CustomAppGlideModule : AppGlideModule() {
      * @param context
      * @param builder
      */
-    override fun applyOptions(context: Context?, builder: GlideBuilder?) {
+    override fun applyOptions(context: Context, builder: GlideBuilder) {
 
         //重新设置内存限制
-        builder!!.setMemoryCache(LruResourceCache(10 * 1024 * 1024))
+        builder.setMemoryCache(LruResourceCache(10 * 1024 * 1024))
 
     }
 
@@ -51,7 +51,7 @@ class CustomAppGlideModule : AppGlideModule() {
      * @param glide
      * @param registry
      */
-    override fun registerComponents(context: Context?, glide: Glide?, registry: Registry?) {
-        registry!!.append(String::class.java, InputStream::class.java, CustomBaseGlideUrlLoader.Factory())
+    override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
+        registry.append(String::class.java, InputStream::class.java, CustomBaseGlideUrlLoader.Factory())
     }
 }

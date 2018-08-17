@@ -2,7 +2,8 @@ package com.hazz.kotlinmvp.net
 
 import com.hazz.kotlinmvp.MyApplication
 import com.hazz.kotlinmvp.api.ApiService
-import com.hazz.kotlinmvp.api.UriConstant
+import com.hazz.kotlinmvp.api.UrlConstant
+import com.hazz.kotlinmvp.utils.AppUtils
 import com.hazz.kotlinmvp.utils.NetworkUtil
 import com.hazz.kotlinmvp.utils.Preference
 import okhttp3.*
@@ -20,13 +21,9 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitManager{
 
-    private var client: OkHttpClient? = null
-    private var retrofit: Retrofit? = null
-
-
-
-
-    val service: ApiService by lazy { getRetrofit()!!.create(ApiService::class.java)}
+    val service: ApiService by lazy (LazyThreadSafetyMode.SYNCHRONIZED){
+        getRetrofit().create(ApiService::class.java)
+    }
 
     private var token:String by Preference("token","")
 
@@ -39,8 +36,8 @@ object RetrofitManager{
             val request: Request
             val modifiedUrl = originalRequest.url().newBuilder()
                     // Provide your custom parameter here
-                    .addQueryParameter("phoneSystem", "")
-                    .addQueryParameter("phoneModel", "")
+                    .addQueryParameter("udid", "d2807c895f0348a180148c9dfa6f2feeac0781b5")
+                    .addQueryParameter("deviceModel", AppUtils.getMobileModel())
                     .build()
             request = originalRequest.newBuilder().url(modifiedUrl).build()
             chain.proceed(request)
@@ -93,41 +90,37 @@ object RetrofitManager{
         }
     }
 
-    private fun getRetrofit(): Retrofit? {
-        if (retrofit == null) {
-            synchronized(RetrofitManager::class.java) {
-                if (retrofit == null) {
-                    //添加一个log拦截器,打印所有的log
-                    val httpLoggingInterceptor = HttpLoggingInterceptor()
-                    //可以设置请求过滤的水平,body,basic,headers
-                    httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+    private fun getRetrofit(): Retrofit {
+        // 获取retrofit的实例
+        return Retrofit.Builder()
+                .baseUrl(UrlConstant.BASE_URL)  //自己配置
+                .client(getOkHttpClient())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
 
-                    //设置 请求的缓存的大小跟位置
-                    val cacheFile = File(MyApplication.context.cacheDir, "cache")
-                    val cache = Cache(cacheFile, 1024 * 1024 * 50) //50Mb 缓存的大小
+    }
 
-                    client = OkHttpClient.Builder()
-                            .addInterceptor(addQueryParameterInterceptor())  //参数添加
-                            .addInterceptor(addHeaderInterceptor()) // token过滤
-//                            .addInterceptor(addCacheInterceptor())
-                            .addInterceptor(httpLoggingInterceptor) //日志,所有的请求响应度看到
-                            .cache(cache)  //添加缓存
-                            .connectTimeout(60L, TimeUnit.SECONDS)
-                            .readTimeout(60L, TimeUnit.SECONDS)
-                            .writeTimeout(60L, TimeUnit.SECONDS)
-                            .build()
+    private fun getOkHttpClient(): OkHttpClient {
+        //添加一个log拦截器,打印所有的log
+        val httpLoggingInterceptor = HttpLoggingInterceptor()
+        //可以设置请求过滤的水平,body,basic,headers
+        httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
-                    // 获取retrofit的实例
-                    retrofit = Retrofit.Builder()
-                            .baseUrl(UriConstant.BASE_URL)  //自己配置
-                            .client(client!!)
-                            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build()
-                }
-            }
-        }
-        return retrofit
+        //设置 请求的缓存的大小跟位置
+        val cacheFile = File(MyApplication.context.cacheDir, "cache")
+        val cache = Cache(cacheFile, 1024 * 1024 * 50) //50Mb 缓存的大小
+
+        return OkHttpClient.Builder()
+                .addInterceptor(addQueryParameterInterceptor())  //参数添加
+                .addInterceptor(addHeaderInterceptor()) // token过滤
+//              .addInterceptor(addCacheInterceptor())
+                .addInterceptor(httpLoggingInterceptor) //日志,所有的请求响应度看到
+                .cache(cache)  //添加缓存
+                .connectTimeout(60L, TimeUnit.SECONDS)
+                .readTimeout(60L, TimeUnit.SECONDS)
+                .writeTimeout(60L, TimeUnit.SECONDS)
+                .build()
     }
 
 

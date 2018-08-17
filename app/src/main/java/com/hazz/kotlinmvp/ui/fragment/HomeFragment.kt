@@ -134,15 +134,15 @@ class HomeFragment : BaseFragment(), HomeContract.View {
         mLayoutStatusView = multipleStatusView
 
         //状态栏透明和间距处理
-        StatusBarUtil.darkMode(activity)
-        StatusBarUtil.setPaddingSmart(activity, toolbar)
+        activity?.let { StatusBarUtil.darkMode(it) }
+        activity?.let { StatusBarUtil.setPaddingSmart(it, toolbar) }
 
     }
 
     private fun openSearchActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, iv_search, iv_search.transitionName)
-            startActivity(Intent(activity, SearchActivity::class.java), options.toBundle())
+            val options = activity?.let { ActivityOptionsCompat.makeSceneTransitionAnimation(it, iv_search, iv_search.transitionName) }
+            startActivity(Intent(activity, SearchActivity::class.java), options?.toBundle())
         } else {
             startActivity(Intent(activity, SearchActivity::class.java))
         }
@@ -178,7 +178,7 @@ class HomeFragment : BaseFragment(), HomeContract.View {
         Logger.d(homeBean)
 
         // Adapter
-        mHomeAdapter = HomeAdapter(activity, homeBean.issueList[0].itemList)
+        mHomeAdapter = activity?.let { HomeAdapter(it, homeBean.issueList[0].itemList) }
         //设置 banner 大小
         mHomeAdapter?.setBannerSize(homeBean.issueList[0].count)
 

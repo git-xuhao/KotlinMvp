@@ -30,8 +30,8 @@ object DisplayManager {
 
 
     //UI图的大小
-    private val STANDARD_WIDTH = 1080
-    private val STANDARD_HEIGHT = 1920
+    private const val STANDARD_WIDTH = 1080
+    private const val STANDARD_HEIGHT = 1920
 
 
     fun getScreenWidth(): Int? {

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.ActivityManager
 import android.content.Context
 import android.content.pm.PackageManager
+import android.os.Build
 import java.security.MessageDigest
 
 /**
@@ -142,6 +143,12 @@ class AppUtils private constructor() {
             return (mi.availMem / (1024 * 1024)).toInt()
         }
 
+
+        fun getMobileModel(): String {
+            var model: String? = Build.MODEL
+            model = model?.trim { it <= ' ' } ?: ""
+            return model
+        }
 
         /**
          * 获取手机系统SDK版本

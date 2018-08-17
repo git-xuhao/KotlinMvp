@@ -37,8 +37,8 @@ class MineFragment : BaseFragment(),View.OnClickListener {
 
     override fun initView() {
         //状态栏透明和间距处理
-        StatusBarUtil.darkMode(activity)
-        StatusBarUtil.setPaddingSmart(activity, toolbar)
+        activity?.let { StatusBarUtil.darkMode(it) }
+        activity?.let { StatusBarUtil.setPaddingSmart(it, toolbar) }
 
         tv_view_homepage.setOnClickListener(this)
         iv_avatar.setOnClickListener(this)

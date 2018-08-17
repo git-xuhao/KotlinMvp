@@ -33,10 +33,10 @@ class BaseFragmentAdapter : FragmentPagerAdapter {
         this.mTitles = mTitles
         if (this.fragmentList != null) {
             val ft = fm.beginTransaction()
-            for (f in this.fragmentList!!) {
-                ft!!.remove(f)
+            fragmentList?.forEach {
+                ft.remove(it)
             }
-            ft!!.commitAllowingStateLoss()
+            ft?.commitAllowingStateLoss()
             fm.executePendingTransactions()
         }
         this.fragmentList = fragments

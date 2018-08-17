@@ -260,7 +260,7 @@ class ExpandableTextView : LinearLayout, View.OnClickListener {
             return textHeight + padding
         }
 
-        private fun getDrawable(context: Context, @DrawableRes resId: Int): Drawable {
+        private fun getDrawable(context: Context, @DrawableRes resId: Int): Drawable? {
             val resources = context.resources
             return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 resources.getDrawable(resId, context.theme)

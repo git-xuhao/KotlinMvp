@@ -2,7 +2,6 @@
 
 package com.hazz.kotlinmvp.glide
 
-import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapShader
@@ -13,7 +12,6 @@ import android.graphics.Shader
 
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
-import com.hazz.kotlinmvp.MyApplication
 
 import java.security.MessageDigest
 
@@ -27,7 +25,7 @@ import java.security.MessageDigest
  *
  */
 
-class GlideRoundTransform @JvmOverloads constructor(context: Context = MyApplication.context, dp: Int = 4) : BitmapTransformation(context) {
+class GlideRoundTransform @JvmOverloads constructor(dp: Int = 4) : BitmapTransformation() {
 
     private var radius = 0f
 

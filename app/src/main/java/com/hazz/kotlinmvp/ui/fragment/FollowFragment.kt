@@ -28,7 +28,7 @@ class FollowFragment : BaseFragment(), FollowContract.View {
 
     private val mPresenter by lazy { FollowPresenter() }
 
-    private val mFollowAdapter by lazy { FollowAdapter(activity,itemList) }
+    private val mFollowAdapter by lazy { activity?.let { FollowAdapter(it,itemList) } }
 
 
     /**
@@ -91,7 +91,7 @@ class FollowFragment : BaseFragment(), FollowContract.View {
     override fun setFollowInfo(issue: HomeBean.Issue) {
         loadingMore = false
         itemList = issue.itemList
-        mFollowAdapter.addData(itemList)
+        mFollowAdapter?.addData(itemList)
     }
 
     /**

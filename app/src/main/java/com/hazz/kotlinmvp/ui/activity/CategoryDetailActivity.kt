@@ -87,7 +87,7 @@ class CategoryDetailActivity : BaseActivity(), CategoryDetailContract.View {
 
     override fun start() {
         //获取当前分类列表
-        mPresenter.getCategoryDetailList(categoryData?.id!!)
+        categoryData?.id?.let { mPresenter.getCategoryDetailList(it) }
     }
 
     override fun showLoading() {

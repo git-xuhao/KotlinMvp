@@ -1,5 +1,6 @@
 package com.hazz.kotlinmvp.ui.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.FragmentTransaction
 import android.view.KeyEvent
@@ -133,6 +134,7 @@ class MainActivity : BaseActivity() {
     }
 
 
+    @SuppressLint("MissingSuperCall")
     override fun onSaveInstanceState(outState: Bundle) {
 //        showToast("onSaveInstanceState->"+mIndex)
 //        super.onSaveInstanceState(outState)

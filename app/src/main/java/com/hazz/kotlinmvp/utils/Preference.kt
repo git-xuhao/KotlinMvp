@@ -15,7 +15,7 @@ class Preference<T>(val name:String, private val default:T) {
 
 
     companion object {
-        private val file_name = "kotlin_mvp_file"
+        private const val file_name = "kotlin_mvp_file"
     }
 
     private val prefs: SharedPreferences by lazy {

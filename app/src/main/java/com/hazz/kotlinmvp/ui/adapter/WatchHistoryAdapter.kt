@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityOptionsCompat
+import android.support.v4.content.ContextCompat
 import android.support.v4.util.Pair
 import android.view.View
 import android.widget.ImageView
@@ -42,7 +43,7 @@ class WatchHistoryAdapter(context: Context, dataList: ArrayList<HomeBean.Issue.I
                 }
             })
         }
-        holder.getView<TextView>(R.id.tv_title).setTextColor(mContext.resources.getColor(R.color.color_black))
+        holder.getView<TextView>(R.id.tv_title).setTextColor(ContextCompat.getColor(mContext,R.color.color_black))
         holder.setOnItemClickListener(listener = View.OnClickListener {
             goToVideoPlayer(mContext as Activity, holder.getView(R.id.iv_video_small_card), data)
         })
@@ -58,7 +59,7 @@ class WatchHistoryAdapter(context: Context, dataList: ArrayList<HomeBean.Issue.I
     private fun goToVideoPlayer(activity: Activity, view: View, itemData: HomeBean.Issue.Item) {
         val intent = Intent(activity, VideoDetailActivity::class.java)
         intent.putExtra(Constants.BUNDLE_VIDEO_DATA, itemData)
-        intent.putExtra(VideoDetailActivity.Companion.TRANSITION, true)
+        intent.putExtra(VideoDetailActivity.TRANSITION, true)
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             val pair = Pair<View, String>(view, VideoDetailActivity.IMG_TRANSITION)
             val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(

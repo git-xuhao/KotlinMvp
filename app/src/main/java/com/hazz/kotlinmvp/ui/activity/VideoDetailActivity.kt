@@ -44,8 +44,8 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
 
 
     companion object {
-        val IMG_TRANSITION = "IMG_TRANSITION"
-        val TRANSITION = "TRANSITION"
+        const val IMG_TRANSITION = "IMG_TRANSITION"
+        const val TRANSITION = "TRANSITION"
     }
 
 

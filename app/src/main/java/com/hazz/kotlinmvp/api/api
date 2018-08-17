@@ -11,7 +11,7 @@ http://baobab.kaiyanapp.com/api/v4/video/related?id=xxx
 http://baobab.kaiyanapp.com/api/v4/categories
 
 //获取分类详情List
-http://baobab.kaiyanapp.com/api/v4/categories/videoList?id=xxx
+http://baobab.kaiyanapp.com/api/v4/categories/videoList?id=xxx&udid=xxx
 
 //获取排行榜的 Info
 http://baobab.kaiyanapp.com/api/v4/rankList

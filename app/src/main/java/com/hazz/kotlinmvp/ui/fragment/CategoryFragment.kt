@@ -26,7 +26,7 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
 
     private val mPresenter by lazy { CategoryPresenter() }
 
-    private val mAdapter by lazy { CategoryAdapter(activity, mCategoryList, R.layout.item_category) }
+    private val mAdapter by lazy { activity?.let { CategoryAdapter(it, mCategoryList, R.layout.item_category) } }
 
     private var mTitle: String? = null
     private var mCategoryList = ArrayList<CategoryBean>()
@@ -96,7 +96,7 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
      */
     override fun showCategory(categoryList: ArrayList<CategoryBean>) {
         mCategoryList = categoryList
-        mAdapter.setData(mCategoryList)
+        mAdapter?.setData(mCategoryList)
 
     }
 

@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.classic.common.MultipleStatusView
 import com.hazz.kotlinmvp.MyApplication
-import com.hazz.kotlinmvp.showToast
 
 /**
  * @author Xuhao
@@ -31,8 +30,8 @@ import com.hazz.kotlinmvp.showToast
      */
     protected var mLayoutStatusView: MultipleStatusView? = null
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(getLayoutId(),null)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(getLayoutId(),null)
     }
 
 
@@ -44,7 +43,7 @@ import com.hazz.kotlinmvp.showToast
         }
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         isViewPrepare = true
         initView()
@@ -83,6 +82,6 @@ import com.hazz.kotlinmvp.showToast
 
     override fun onDestroy() {
         super.onDestroy()
-        MyApplication.getRefWatcher(activity)?.watch(activity)
+        activity?.let { MyApplication.getRefWatcher(it)?.watch(activity) }
     }
 }
