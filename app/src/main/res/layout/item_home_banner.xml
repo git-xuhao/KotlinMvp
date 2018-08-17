@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="230dp"
         android:scaleType="fitXY"
-        app:banner_indicatorGravity="bottom|center_horizontal"
+        app:banner_indicatorGravity="bottom|right"
         app:banner_placeholderDrawable="@drawable/placeholder_banner"
         app:banner_pointAutoPlayInterval="3000"
         app:banner_tipTextColor="@color/color_title_bg"
