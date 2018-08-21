@@ -81,6 +81,12 @@ Kotlin 团队为 Android 开发提供了一套超越标准语言功能的工具�
 
 **[最新记录请点击查看](https://github.com/git-xuhao/KotlinMvp/releases)**
 
+**v1.3.0**
+
+ - Kotlin版本升级，优化 kotlin 用法；
+ - 修复分类详情老接口不能使用问题(原 api 有改动）;
+ - 优化代码；
+
 **v1.1**
 
  - 去除无用代码，添加观看记录功能。
