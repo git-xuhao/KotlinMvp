@@ -70,22 +70,6 @@
 
     </style>
 
-
-    <style name="PermissionBlueStyle">
-        <!-- 标题文字颜色 -->
-        <item name="PermissionTitleColor">@color/color_blue_dark</item>
-        <!-- 描述文字颜色 -->
-        <item name="PermissionMsgColor">@color/color_blue_dark</item>
-        <!-- 权限文字颜色 -->
-        <item name="PermissionItemTextColor">@color/color_blue_dark</item>
-        <!-- 按钮背景颜色 -->
-        <item name="PermissionButtonBackground">@drawable/shape_btn_blue</item>
-        <!-- 对话框背景 -->
-        <item name="PermissionBackround">@drawable/shape_bg_white</item>
-        <!-- 按钮文字颜色 -->
-        <item name="PermissionButtonTextColor">@android:color/white</item>
-
-        <item name="PermissionIconFilterColor">@color/color_blue_dark</item>
-    </style>
+    
 
 </resources>

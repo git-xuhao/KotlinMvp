@@ -128,6 +128,6 @@ dependencies {
     //腾讯 bugly
     implementation 'com.tencent.bugly:crashreport:2.6.6.1'
     //运行时权限
-    implementation 'me.weyye.hipermission:library:1.0.7'
+    implementation'pub.devrel:easypermissions:1.2.0'
 
 }

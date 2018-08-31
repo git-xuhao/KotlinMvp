@@ -10,13 +10,9 @@ import android.view.animation.Animation.AnimationListener
 import com.hazz.kotlinmvp.MyApplication
 import com.hazz.kotlinmvp.R
 import com.hazz.kotlinmvp.base.BaseActivity
-import com.hazz.kotlinmvp.showToast
 import com.hazz.kotlinmvp.utils.AppUtils
-import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_splash.*
-import me.weyye.hipermission.HiPermission
-import me.weyye.hipermission.PermissionCallback
-import me.weyye.hipermission.PermissionItem
+import pub.devrel.easypermissions.EasyPermissions
 
 
 /**
@@ -85,34 +81,24 @@ class SplashActivity : BaseActivity() {
      * 有些厂商修改了6.0系统申请机制，他们修改成系统自动申请权限了
      */
     private fun checkPermission(){
-        val permissionItems = ArrayList<PermissionItem>()
-        permissionItems.add(PermissionItem(Manifest.permission.READ_PHONE_STATE, "手机状态", R.drawable.permission_ic_phone))
-        permissionItems.add(PermissionItem(Manifest.permission.WRITE_EXTERNAL_STORAGE,"存储空间",R.drawable.permission_ic_storage))
-        HiPermission.create(this)
-                .title("亲爱的上帝")
-                .msg("为了能够正常使用，请开启这些权限吧！")
-                .permissions(permissionItems)
-                .style(R.style.PermissionDefaultBlueStyle)
-                .animStyle(R.style.PermissionAnimScale)
-                .checkMutiPermission(object : PermissionCallback {
-                    override fun onClose() {
-                        Logger.i( "permission_onClose")
-                        showToast("用户关闭了权限")
-                    }
+        val perms = arrayOf(Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        EasyPermissions.requestPermissions(this, "KotlinMvp应用需要以下权限，请允许", 0, *perms)
 
-                    override fun onFinish() {
-                        showToast("初始化完毕！")
-                        layout_splash.startAnimation(alphaAnimation)
-                    }
-
-                    override fun onDeny(permission: String, position: Int) {
-                        Logger.i("permission_onDeny")
-                    }
-
-                    override fun onGuarantee(permission: String, position: Int) {
-                        Logger.i("permission_onGuarantee")
-                    }
-                })
     }
+
+
+    override fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
+        if (requestCode == 0) {
+            if (perms.isNotEmpty()) {
+                if (perms.contains(Manifest.permission.READ_PHONE_STATE)
+                        && perms.contains(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                    if (alphaAnimation != null) {
+                        iv_web_icon.startAnimation(alphaAnimation)
+                    }
+                }
+            }
+        }
+    }
+
 
 }

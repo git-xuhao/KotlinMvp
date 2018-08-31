@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    //自定义折叠 TextView
+    <!-- 自定义折叠 TextView  -->
     <declare-styleable name="ExpandableTextView">
         <attr name="maxCollapsedLines" format="integer" />
         <attr name="animDuration" format="integer" />
