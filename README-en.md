@@ -9,7 +9,7 @@
 [![](https://img.shields.io/badge/Author-xuhao-blue.svg)](http://xuhaoblog.com)
 [![](https://img.shields.io/badge/QQ-504105930-orange.svg)](http://xuhaoblog.com)
 
-![这里写图片描述](http://oyp2zrwnm.bkt.clouddn.com/ic_launcher.png)
+![这里写图片描述](https://github-1253441343.cos.ap-chengdu.myqcloud.com/ic_launcher.png)
 
 GitHub：[https://github.com/git-xuhao/KotlinMvp](https://github.com/git-xuhao/KotlinMvp)
 
@@ -45,7 +45,7 @@ Click[![](https://img.shields.io/badge/Download-apk-green.svg)](https://fir.im/k
 
 **（The following two-dimensional code, the daily limit of 100 times, such as the ceiling, or clone source!✧(≖ ◡ ≖✿)）**
 
-<img src="http://oyp2zrwnm.bkt.clouddn.com/QR-code-kotlin-mvp.png" width = "250" height = "250" alt="图片名称" align=center />
+<img src="https://github-1253441343.cos.ap-chengdu.myqcloud.com/WX20190307-154811%402x.png" width = "250" height = "250" alt="图片名称" align=center />
 
 
 
