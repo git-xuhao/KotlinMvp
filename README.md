@@ -11,7 +11,7 @@
 
 **[English Document](https://github.com/git-xuhao/KotlinMvp/blob/master/README-en.md)**
 
-![这里写图片描述](http://oyp2zrwnm.bkt.clouddn.com/ic_launcher.png)
+![这里写图片描述](https://github-1253441343.cos.ap-chengdu.myqcloud.com/ic_launcher.png)
 
 - **GitHub地址：** [https://github.com/git-xuhao/KotlinMvp](https://github.com/git-xuhao/KotlinMvp)
 
@@ -49,7 +49,7 @@ Kotlin 团队为 Android 开发提供了一套超越标准语言功能的工具�
 
 **（下方二维码，每日上限100次，如达到上限，还是 clone 源码吧！✧(≖ ◡ ≖✿)）**
 
-<img src="http://oyp2zrwnm.bkt.clouddn.com/QR-code-kotlin-mvp.png" width = "250" height = "250" alt="图片名称" align=center />
+<img src="https://github-1253441343.cos.ap-chengdu.myqcloud.com/WX20190307-154811%402x.png" width = "250" height = "250" alt="图片名称" align=center />
 
 
 
