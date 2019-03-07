@@ -32,7 +32,7 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
         checkViewAttached()
         mRootView?.showLoading()
         val disposable = homeModel.requestHomeData(num)
-                .flatMap({ homeBean ->
+                .flatMap { homeBean ->
 
                     //过滤掉 Banner2(包含广告,等不需要的 Type), 具体查看接口分析
                     val bannerItemList = homeBean.issueList[0].itemList
@@ -49,7 +49,7 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
 
                     //根据 nextPageUrl 请求下一页数据
                     homeModel.loadMoreData(homeBean.nextPageUrl)
-                })
+                }
 
                 .subscribe({ homeBean->
                     mRootView?.apply {

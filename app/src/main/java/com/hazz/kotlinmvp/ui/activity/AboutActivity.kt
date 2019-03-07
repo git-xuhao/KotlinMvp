@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import com.hazz.kotlinmvp.MyApplication
 import com.hazz.kotlinmvp.R
+import com.hazz.kotlinmvp.R.id.toolbar
 import com.hazz.kotlinmvp.base.BaseActivity
 import com.hazz.kotlinmvp.utils.AppUtils
 import com.hazz.kotlinmvp.utils.StatusBarUtil

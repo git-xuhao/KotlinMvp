@@ -31,7 +31,7 @@ interface HomeContract {
 
     }
 
-    interface Presenter : IPresenter<View> {
+    interface Presenter {
 
         /**
          * 获取首页精选数据
