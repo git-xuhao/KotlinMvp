@@ -36,20 +36,20 @@ Kotlin 团队为 Android 开发提供了一套超越标准语言功能的工具�
 
 - 截图
 
-![](http://oyp2zrwnm.bkt.clouddn.com/pt2017_12_09_10_27_10.jpg)
+![](https://github-1253441343.cos.ap-chengdu.myqcloud.com/kotlinmvp/pt2017_12_09_10_27_10.jpg)
 
 - gif
 
-   <img src="/screenshot/kotlin-mvp-1.gif" style="width: 30%;">
+   <img src="https://github-1253441343.cos.ap-chengdu.myqcloud.com/kotlinmvp/kotlin-mvp.gif" style="width: 30%;">
 
 
 ## 下载体验
 
-点击[![](https://img.shields.io/badge/Download-apk-green.svg)](https://fir.im/kotlinmvp) 或者扫描下方二维码
+点击[![](https://img.shields.io/badge/Download-apk-green.svg)](http://d.firim.top/kotlinmvp) 或者扫描下方二维码
 
 **（下方二维码，每日上限100次，如达到上限，还是 clone 源码吧！✧(≖ ◡ ≖✿)）**
 
-<img src="https://github-1253441343.cos.ap-chengdu.myqcloud.com/WX20190307-154811%402x.png" width = "250" height = "250" alt="图片名称" align=center />
+<img src="https://github-1253441343.cos.ap-chengdu.myqcloud.com/WX20200630-122633%402x.png" width = "250" height = "250" alt="图片名称" align=center />
 
 
 
