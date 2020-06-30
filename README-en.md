@@ -32,20 +32,19 @@ The Kotlin team provided a set of tools for Android development that go beyond s
 
 - screenshot
 
-![](http://oyp2zrwnm.bkt.clouddn.com/pt2017_12_09_10_27_10.jpg)
+![](https://github-1253441343.cos.ap-chengdu.myqcloud.com/kotlinmvp/pt2017_12_09_10_27_10.jpg)
 
 - gif
 
-   <img src="/screenshot/kotlin-mvp-1.gif" style="width: 30%;">
+  <img src="https://github-1253441343.cos.ap-chengdu.myqcloud.com/kotlinmvp/kotlin-mvp.gif" style="width: 30%;">
 
 
 ## Download experience
 
-Click[![](https://img.shields.io/badge/Download-apk-green.svg)](https://fir.im/kotlinmvp) Or scan the two-dimensional code below
+Click[![](https://img.shields.io/badge/Download-apk-green.svg)](http://d.firim.top/kotlinmvp) Or scan the two-dimensional code below
 
 **（The following two-dimensional code, the daily limit of 100 times, such as the ceiling, or clone source!✧(≖ ◡ ≖✿)）**
-
-<img src="https://github-1253441343.cos.ap-chengdu.myqcloud.com/WX20190307-154811%402x.png" width = "250" height = "250" alt="图片名称" align=center />
+<img src="https://github-1253441343.cos.ap-chengdu.myqcloud.com/WX20200630-122633%402x.png" width = "250" height = "250" alt="图片名称" align=center />
 
 
 
